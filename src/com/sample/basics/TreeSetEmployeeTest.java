@@ -30,7 +30,7 @@ public class TreeSetEmployeeTest {
 		Employee e3 = new TreeSetEmployeeTest().new Employee("Ravi", "Kumar");
 		Employee e4 = new TreeSetEmployeeTest().new Employee("j1", "Kumar");
 		Employee e5 = new TreeSetEmployeeTest().new Employee("i1", "Kumar");
-		Employee e6 = new TreeSetEmployeeTest().new Employee("i1", "Kumar");
+		Employee e6 = new TreeSetEmployeeTest().new Employee("i1", "Ticket");
 		Set<Employee> tSet = new TreeSet<Employee>();
 		tSet.add(e1);
 		tSet.add(e2);

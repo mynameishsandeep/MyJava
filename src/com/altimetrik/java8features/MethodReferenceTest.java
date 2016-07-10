@@ -34,7 +34,7 @@ public class MethodReferenceTest {
 
 	public static void main(String[] args) {
 		//Person[] rosterAsArray = roster.toArray(new Person[roster.size()]);
-		int x=Person::getAge1;
+		//int x=Person::getAge1;
 
 	}
 

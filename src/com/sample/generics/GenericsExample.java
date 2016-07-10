@@ -30,17 +30,17 @@ public class GenericsExample {
 		List<Apple> apples = new ArrayList<Apple>();
 		List<AsianApple> asianApples = new ArrayList<AsianApple>();
 
-		add1(fruits);
+		//add1(fruits);
 		add1(apples);
 		add1(asianApples);
 		
-		add2(fruits);
+		//add2(fruits);
 		add2(apples);
-		add2(asianApples);
+		//add2(asianApples);
 
 		add3(fruits);
 		add3(apples);
-		add3(asianApples);
+		//add3(asianApples);
 	
 		add4(fruits);
 		add4(apples);
@@ -63,17 +63,17 @@ public class GenericsExample {
 	}
 
 	private static void add2(List<Apple> apples) {
-		apples.add(new Fruit());
+		//apples.add(new Fruit());
 		apples.add(new Apple());
 		apples.add(new AsianApple());
 	}
 
 	private static void add3(List<? super Apple> apples) {
-		apples.add(new Fruit());
+		//apples.add(new Fruit());
 		apples.add(new Apple());
 		apples.add(new AsianApple());
 		
-		Apple a = apples.get(0);
+		//Apple a = apples.get(0);
 		Object a1 = apples.get(0);
 		
 	}

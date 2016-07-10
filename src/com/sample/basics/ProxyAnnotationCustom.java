@@ -68,7 +68,7 @@ class EmployeeProxy {
 	}
 }
 
-public class AnnotationCustom {
+public class ProxyAnnotationCustom {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int testCases = Integer.parseInt(in.nextLine());

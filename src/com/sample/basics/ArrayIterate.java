@@ -7,6 +7,7 @@ public class ArrayIterate {
 		for(int x : a) {
 			System.out.println(x);
 		}
+		Double d = Double.MIN_VALUE;
 
 	}
 
