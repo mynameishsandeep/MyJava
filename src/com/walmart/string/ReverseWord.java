@@ -25,7 +25,7 @@ public class ReverseWord {
 	        i++;
 	        j--;
 	    }
-	    System.out.println(s);
+	    //System.out.println(s);
 	}
 	public static void main(String[] args) {
 		String s = "the sky is blue";

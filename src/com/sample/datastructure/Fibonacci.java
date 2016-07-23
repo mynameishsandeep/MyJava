@@ -1,4 +1,4 @@
-package com.altimetrik.datastructure;
+package com.sample.datastructure;
 
 public class Fibonacci {
 	public static void main(String[] args) {

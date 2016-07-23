@@ -18,7 +18,7 @@ public class ListFindMidElement {
 			return;
 		}
 		if (p1.next == null) {
-			System.out.println("Only Element Found");
+			System.out.println("Only 1 Element Found");
 			return;
 		}
 		

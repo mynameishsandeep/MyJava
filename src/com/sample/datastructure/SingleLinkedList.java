@@ -1,4 +1,4 @@
-package com.altimetrik.datastructure;
+package com.sample.datastructure;
 
 class Node {
 	char data;

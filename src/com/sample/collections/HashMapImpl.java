@@ -1,6 +1,7 @@
 package com.sample.collections;
 
 /**
+ *http://www.javamadesoeasy.com/2015/02/hashmap-custom-implementation.html
  * This is a simple Hashmap implementation.
  * 1) collission logic not implemented
  * 2) simple mod based logic for identifying right bucket during put and get
@@ -11,16 +12,16 @@ package com.sample.collections;
  */
 class MyHashMap<K, V> {
 	static class Node<K, V> {
-		int hash;
 		K key;
 		V value;
+		Node<K, V> next;
 	}
 
 	int size = 0;
 	Node<K, V>[] entry;
 
 	public <K, V> MyHashMap() {
-		entry = new Node[16];
+		entry = new Node[16]; // 16 index hash....
 	}
 
 	public void get(K key) {
@@ -34,12 +35,19 @@ class MyHashMap<K, V> {
 
 	public void put(K key, V value) {
 		Node<K, V> node = new Node<>();
-		node.hash = key.hashCode();
 		node.key = key;
 		node.value = value;
-		entry[hash(key)] = node;
+		Node temp = entry[hash(key)];
+		if (temp == null) {
+			entry[hash(key)] = node;
+		} else {//Find duplicate key
+			if(temp.key == key) {
+				
+			}
+		}
 		size++;
 	}
+	
 }
 
 public class HashMapImpl {
@@ -50,7 +58,6 @@ public class HashMapImpl {
 		map.put(2, "value2");
 		map.get(1);
 		map.get(2);
-
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.altimetrik.datastructure;
+package com.sample.datastructure;
 
 import java.util.Stack;
 
