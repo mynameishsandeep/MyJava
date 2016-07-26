@@ -1,8 +1,20 @@
-package com.sample.basics;
+package com.sample.datastructure;
 
 import java.util.Scanner;
+/*
+ * 1) Create a Binary Search Tree.
+ * 2) Search a element, then print the sub-tree of elements in Pre-Order
+ * SAMPLE INPUT 
+5
+2 1 4 3 5
+4
 
-public class Dummy {
+SAMPLE OUTPUT 
+4
+3
+5
+ */
+public class TreeSearchANumberAndPrintSubTree {
 
 	static class Node {
 		int data;
@@ -43,6 +55,7 @@ public class Dummy {
 			}
 			int searchData = scan.nextInt();
 			System.out.println("searchData " + searchData);
+			System.out.println("Sub-Trees of " + searchData + " In Pre-Order are below : ");
 			Node temp1 = node;
 
 			while (true) {
@@ -75,3 +88,4 @@ public class Dummy {
 		printPreOrder(root.right);
 	}
 }
+
