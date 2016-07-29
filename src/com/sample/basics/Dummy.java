@@ -4,17 +4,22 @@ import java.util.Scanner;
 
 public class Dummy {
 
-	public static void main(String args[] ) throws Exception {
-		try(Scanner scan = new Scanner(System.in)) {
-			int n = scan.nextInt();
-			int s = scan.nextInt();
-			int result = -1;
-			for(int i=0; i<n; i++) {
-				if(s == scan.nextInt()) {
-					result = i + 1;
-				}
+	public static void main(String args[]) throws Exception {
+		
+	}
+	
+	public static int fun() {
+		try (Scanner scan = new Scanner(System.in)) {
+		} finally {
+			System.out.println("Finally");
+			try {
+			} finally {
+				System.out.println("Finallys Finally");
+				Dummy d = new Dummy();
+				if(d instanceof Object)
+				return 2;
 			}
-			System.out.println(result);
+			return 1;
 		}
-}
+	}
 }
