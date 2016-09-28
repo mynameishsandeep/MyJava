@@ -16,10 +16,10 @@ import java.util.concurrent.Future;
  * allows to provide a callback interface which is called once a task is completed.
  *
  */
-public class ExecutorCompleteServiceSample {
+public class ExecutorCompletionServiceSample {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
-		ExecutorCompleteServiceSample e = new ExecutorCompleteServiceSample();
+		ExecutorCompletionServiceSample e = new ExecutorCompletionServiceSample();
 		e.executorCompleteServiceSample();
 	}
 

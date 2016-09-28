@@ -39,12 +39,13 @@ public class TreeTraversal {
 		}
 	}
 
-	public void printPreOrder() {
+	// This method is similar to depth first search of a element
+	public void printPreOrderUsingStack() {
 		if (root == null)
 			return;
 		Stack<Node> stack = new Stack<Node>();
 		stack.push(root);
-		while (!stack.empty()) {
+		while (!stack.isEmpty()) {
 			Node n = stack.pop();
 			System.out.printf("%d ", n.data);
 			if (n.right != null) {
@@ -56,10 +57,40 @@ public class TreeTraversal {
 		}
 	}
 
-	public void printPostOrder(Node root) {
+	public void printPreOrderRecurse(Node root) {
+
+		if (root == null) {
+			return;
+		}
+		// Visit the node by Printing the node data
+		System.out.printf("%d ", root.data);
+		
+		printPreOrderRecurse(root.left);
+		printPreOrderRecurse(root.right);
+		
+
+	}
+
+	public void printPostOrderUsingStack(Node root) {
+		Stack<Node> stack = new Stack<>();
+		stack.push(root);
+		while(!stack.isEmpty()) {
+			Node node = stack.peek();
+			
+			if(node.left!= null) {
+				stack.push(node.left);
+			}
+			if(node.right != null) {
+				stack.push(node.right);
+			}
+			System.out.print(node.data);
+
+		}
+	}
+	public void printPostOrderRecurse(Node root) {
 		if (root != null) {
-			printPostOrder(root.left);
-			printPostOrder(root.right);
+			printPostOrderRecurse(root.left);
+			printPostOrderRecurse(root.right);
 			// Visit the node by Printing the node data
 			System.out.printf("%d ", root.data);
 		}
@@ -73,10 +104,11 @@ public class TreeTraversal {
 			printInOrder(root.right);
 		}
 	}
-	
-	public int treeHeight(Node root){
-		if(root==null)return 0;
-		return (1+ Math.max(treeHeight(root.left),treeHeight(root.right)));
+
+	public int treeHeight(Node root) {
+		if (root == null)
+			return 0;
+		return (1 + Math.max(treeHeight(root.left), treeHeight(root.right)));
 	}
 
 	public static void main(String[] args) {
@@ -88,12 +120,13 @@ public class TreeTraversal {
 		p.add(20);
 		p.add(30);
 		p.add(15);
-		p.printPreOrder();
+		p.printPreOrderRecurse(p.root);
 		System.out.println("");
-		p.printPostOrder(p.root);
+		p.printPostOrderUsingStack(p.root);
 		System.out.println("");
 		p.printInOrder(p.root);
-		System.out.println(p.treeHeight(p.root));
+		System.out.println();
+		System.out.println("Height of the Tree is " + p.treeHeight(p.root));
 
 	}
 

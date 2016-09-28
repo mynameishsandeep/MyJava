@@ -16,6 +16,8 @@ public class FutureTaskTest implements Callable {
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		FutureTaskTest f = new FutureTaskTest();
 		FutureTask ft = new FutureTask(f);
+//		Thread t = new Thread(ft);
+//		t.start();
 		ft.run();
 		System.out.println(ft.get());
 	}

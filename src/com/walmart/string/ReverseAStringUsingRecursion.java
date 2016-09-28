@@ -1,5 +1,8 @@
 package com.walmart.string;
 
+/**
+ * http://stackoverflow.com/questions/9723912/reversing-a-string-with-recursion-in-java
+ */
 public class ReverseAStringUsingRecursion {
 
 	static char output[];
@@ -10,11 +13,10 @@ public class ReverseAStringUsingRecursion {
 	
 	public static String reverse(String str) {
 		
-		if ((null == str) || (str.length() <= 1)) {
+		if (str.length() == 1) {
 	        return str;
 	    }
-	    str = reverse(str.substring(1)) + str.charAt(0);
-	    return str;
+	    return reverse(str.substring(1)) + str.charAt(0);
 	}
 
 }

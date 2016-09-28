@@ -1,14 +1,9 @@
 package com.sample.datastructure;
 
 class TrieNode {
-    TrieNode[] arr;
+    TrieNode[] arr = new TrieNode[26];
     boolean isEnd;
-    int frequency;
-    public TrieNode() {
-        this.arr = new TrieNode[26];
-        this.frequency = 1;
-    }
- 
+    int frequency = 1 ;
 }
  
 public class Trie {
@@ -91,6 +86,6 @@ public class Trie {
 		trie.insert("has");
 		trie.insert("had");
 		trie.insert("hada");
-		System.out.println(trie.searchWithCount("ha"));
+		System.out.println(trie.searchWithCount("has"));
 	}
 }

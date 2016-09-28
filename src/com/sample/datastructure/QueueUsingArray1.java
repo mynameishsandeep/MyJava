@@ -1,7 +1,25 @@
 package com.sample.datastructure;
 
+/**
+ * The interface for a generic queue.
+ * 
+ * @author Alex Laird
+ * @version 1.0
+ * File: Queue.java
+ * Created: Oct 2008
+ *
+ * @param <E> defines the generics for the queue
+ */
+interface MyQueue<E>
+{
+  public void enqueue(E element);
+  public E dequeue() throws Exception;
+  public E front() throws Exception;
+  public int size();
+  public boolean isEmpty();
+}
 
-public class QueueUsingArray1<E> implements Queue<E>
+public class QueueUsingArray1<E> implements MyQueue<E>
 {
   public static final int  CAPACITY = 1000;  // default queue capacity
   protected int  capacity;  // current queue capacity
@@ -570,21 +588,3 @@ public class QueueUsingArray1<E> implements Queue<E>
   }
 }
 
-/**
- * The interface for a generic queue.
- * 
- * @author Alex Laird
- * @version 1.0
- * File: Queue.java
- * Created: Oct 2008
- *
- * @param <E> defines the generics for the queue
- */
-interface Queue<E>
-{
-  public void enqueue(E element);
-  public E dequeue() throws Exception;
-  public E front() throws Exception;
-  public int size();
-  public boolean isEmpty();
-}
