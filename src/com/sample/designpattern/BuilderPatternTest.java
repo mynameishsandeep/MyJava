@@ -1,5 +1,11 @@
 package com.sample.designpattern;
 
+import lombok.Data;
+import lombok.Getter;
+
+@Data
+// This annotation will provide getters alone and not setters.
+@Getter 
 class Person {
 	private final String name;
 	private final String age;

@@ -1,7 +1,5 @@
 package com.sample.datastructure;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 public class TreeDepthFirstSearch {
@@ -58,7 +56,7 @@ public class TreeDepthFirstSearch {
 			return false;
 		}
 		Stack<Node> stack = new Stack<Node>();
-		//Queue<Node> queue = new LinkedList<Node>();
+		// Queue<Node> queue = new LinkedList<Node>();
 		stack.push(root);
 		while (!stack.isEmpty()) {
 			Node current = stack.pop();
@@ -83,7 +81,7 @@ public class TreeDepthFirstSearch {
 			return false;
 		}
 		Stack<Node> stack = new Stack<Node>();
-		//Queue<Node> queue = new LinkedList<Node>();
+		// Queue<Node> queue = new LinkedList<Node>();
 		stack.push(root);
 		Stack<Node> resultStack = new Stack<>();
 		resultStack.push(root);
@@ -98,7 +96,7 @@ public class TreeDepthFirstSearch {
 			}
 			if (current.left != null) { // As we want to visit left
 				stack.push(current.left); // child first, we must push this node
-				resultStack.push(current.left);							// last
+				resultStack.push(current.left); // last
 			}
 		}
 		return false;

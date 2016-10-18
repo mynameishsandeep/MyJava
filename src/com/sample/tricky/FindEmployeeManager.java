@@ -10,7 +10,7 @@ public class FindEmployeeManager {
 		empMap.put(46, 78);
 		empMap.put(78, 101);
 		empMap.put(13, 46);
-		System.out.println(findIfConnected(empMap, 23, 102));
+		System.out.println(findIfConnected(empMap, 23, 461));
 	}
 
 	public static boolean findIfConnected(Map<Integer, Integer> empMap, Integer emp1, Integer emp2) {
@@ -20,7 +20,7 @@ public class FindEmployeeManager {
 			if (empMap.get(emp1) == emp2) {// fail, fail,succeed
 				return true;
 			} else {
-				temp=empMap.get(empMap.get(emp1));
+				temp=empMap.get(emp1);
 				if( temp==null) {
 					return false;
 				} else {
