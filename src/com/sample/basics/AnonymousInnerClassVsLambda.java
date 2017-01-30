@@ -15,7 +15,7 @@ public class AnonymousInnerClassVsLambda {
 		};
 		anonymousPerson.address();
 
-		Employee lambdaPerson = () -> System.out.println("Lambda Employee Address");
+		Employee lambdaPerson = () -> {System.out.println("Lambda Employee Address");};
 		lambdaPerson.address();
 	}
 

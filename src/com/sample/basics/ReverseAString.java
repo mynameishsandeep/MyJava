@@ -23,7 +23,7 @@ public class ReverseAString {
 	public static boolean isPali(String str) {
 		String reverseString = "";
 		for(int i=str.length(); i>0; i--) {
-			reverseString = reverseString + str.substring(i-1, i);
+			reverseString = reverseString + str.charAt(i-1);
 		}
 		return reverseString.compareTo(str)==0?true:false;
 	}

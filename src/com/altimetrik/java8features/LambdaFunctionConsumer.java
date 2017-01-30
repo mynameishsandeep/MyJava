@@ -17,7 +17,7 @@ import java.util.function.Consumer;
 public class LambdaFunctionConsumer {
 
 	public static void main(String[] args) {
-		Consumer<String> c = (x)->print(x);
+		Consumer<String> c = (x)->{print(x);}; // x->print(x);
 		funPrint(c);
 		
 		c.accept("Four");

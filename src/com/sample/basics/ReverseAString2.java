@@ -2,6 +2,10 @@ package com.sample.basics;
 
 public class ReverseAString2 {
 
+	/**
+	 * Swap 1st and n th character, then
+	 * 2nd and n-1 character... So half traversal is enough
+	 */
 	public static String reverse(String s) {
         char[] array =  s.toCharArray();
         for(int i=0; i<array.length/2; i++) {
