@@ -1,0 +1,69 @@
+package com.sample.tricky;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * given an array, find whether there exists 3 elements a,b,c in it such that
+ * a+b=c using efficient method.
+ * 
+ * 
+ * @author chandrasekhar
+ *
+ */
+public class TwoSumProblem {
+	public static void main(String[] args) {
+		Integer a[] = { 2, 7, 8, 10, 5 };
+		System.out.println(findSum(a, 9));
+		System.out.println(findSum(a, 11));
+		System.out.println(findSum(a, 7));
+		Integer aa[] = { 3, 2, 4 };
+		System.out.println(twoSum(aa, 6));
+	}
+
+	public static boolean findSum(Integer a[], Integer key) {
+		Set<Integer> set = new HashSet<>();
+		for (int i = 0; i < a.length; i++) {
+			if (set.contains(key - a[i])) {
+				return true;
+			} else {
+				set.add(a[i]);
+			}
+		}
+		return false;
+	}
+
+	/*
+	 * Below approach will not work if we need to return index. Because sorting
+	 * take out index. Only HashMap version is better.
+	 */
+	public static int[] twoSum(Integer[] nums, int target) {
+		Arrays.sort(nums);
+		for (int i = 0, j = nums.length - 1; i < nums.length / 2;) {
+			if (nums[i] + nums[j] > target) {
+				j--;
+			} else if (nums[i] + nums[j] < target) {
+				i++;
+			} else if (nums[i] + nums[j] == target) {
+				return new int[] { i, j };
+			}
+		}
+		return null;
+
+	}
+	
+	public int[] twoSumReturnIndex(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i=0; i<nums.length; i++) {
+            if(map.containsKey(target-nums[i])) {
+                return new int[] {map.get(target-nums[i]), i};
+            } else {
+                map.put(nums[i], i);
+            }
+        }
+        return null;
+    }
+}

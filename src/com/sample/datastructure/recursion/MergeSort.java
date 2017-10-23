@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class MergeSort {
 
 	public static void main(String[] args) {
-		int arr[] = { 4, 2, 6, 1, 8, 5, 7, 3 };
+		int arr[] = { 4, 2, 6, 1, 8, 5, 7 };
 		System.out.println(Arrays.toString(arr));
-		System.out.println(Arrays.toString(mergeSort(arr)));
+		mergeSort(arr);
 	}
 
 	public static int[] mergeSort(int a[]) {
@@ -16,11 +16,13 @@ public class MergeSort {
 			return a;
 		}
 		int mid = n / 2;
+		
+		// Copy left side data
 		int left[] = new int[mid];
 		for (int i = 0; i < mid; i++) {
 			left[i] = a[i];
 		}
-
+		// Copy right side data
 		int right[] = new int[n - mid];
 		for (int i = 0, j = mid; i < right.length; i++, j++) {
 			right[i] = a[j];
@@ -32,32 +34,26 @@ public class MergeSort {
 		return a;
 	}
 
-	public static int[] merge(int left[], int right[], int arr[]) {
-		int n = left.length + right.length;
-		for (int i = 0, j = 0, k = 0; i < n; k++) {
-			if (left[i] > right[j]) {
-				arr[k] = right[j];
+	public static int[] merge(int left[], int right[], int result[]) {
+		int i, j, k = 0;
+		for (i = 0, j = 0, k = 0; i < result.length; i++) {
+			if (j == left.length) {
+				result[i] = right[k];
+				k++;
+			} else if (k == right.length) {
+				result[i] = left[j];
+				j++;
+			} else if (left[j] < right[k]) {
+				result[i] = left[j];
 				j++;
 			} else {
-				arr[k] = left[i];
-				i++;
-			}
-
-			if (i == left.length) {
-				for (int x = ++k; x < arr.length; x++, k++,j++) {
-					arr[x] = right[j];
-				}
-				break;
-			}
-			if (j == right.length) {
-				for (int x = ++k; x < arr.length; x++, k++,i++) {
-					arr[x] = left[i];
-				}
-				break;
+				result[i] = right[k];
+				k++;
 			}
 		}
-		System.out.println(Arrays.toString(arr));
-		return arr;
+		System.out.println(Arrays.toString(result));
+		return result;
 	}
+
 
 }

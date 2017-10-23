@@ -1,5 +1,7 @@
 package com.walmart.string;
 
+import org.apache.commons.lang.StringUtils;
+
 public class EmptyTest {
 
 	public static void main(String[] args) {
@@ -10,7 +12,7 @@ public class EmptyTest {
 			System.out.println("false");
 		}
 		
-		String.isNullOrEmpty("Your string.")
+		StringUtils.isEmpty(s);
 
 
 	}

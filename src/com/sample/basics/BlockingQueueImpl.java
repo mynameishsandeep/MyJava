@@ -2,6 +2,7 @@ package com.sample.basics;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -53,10 +54,26 @@ public class BlockingQueueImpl<T> {
 		}
 		return null;
 	}
-
 	public static void main(String[] args) {
-		BlockingQueueImpl b = new BlockingQueueImpl<Integer>(10);
+		BlockingQueueImpl<String> b = new BlockingQueueImpl<>(10);
+		String input = "";
+		Scanner scan = new Scanner(System.in);
+		while(true) {
+			input = scan.nextLine();
+			if("i".equals(input)) {
+				input = scan.nextLine();
+				b.insert(input);	
+			} else if("e".equals(input)){
+				break;
+			} else {
+				input = scan.nextLine();
+				System.out.println(b.fetchAndRemove());
+			}
+			
+		}
+		scan.close();
 
 	}
+	
 
 }

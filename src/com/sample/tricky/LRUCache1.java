@@ -19,7 +19,9 @@ public class LRUCache1<K, V> extends LinkedHashMap<K, V> {
 	        cache.put(9, 9);
 	        cache.put(10, 10);
 	        
-	        cache.get(1);
+	        System.out.println(cache);
+	        
+	        cache.get(5);
 	        
 	        cache.put(11, 11);
 

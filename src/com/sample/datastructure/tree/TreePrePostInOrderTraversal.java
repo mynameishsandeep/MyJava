@@ -1,8 +1,8 @@
-package com.sample.datastructure;
+package com.sample.datastructure.tree;
 
 import java.util.Stack;
 
-public class TreeTraversal {
+public class TreePrePostInOrderTraversal {
 
 	class Node {
 		int data;
@@ -64,29 +64,29 @@ public class TreeTraversal {
 		}
 		// Visit the node by Printing the node data
 		System.out.printf("%d ", root.data);
-		
+
 		printPreOrderRecurse(root.left);
 		printPreOrderRecurse(root.right);
-		
 
 	}
 
 	public void printPostOrderUsingStack(Node root) {
 		Stack<Node> stack = new Stack<>();
 		stack.push(root);
-		while(!stack.isEmpty()) {
-			Node node = stack.peek();
-			
-			if(node.left!= null) {
+		while (!stack.isEmpty()) {
+			Node node = stack.pop();
+
+			if (node.left != null) {
 				stack.push(node.left);
 			}
-			if(node.right != null) {
+			if (node.right != null) {
 				stack.push(node.right);
 			}
-			System.out.print(node.data);
+			System.out.printf("%d ", node.data);
 
 		}
 	}
+
 	public void printPostOrderRecurse(Node root) {
 		if (root != null) {
 			printPostOrderRecurse(root.left);
@@ -96,12 +96,12 @@ public class TreeTraversal {
 		}
 	}
 
-	public void printInOrder(Node root) {
+	public void printInOrderRecurse(Node root) {
 		if (root != null) {
-			printInOrder(root.left);
+			printInOrderRecurse(root.left);
 			// Visit the node by Printing the node data
 			System.out.printf("%d ", root.data);
-			printInOrder(root.right);
+			printInOrderRecurse(root.right);
 		}
 	}
 
@@ -112,7 +112,7 @@ public class TreeTraversal {
 	}
 
 	public static void main(String[] args) {
-		TreeTraversal p = new TreeTraversal();
+		TreePrePostInOrderTraversal p = new TreePrePostInOrderTraversal();
 		p.add(10);
 		p.add(5);
 		p.add(4);
@@ -120,11 +120,15 @@ public class TreeTraversal {
 		p.add(20);
 		p.add(30);
 		p.add(15);
+		System.out.println("=====printPreOrderRecurse====");
 		p.printPreOrderRecurse(p.root);
-		System.out.println("");
+		System.out.println();System.out.println("=====printPreOrderUsingStack====");
+		p.printPreOrderUsingStack();
+		System.out.println();System.out.println("=====printPostOrderUsingStack====");
 		p.printPostOrderUsingStack(p.root);
-		System.out.println("");
-		p.printInOrder(p.root);
+		System.out.println();System.out.println("=====printInOrderRecurse====");
+		p.printInOrderRecurse(p.root);
+		
 		System.out.println();
 		System.out.println("Height of the Tree is " + p.treeHeight(p.root));
 

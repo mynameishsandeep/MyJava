@@ -9,6 +9,7 @@ public class IterateMap {
 		Map<String, String> map = new HashMap<>();
 		map.put("1", "1");
 		map.put("2", "1");
+		System.out.println("ToString content is "+map.toString());
 		for(Map.Entry<String, String> currentMap: map.entrySet()) {
 			System.out.println(currentMap.getKey());
 			System.out.println(currentMap.getValue());

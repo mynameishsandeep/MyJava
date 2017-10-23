@@ -43,7 +43,7 @@ public class TrieFindBadSet {
 			}
 		}
 		p.isEnd = true;
-		if(total==word.length()) {
+		if (total == word.length()) {
 			return word;
 		}
 		return "";
@@ -52,19 +52,18 @@ public class TrieFindBadSet {
 	public static void main(String[] args) {
 		TrieFindBadSet trie = new TrieFindBadSet();
 		String result = "";
-    	try(Scanner scan = new Scanner(System.in)) {
-    		int n = scan.nextInt();
-    		String input = "";
-    		int i=0;
-    		for(; i<n; i++) {
-    			input = scan.next();
-    			result = trie.insert(input);
-    			if(!"".equals(result)) {
-    				break;
-    			}
-    		}
-    	}
+		try (Scanner scan = new Scanner(System.in)) {
+			int n = scan.nextInt();
+			String input = "";
+			for (int i = 0; i < n; i++) {
+				input = scan.next();
+				result = trie.insert(input);
+				if (!"".equals(result)) {
+					break;
+				}
+			}
+		}
 		System.out.println(result);
 
-    }
+	}
 }

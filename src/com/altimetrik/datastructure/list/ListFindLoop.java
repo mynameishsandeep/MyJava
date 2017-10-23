@@ -1,10 +1,21 @@
 package com.altimetrik.datastructure.list;
 
 public class ListFindLoop {
-	public void findLoop(SingleLinkedListCustom.Node node) {
-		while(true) {
-			
+	public boolean hasCycle(ListNode head) {
+		ListNode doublePointer = head;
+		while (doublePointer != null) {
+			head = head.next;
+			doublePointer = doublePointer.next;
+			if (doublePointer != null) {
+				doublePointer = doublePointer.next;
+			} else {
+				return false;
+			}
+			if (head == doublePointer) {
+				return true;
+			}
 		}
+		return false;
 	}
 
 	public static void main(String[] args) {

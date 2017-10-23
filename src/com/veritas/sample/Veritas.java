@@ -9,7 +9,7 @@ public class Veritas {
 	public boolean findWord(final char input[][],final String search) {
 		boolean success = true;
 		for(int i=0; i<input.length; i++) {// row
-			if(search.length() != input[])
+			//if(search.length() != input[])
 			for (int j=0; j<input[i].length; j++) { // column
 				if(input[i][j] != search.charAt(j)) {
 					success = false;
@@ -21,19 +21,19 @@ public class Veritas {
 		
 	}
 
-	public boolean navigateLeftToRight(final char input[], final String search) {
-
-	}
-
-	public boolean navigateRightToLeft(final char input[], final String search) {
-
-	}
-
-	public boolean navigateTopToBottom(final char input[], final String search) {
-
-	}
-
-	public boolean navigateBottomToTop(final char input[], final String search) {
-
-	}
+//	public boolean navigateLeftToRight(final char input[], final String search) {
+//
+//	}
+//
+//	public boolean navigateRightToLeft(final char input[], final String search) {
+//
+//	}
+//
+//	public boolean navigateTopToBottom(final char input[], final String search) {
+//
+//	}
+//
+//	public boolean navigateBottomToTop(final char input[], final String search) {
+//
+//	}
 }

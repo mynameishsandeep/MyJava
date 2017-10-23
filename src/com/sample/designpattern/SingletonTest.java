@@ -28,8 +28,8 @@ class ClassicSingleton {
 	}
 }
 
-public class SingletonTest { // extends ClassicSingleton {// Cannot be extended
-								// because Singleton has private Constructor.
+// Cannot be extended because Singleton has private Constructor.
+public class SingletonTest { // extends ClassicSingleton {
 
 	public static void main(String[] args) {
 

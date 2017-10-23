@@ -14,7 +14,7 @@ public class Print123 {
 	Condition con2 = lock.newCondition();
 	Condition con3 = lock.newCondition();
 
-	Callable c1 = () -> {
+	Callable<String> c1 = () -> {
 		for (int i = 1; i < 10; i++) {
 			lock.lock();
 			System.out.println("1");
@@ -28,7 +28,7 @@ public class Print123 {
 		return "null";
 	};
 
-	Callable c2 = () -> {
+	Callable<String> c2 = () -> {
 		for (int i = 11; i < 20; i++) {
 			lock.lock();
 			System.out.println("2");
@@ -41,7 +41,7 @@ public class Print123 {
 		return null;
 	};
 
-	Callable c3 = () -> {
+	Callable<String> c3 = () -> {
 		for (int i = 21; i < 30; i++) {
 			lock.lock();
 			System.out.println("3");
@@ -49,7 +49,7 @@ public class Print123 {
 			con3.await();
 		}
 		System.out.println("T3 Exiting");
-		con2.signal();
+		//con2.signal();
 		return null;
 	};
 

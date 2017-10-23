@@ -6,10 +6,10 @@ public class CountDownPlayerlatch {
 
 	
 
-	CountDownLatch cdl = new CountDownLatch(12);
+	static CountDownLatch latch = new CountDownLatch(12);
 	public static void main(String[] args) {
-		for (int i=0 i<12; i++) {
-			Thread cacheService = new Thread(new PlayerService("fName" + 1, 1000, latch));
+		for (int i=0; i<12; i++) {
+			Thread cacheService = new Thread(new PlayerService("fName" , "lName" , 1000, 100, latch));
 		}
 		
 		// Initialize shceduler when 12 players are ready.

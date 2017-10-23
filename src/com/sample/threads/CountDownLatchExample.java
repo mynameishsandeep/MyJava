@@ -20,7 +20,6 @@ public class CountDownLatchExample {
 		public void run() {
 			System.out.println("Thread 1");
 			try {
-
 				cdl.countDown();
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

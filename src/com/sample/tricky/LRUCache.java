@@ -1,7 +1,12 @@
 package com.sample.tricky;
 
 import java.util.HashMap;
-
+/**
+ * https://www.programcreek.com/2013/03/leetcode-lru-cache-java/
+ * 
+ * @author chandrasekhar
+ *
+ */
 public class LRUCache {
 	class Node {
 		int key;
