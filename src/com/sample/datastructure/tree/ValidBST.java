@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 1) Do In-Order Traversal of the given tree and store the result in a temp
- * array. 3) Check if the temp array is sorted in ascending order, if it is,
- * then the tree is BST.
+ * Solution 1) 
+ * 		a) Do In-Order Traversal of the given tree and store the result in a temp array. 
+ * 		b) Check if the temp array is sorted in ascending order, if it is, then the tree is BST.
+ * 		Time Complexity: O(n) Space Complexity: O(n)
  * 
- * Time Complexity: O(n)
+ * Solution 2) --- We can avoid the use of Auxiliary Array. Tree Image is present in "US Problems" "ValidBST.jpg" 
+ * 		a) Traverse in anyone of In-Order or Pre-Order or Post-Order. 
+ * 		   aq	Mostly Pre-Order for better understanding
+ * 		b) Set min and max to Long.MIN_VALUE and Long.MAX_VALUE.
+ * 		c) At any point node value should lie between min and max. Else False. 
+ * 		d) For left side traverse, update max with current data.
+ * 		e) For right side traverse, update min with current data.
+ * 		Time Complexity: O(n) Space Complexity: O(h)--> h is height of tree  
  * 
- * We can avoid the use of Auxiliary Array. While doing In-Order traversal, we
- * can keep track of previously visited node. If the value of the currently
- * visited node is less than the previous value, then tree is not BST.
- * 
- * @author chandrasekhar
- *
  */
 public class ValidBST {
 
@@ -56,18 +58,20 @@ public class ValidBST {
 	}
 
 	public boolean isValidBST(Node root) {
-	    return isValidBST(root, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);    
+	    return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);    
 	}
 	 
-	private boolean isValidBST(Node p, double min, double max){
-	    if(p==null) 
-	        return true;
-	 
-	    if(p.data <= min || p.data >= max)
-	        return false;
-	 
-	    return isValidBST(p.left, min, p.data) && isValidBST(p.right, p.data, max);
-	}
+	public boolean isValidBST(Node root, long min, long max) {
+        if(root!=null) {
+            if(root.data <= min || root.data >= max) {
+                return false;
+            }
+            Boolean left = isValidBST(root.left, min, root.data);
+            Boolean right = isValidBST(root.right, root.data, max);
+            return left && right;
+        }
+        return true;
+    }
 	
 	public void printInOrderRecurse(Node root) {
 		if (root != null) {

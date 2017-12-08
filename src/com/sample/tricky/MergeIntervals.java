@@ -7,6 +7,11 @@ import java.util.Comparator;
 import java.util.List;
 
 //https://leetcode.com/problems/merge-intervals/discuss/
+/**
+ * 1) Sort the intervals by start time.
+ * 2) Compare overlaps with current and next. If no overlap add to result.
+ * 3) Else do overlap logic. 
+ */
 public class MergeIntervals {
 
 	public List<Interval> merge(List<Interval> intervals) {

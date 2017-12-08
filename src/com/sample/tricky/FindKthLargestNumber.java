@@ -1,18 +1,25 @@
 package com.sample.tricky;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
-
+/**
+ * 
+ * 1) Find Largest Number using priority queue
+ * 2) Find Largest Number using Quick select algorithm
+ */
 public class FindKthLargestNumber {
 	public static void main(String[] args) {
 		// 2,3,5,7,8,9,10
 		int a[] = { 7, 3, 9, 2, 5, 10, 8 };
 
-		System.out.println(findKthLargest(a, 3));
-		System.out.println(findKthLargetQuickSelect(a, 3));
+		System.out.println(findKthLargestUsingPriorityQueue(a, 3));
+		System.out.println(findKthLargetUsingQuickSelect(a, 3));
 	}
 
-	public static Integer findKthLargest(int a[], Integer k) {
+	public static Integer findKthLargestUsingPriorityQueue(int a[], Integer k) {
 		Queue<Integer> pQ = new PriorityQueue<Integer>();
 		for (Integer data : a) {
 			pQ.offer(data);
@@ -23,53 +30,60 @@ public class FindKthLargestNumber {
 		return pQ.poll();
 	}
 
-	public static int findKthLargetQuickSelect(int[] nums, int k) {
-		if (k < 1 || nums == null) {
-			return 0;
+	/**
+	 * http://codingrecipies.blogspot.com/2015/07/algo-121-quick-select-algorithm.html
+	 * 
+	 * By default quick select finds kth Smallest element. 
+	 * Less than symbol is changed in partition to change the function to kth Largest element
+	 * 	
+	**/
+	public static int findKthLargetUsingQuickSelect(int[] nums, int k) {
+		if (nums.length == 1) {
+			return nums[0];
 		}
-
-		return getKth(nums.length - k + 1, nums, 0, nums.length - 1);
-	}
-
-	public static int getKth(int k, int[] nums, int start, int end) {
-
-		int pivot = nums[end];
-
-		int left = start;
-		int right = end;
-
+		Integer left = 0;
+		List<Integer> input = new ArrayList<>();
+		for (int i = 0; i < nums.length; i++) {
+			input.add(nums[i]);
+		}
+		Integer right = input.size() - 1;
+		Integer pivot = partition(input, left, right);
 		while (true) {
+			// if 
+			if (pivot + 1 == k) {
+				return input.get(k - 1);
+			} else if (pivot < k) {
+				pivot = partition(input, pivot, right);
 
-			while (nums[left] < pivot && left < right) {
-				left++;
+			} else {
+				pivot = partition(input, left, pivot - 1);
+
 			}
-
-			while (nums[right] >= pivot && right > left) {
-				right--;
-			}
-
-			if (left == right) {
-				break;
-			}
-
-			swap(nums, left, right);
-		}
-
-		swap(nums, left, end);
-
-		if (k == left + 1) {
-			return pivot;
-		} else if (k < left + 1) {
-			return getKth(k, nums, start, left - 1);
-		} else {
-			return getKth(k, nums, left + 1, end);
 		}
 	}
 
-	public static void swap(int[] nums, int n1, int n2) {
-		int tmp = nums[n1];
-		nums[n1] = nums[n2];
-		nums[n2] = tmp;
+	/**
+	 * Partition meant arranging one set of data.
+	 * Partition in quick select picks a pivot (either randomly or first/last element). This logic picks last element.
+	 * Then it rearranges the list in a way that all elements greater than pivot 
+	 * are on left side of pivot and others on right. 
+	 * It then returns index of the element upto which is sorted.
+	 */
+
+	public static Integer partition(List<Integer> input, Integer left, Integer right) {
+
+		// Taking last element as pivot 
+		int pivot = right--;
+		for (int i = left; i <= right; i++) {
+			if (input.get(i) >= input.get(pivot)) {
+				Collections.swap(input, i, left++);
+			}
+		}
+		Collections.swap(input, pivot, left);
+		System.out.println(input);
+		System.out.println(left);
+		return left;
+
 	}
 
 }

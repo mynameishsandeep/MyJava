@@ -1,62 +1,93 @@
 package com.sample.tricky;
 
+/**
+ * Problem : Given a boolean 2D matrix, find the number of islands. A group of connected 1s forms an island.
+ * 
+ * http://www.geeksforgeeks.org/find-number-of-islands/
+ * 
+ * Solution:
+ *  1) Construct an isProcessed array with all 0s.  
+ *  2) Call row*col times findIsland() method for 
+ *  		a) not processed elements in array and
+ *  	 	b) data with value 1 
+ *  to fill isProcessed array with 1s.
+ *  3) Each time findIsand() method is called. We find 1 island. 
+ *  Objective of findIsland() method is to fill isProcessed array.
+ *  4) FindIsland method splits in 8 direction in most of online codes. But it is not necessary, 
+ *  four direction is enough to find the connection of forms. 
+ *  Because we are calling the loop from left to right for all 1s.
+ *  
+ *  In the below code findIsland() method 4 direction is commented. Enabling them will yield same result.    
+ *
+ */
 public class IslandsInMatrix {
-	// No of rows and columns
-	static final int ROW = 5, COL = 5;
 
-	// A function to check if a given cell (row, col) can
-	// be included in DFS
-	boolean isSafe(int M[][], int row, int col, boolean visited[][]) {
-		// row number is in range, column number is in range
-		// and value is 1 and not yet visited
-		return (row >= 0) && (row < ROW) && (col >= 0) && (col < COL) && (M[row][col] == 1 && !visited[row][col]);
-	}
+	public static void main(String[] args) {
 
-	// A utility function to do DFS for a 2D boolean matrix.
-	// It only considers the 8 neighbors as adjacent vertices
-	void DFS(int M[][], int row, int col, boolean visited[][]) {
-		// These arrays are used to get row and column numbers
-		// of 8 neighbors of a given cell
-		int rowNbr[] = new int[] { -1, -1, -1, 0, 0, 1, 1, 1 };
-		int colNbr[] = new int[] { -1, 0, 1, -1, 1, -1, 0, 1 };
+		int[][] input = { 
+				{ 1, 1, 0, 0, 0 }, 
+				{ 1, 1, 0, 0, 0 }, 
+				{ 0, 0, 1, 0, 0 }, 
+				{ 0, 0, 0, 1, 1 }, };
 
-		// Mark this cell as visited
-		visited[row][col] = true;
-
-		// Recur for all connected neighbours
-		for (int k = 0; k < 8; ++k)
-			if (isSafe(M, row + rowNbr[k], col + colNbr[k], visited))
-				DFS(M, row + rowNbr[k], col + colNbr[k], visited);
-	}
-
-	// The main function that returns count of islands in a given
-	// boolean 2D matrix
-	int countIslands(int M[][]) {
-		// Make a bool array to mark visited cells.
-		// Initially all cells are unvisited
-		boolean visited[][] = new boolean[ROW][COL];
-
-		// Initialize count as 0 and traverse through the all cells
-		// of given matrix
-		int count = 0;
-		for (int i = 0; i < ROW; ++i)
-			for (int j = 0; j < COL; ++j)
-				if (M[i][j] == 1 && !visited[i][j]) // If a cell with
-				{ // value 1 is not
-					// visited yet, then new island found, Visit all
-					// cells in this island and increment island count
-					DFS(M, i, j, visited);
-					++count;
+		int[][] isProcessed = new int[input.length][input[0].length];
+		int result = 0;
+		for (int row = 0; row < input.length; row++) {
+			for (int col = 0; col < input[0].length; col++) {
+				if (!isProcessed(isProcessed, row, col) && 1 == input[row][col]) {
+					findIsland(input, row, col, input.length - 1, input[0].length - 1, isProcessed);
+					result++;
 				}
+			}
+		}
+		System.out.println(result);
 
-		return count;
 	}
 
-	// Driver method
-	public static void main(String[] args) throws java.lang.Exception {
-		int M[][] = new int[][] { { 1, 1, 0, 0, 0 }, { 0, 1, 0, 0, 1 }, { 1, 0, 0, 1, 1 }, { 0, 0, 0, 0, 0 },
-				{ 1, 0, 1, 0, 1 } };
-		IslandsInMatrix I = new IslandsInMatrix();
-		System.out.println("Number of islands is: " + I.countIslands(M));
+	public static boolean isProcessed(int[][] isProcessed, int row, int col) {
+		return 1 == isProcessed[row][col];
 	}
+
+	public static boolean isValidRowCol(int row, int col, int rowMax, int colMax) {
+		return row <= rowMax && row >= 0 && col <= colMax && col >= 0;
+	}
+
+	public static void findIsland(int[][] a, int row, int col, int rowMax, int colMax, int[][] isProcessed) {
+		if (!isValidRowCol(row, col, rowMax, colMax)) {
+			return;
+		}
+		if (isProcessed(isProcessed, row, col)) {
+			return;
+		}
+		isProcessed[row][col] = 1;
+		if (a[row][col] == 0) {
+			return;
+		}
+
+		// leftToRight
+		findIsland(a, row, col + 1, rowMax, colMax, isProcessed);
+
+		//leftToRightBottomDiagnonal
+		findIsland(a, row + 1, col + 1, rowMax, colMax, isProcessed);
+
+		// topToBottom
+		findIsland(a, row + 1, col, rowMax, colMax, isProcessed);
+
+		//rightToLeftBottomDiagonal
+		findIsland(a, row + 1, col - 1, rowMax, colMax, isProcessed);
+
+//		//rightToLeft
+//		findIsland(a, row , col - 1, rowMax, colMax, isProcessed);
+//		
+//		//rightToLeftTopDiagonal
+//		findIsland(a, row-1 , col - 1, rowMax, colMax, isProcessed);
+//
+//        // BottomToTop
+//		findIsland(a, row - 1, col, rowMax, colMax, isProcessed);
+//		
+//		//leftToRightTopDiagnonal
+//		findIsland(a, row - 1, col +  1, rowMax, colMax, isProcessed);
+
+	}
+
 }

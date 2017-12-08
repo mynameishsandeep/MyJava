@@ -21,15 +21,15 @@ import java.util.Set;
  *  Note: This solution will not work for keys with duplicate. 
  *  Example. Find 'tist' on "this is a test string". It will look only tis
  */
-public class Pangram {
+public class FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString {
 	public static void main(String[] args) {
 		Set<Character> set = new HashSet<>();
 		set.add('o');set.add('r');set.add('k');
-		System.out.println(new Pangram().pangram("geeksforgeeks", set));
-		System.out.println(new Pangram().pangram("geeksforgeeksork", set));
+		System.out.println(new FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString().pangram("geeksforgeeks", set));
+		System.out.println(new FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString().pangram("geeksforgeeksork", set));
 		set.clear();
 		set.add('t');set.add('i');set.add('s');set.add('t');
-		System.out.println(new Pangram().pangram("this is a test string", set));
+		System.out.println(new FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString().pangram("this is a test string", set));
 	}
 
 	public String pangram(final String input, final Set<Character> key) {
@@ -66,8 +66,9 @@ public class Pangram {
 		return input.substring(min, max + 1);
 	}
 
+	
+	
 	private Boolean verifySubStringFilled(final Map<Character, Integer> subStringMap, Integer keyLength) {
 		return subStringMap.size() == keyLength;
-
 	}
 }

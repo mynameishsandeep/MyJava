@@ -1,6 +1,7 @@
 package com.walmart.string;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PermutationOfString {
@@ -8,15 +9,15 @@ public class PermutationOfString {
 	public static void main(String args[]) {
 		String permute = "abc";
 		System.out.println("Total Combination is " + factorial(permute.length()));
-		// permuteString("", permute);
 		permuteStringDp(permute);
-		permutation("", permute);
-
-		// permute = "abcd";
-		// System.out.println("Total Combination is " +
-		// factorial(permute.length()));
-		// // permuteString("", permute);
-		// permuteStringDp(permute);
+		char[] cInput = permute.toCharArray();
+		List<Character> input = new ArrayList<>();
+		for (int i = 0; i < cInput.length; i++) {
+			input.add(cInput[i]);
+		}
+		List<List<Character>> result = new ArrayList<>();
+		permutationNew(input, result, 0);
+		System.out.println(result);
 	}
 
 	public static long factorial(long number) {
@@ -26,14 +27,18 @@ public class PermutationOfString {
 			return number * factorial(number - 1);
 	}
 
-	private static void permutation(String prefix, String str) {
-		if (0 == str.length())
-			System.out.println(prefix);
-		else {
-			for (int i = 0; i < str.length(); i++) {
-				permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, str.length()));
-			}
+
+	private static void permutationNew(List<Character> input, List<List<Character>> result, Integer currentIndex) {
+		if (currentIndex == input.size() - 1) {
+			result.add(new ArrayList<>(input));
+			return;
 		}
+		for (int i = currentIndex; i < input.size(); i++) {
+			Collections.swap(input, currentIndex, i);
+			permutationNew(input, result, currentIndex + 1);
+			Collections.swap(input, currentIndex, i);
+		}
+
 	}
 
 	// https://www.codeproject.com/Tips/891811/Calculating-Permutation-Using-Dynamic-Programming
