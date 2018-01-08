@@ -3,6 +3,9 @@ package com.altimetrik.java8features;
 import java.util.function.Supplier;
 
 /**
+ * 
+ * Supplier is similar to a Function - it cannot accept method argument, but can return a value.
+ * 
  * Supplier sends a function f1 to another function f2. Inside f2, We call
  * supplier.get() calls f1() to retrieve its value
  * 
@@ -13,20 +16,21 @@ public class LambdaFunctionSupplier {
 
 	public static void main(String[] args) {
 		LambdaFunctionSupplier l = new LambdaFunctionSupplier();
-		l.myMethod();
+		l.testSupplier();
 
 	}
 
-	public void myMethod() {
+	public void testSupplier() {
 		Fun fun = new Fun();
 		Supplier<?> s = (() -> fun.funString());
+		//System.out.println(s.get());
 		System.out.println(callSupplier(s));
 
 		Supplier<?> s1 = (() -> fun.funInteger());
 		System.out.println(callSupplier(s1));
 
 		System.out.println(callSupplier(() -> fun.funBoolean()));
-		
+
 		Supplier<?> s2 = (() -> fun.funObject());
 		System.out.println(s2.get());
 
@@ -60,7 +64,7 @@ class Fun {
 	public Boolean funBoolean() {
 		return true;
 	}
-	
+
 	public Object funObject() {
 		return "Inside Fun Object";
 	}

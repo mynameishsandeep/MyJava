@@ -1,5 +1,9 @@
 package com.sample.basics;
 
+import java.util.Arrays;
+
+import org.apache.commons.lang.StringUtils;
+
 public class StringSplit {
 	public static void main(String[] args) {
 		String s = "10.12 USD";
@@ -16,5 +20,10 @@ public class StringSplit {
 		for(int i=0; i<s3Split.length; i++) {
 			System.out.println(s3Split[i]);
 		}
+		
+		
+		String array[] = {" String", "Tom Selleck "," Fish "};
+		array = StringUtils.stripAll(array);
+		System.out.println(Arrays.toString(array));
 	}
 }

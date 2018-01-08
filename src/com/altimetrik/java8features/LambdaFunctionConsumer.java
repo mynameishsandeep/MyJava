@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
+ * 
+ * Consumer can accept argument but it cannot return a value.
+ * 
  * Consumer sends a function f1 to another function f2. Inside f2, we call
- * consumer.apply(data), which calls f1(data). f1(data) consumes data (Ex:
+ * consumer.accept(data), which calls f1(data). f1(data) consumes data (Ex:
  * Print) and does not return any value
  * 
  * Here forEach is Consumer. It accepts argument and prints result and don’t

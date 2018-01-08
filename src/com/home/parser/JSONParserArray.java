@@ -12,7 +12,8 @@ public static void main(String[] args) {
 	j.put("id", "value");
 	j.put("id1", "value1");
 	array.put(j);
-	
+	array.remove(array.length());
+	System.out.println("JSONArray" + array.toString());
 	top.put("results", array);
 	System.out.println(top.toString());
 	
