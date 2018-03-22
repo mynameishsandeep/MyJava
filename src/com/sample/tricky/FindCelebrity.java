@@ -41,4 +41,9 @@ public class FindCelebrity {
 		}
 		return l;
 	}
+	
+	// Not completed fully
+	public boolean knows(int i, int j) {
+		return true;
+	}
 }

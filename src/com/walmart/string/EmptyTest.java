@@ -13,7 +13,7 @@ public class EmptyTest {
 		}
 		
 		StringUtils.isEmpty(s);
-
+		StringUtils.isBlank(s);
 
 	}
 

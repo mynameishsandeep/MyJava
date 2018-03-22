@@ -15,6 +15,8 @@ public class StringBuilderTest {
         System.out.println(map.size());
         
         System.out.println(sb1.equals(sb2));
+        
+        System.out.println(sb1.delete(sb1.length()-1, sb1.length()));
 	}
 
 }
