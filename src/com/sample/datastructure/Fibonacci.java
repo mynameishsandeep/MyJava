@@ -42,12 +42,12 @@ public class Fibonacci {
 		}
 		int fNMinus2 = 0;
 		int fNMinus1 = 1;
-		int result = 0;
+		int fN = 0;
 		for (int i = 2; i <= n; i++) {
-			result = fNMinus2 + fNMinus1;
+			fN = fNMinus2 + fNMinus1;
 			fNMinus2 = fNMinus1;
-			fNMinus1 = result;
+			fNMinus1 = fN;
 		}
-		return result;
+		return fN;
 	}
 }

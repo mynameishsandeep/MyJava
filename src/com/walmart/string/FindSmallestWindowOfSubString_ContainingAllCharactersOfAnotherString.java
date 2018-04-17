@@ -23,13 +23,20 @@ import java.util.Set;
  */
 public class FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString {
 	public static void main(String[] args) {
+		FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString f = new FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString();
 		Set<Character> set = new HashSet<>();
-		set.add('o');set.add('r');set.add('k');
-		System.out.println(new FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString().pangram("geeksforgeeks", set));
-		System.out.println(new FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString().pangram("geeksforgeeksork", set));
+		set.add('o');
+		set.add('r');
+		set.add('k');
+		System.out.println(f.pangram("geeksforgeeks", set));
+		System.out.println(f.pangram("geeksforgeeksork", set));
 		set.clear();
-		set.add('t');set.add('i');set.add('s');set.add('t');
-		System.out.println(new FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherString().pangram("this is a test string", set));
+		set.add('t');
+		set.add('i');
+		set.add('s');
+		set.add('t');
+		System.out.println(f.pangram("this is a test string", set));
+		
 	}
 
 	public String pangram(final String input, final Set<Character> key) {
@@ -66,8 +73,6 @@ public class FindSmallestWindowOfSubString_ContainingAllCharactersOfAnotherStrin
 		return input.substring(min, max + 1);
 	}
 
-	
-	
 	private Boolean verifySubStringFilled(final Map<Character, Integer> subStringMap, Integer keyLength) {
 		return subStringMap.size() == keyLength;
 	}

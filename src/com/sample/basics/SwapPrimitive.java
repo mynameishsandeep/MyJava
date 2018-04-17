@@ -2,10 +2,10 @@ package com.sample.basics;
 
 public class SwapPrimitive {
 
-	public void swap(int a, int b) {
+	public void swap(Integer a, Integer b) {
 		int temp = a;
 		a = b;
-		b = a;
+		b = temp;
 	}
 	public static void main(String[] args) {
 		SwapPrimitive s = new SwapPrimitive();

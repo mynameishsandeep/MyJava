@@ -13,25 +13,22 @@ public class FindEmployeeManager {
 		empMap.put(5, 6);
 		empMap.put(6, 7);
 		empMap.put(100, 4);
-		System.out.println(findBoss(empMap, 100, 3));
+		System.out.println(findBoss(empMap, 100, 7));
+		System.out.println(findBoss(empMap, 100, 1));
 	}
 
-	public static boolean findBoss(Map<Integer, Integer> empMap, Integer emp1, Integer emp2) {
-
-		Integer temp = null;
+	public static boolean findBoss(Map<Integer, Integer> empMap, Integer emp, Integer mgr) {
 		while (true) {
-			if (empMap.get(emp1) == emp2) {// fail, fail,succeed
+			Integer boss = empMap.get(emp);
+			if (boss == mgr) {
 				return true;
+			} else if (null == boss) {
+				return false;
 			} else {
-				temp=empMap.get(emp1);
-				if( temp==null) {
-					return false;
-				} else {
-					emp1 = temp;
-				}
-
+				emp = boss;
 			}
 		}
 
 	}
+
 }

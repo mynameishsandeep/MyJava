@@ -9,7 +9,6 @@ public class PermutationOfString {
 	public static void main(String args[]) {
 		String permute = "abc";
 		System.out.println("Total Combination is " + factorial(permute.length()));
-		permuteStringDp(permute);
 		char[] cInput = permute.toCharArray();
 		List<Character> input = new ArrayList<>();
 		for (int i = 0; i < cInput.length; i++) {
@@ -18,6 +17,11 @@ public class PermutationOfString {
 		List<List<Character>> result = new ArrayList<>();
 		permutationNew(input, result, 0);
 		System.out.println(result);
+		
+		List<String> result1 = new ArrayList<>();
+		permute(0, permute, result1);
+		System.out.println(result1);
+
 	}
 
 	public static long factorial(long number) {
@@ -41,25 +45,28 @@ public class PermutationOfString {
 
 	}
 
-	// https://www.codeproject.com/Tips/891811/Calculating-Permutation-Using-Dynamic-Programming
-	public static void permuteStringDp(String input) {
-		List<String> result = new ArrayList<>();
-		result.add(input.charAt(0) + "");
-		for (int i = 1; i < input.length(); i++) {
-			List<String> temp = new ArrayList<>();
-			for (int j = 0; j < result.size(); j++) {
-				String data = result.get(j);
-				for (int k = 0; k < data.length() + 1; k++) {
-					temp.add(addCharAtPostion(data, input.charAt(i), k));
-				}
-			}
-			result = temp;
+	public static void permute(Integer curIndex, String input, List<String> result) {
+
+		if (input.length() - 1 == curIndex) {
+			result.add(input);
+			return;
 		}
-		System.out.println(result);
+		for (int i = curIndex; i < input.length(); i++) {
+			input = swapCharUsingStringBuilder(input, curIndex, i);
+			permute(curIndex + 1, input, result);
+			input = swapCharUsingStringBuilder(input, curIndex, i);
+		}
 	}
 
-	private static String addCharAtPostion(String x, Character c, Integer pos) {
-		return x.substring(0, pos) + c + x.substring(pos, x.length());
+	private static String swapCharUsingStringBuilder(String input, Integer i1, Integer i2) {
+		StringBuilder s = new StringBuilder(input);
+		s.setCharAt(i1, input.charAt(i2));
+		s.setCharAt(i2, input.charAt(i1));
+		return s.toString();
+
 	}
+
+
+
 
 }

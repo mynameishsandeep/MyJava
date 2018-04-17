@@ -5,6 +5,7 @@ package com.sample.tricky;
  * 
  * http://www.geeksforgeeks.org/find-number-of-islands/
  * 
+ * Complexity: O(row*column)
  * Solution:
  *  1) Construct an isProcessed array with all 0s.  
  *  2) Call row*col times findIsland() method for 

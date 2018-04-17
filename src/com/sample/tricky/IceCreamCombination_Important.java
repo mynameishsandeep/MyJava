@@ -6,6 +6,7 @@ package com.sample.tricky;
  * of IceCream and 3 flavors can be served at a time. Print all the possible
  * combinations
  * 
+ * Similar to the problem "PermutationOfString_Important". But permutation happens for a limited size.
  */
 public class IceCreamCombination_Important {
 
@@ -13,14 +14,14 @@ public class IceCreamCombination_Important {
 		permute("", "1234", 3);
 	}
 
-	public static void permute(String combo, String input, int n) {
-		if (input.equals("")) { // or chosen.length() == n
-			System.out.println(combo);
+	public static void permute(String prefix, String remainingString, int n) {
+		if (prefix.length() == n) { 
+			System.out.println(prefix);
 			return;
 		}
-		for (int i = 0; i < input.length(); i++) {
-			permute(combo + input.charAt(i),
-					input.substring(0, i) + input.substring(i + 1, input.length()), n);
+		for (int i = 0; i < remainingString.length(); i++) {
+			permute(prefix + remainingString.charAt(i),
+					remainingString.substring(0, i) + remainingString.substring(i + 1, remainingString.length()), n);
 		}
 
 	}

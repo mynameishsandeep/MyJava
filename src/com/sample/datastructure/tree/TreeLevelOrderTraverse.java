@@ -43,28 +43,28 @@ public class TreeLevelOrderTraverse {
 		}
 	}
 
-	public void levelOrderTraverseWithoutLevelEnd() {
+	public void levelOrderTraverse() {
 		if (root == null) {
 			return;
 		}
 		Queue<Node> q = new LinkedList<>();
 		q.offer(root);
-		System.out.print(root.data +" ");
 		
 		while(q.size()>0) {
 			Node temp = q.poll();
+			System.out.print(temp.data +" ");
 			if(temp.left!=null) {
-				System.out.print(temp.left.data+" ");
 				q.offer(temp.left);
 			}
 			if(temp.right!=null) {
-				System.out.print(temp.right.data+" ");
 				q.offer(temp.right);
 			}
 		}
 		
 	}
 	/**
+	 * At Each row end print a special character to indicate that row level is ending.
+	 * 
 	 * 1) Keep a main queue and push the root.
 	 * 2) For each of items in main queue and traverse
 	 * 3) take 1 item from queue.  
@@ -78,7 +78,7 @@ public class TreeLevelOrderTraverse {
 	 * 
 	 * 
 	 */
-	public void levelOrderTraverse() {
+	public void levelOrderTraverseWithLevelEnd() {
 		if (root == null) {
 			return;
 		}
@@ -118,7 +118,7 @@ public class TreeLevelOrderTraverse {
 		p.add(15);
 		p.levelOrderTraverse();
 		
-		p.levelOrderTraverseWithoutLevelEnd();
+		p.levelOrderTraverseWithLevelEnd();
 
 	}
 

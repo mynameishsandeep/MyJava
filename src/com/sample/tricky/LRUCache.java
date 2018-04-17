@@ -4,8 +4,24 @@ import java.util.HashMap;
 /**
  * https://www.programcreek.com/2013/03/leetcode-lru-cache-java/
  * 
- * @author chandrasekhar
- *
+ * 1) Reason why doubly linked list selected is, during removal operation, get that node. join previous with next.
+ * Which makes the operation 0(1). If Single linked list is selected. Then entire list has to be traversed for removal operation O(n).
+ * 2) Node key is used in only one scenario. Because when LRU is full. tail is deleted. from tail key,map key is removed.
+ * 
+ *  
+ * put:
+ * 1) add the node to head always.
+ * 2) if key exists, replace data. move the node (remove, setHead) to head.
+ * 3) if key don't exists, create node. 
+ * 	  a) if LRU is full, remove tail, add the node to head.
+ *    b) Else create node, add it the head.
+ * 4) put the node to map. 
+ * 
+ * get : 
+ * 1) Whenever data is accessed, move(remove from current and move) that to head. So, that old data will always present in tail and we can delete tail during LRU is full during put operation.
+ * 2) if key is present  do above
+ * 3) else -1.
+ * 
  */
 public class LRUCache {
 	class Node {
@@ -23,7 +39,7 @@ public class LRUCache {
 	int capacity;
 	HashMap<Integer, Node> map = new HashMap<Integer, Node>();
 	Node head = null;
-	Node end = null;
+	Node tail = null;
 
 	public LRUCache(int capacity) {
 		this.capacity = capacity;
@@ -50,7 +66,7 @@ public class LRUCache {
 		if (n.nextNode != null) {
 			n.nextNode.prevNode = n.prevNode;
 		} else {
-			end = n.prevNode;
+			tail = n.prevNode;
 		}
 
 	}
@@ -64,21 +80,21 @@ public class LRUCache {
 
 		head = n;
 
-		if (end == null)
-			end = head;
+		if (tail == null)
+			tail = head;
 	}
 
 	public void put(int key, int value) {
-		if (map.containsKey(key)) {
-			Node old = map.get(key);
+		Node old = map.get(key);
+		if (old!=null) {
 			old.value = value;
 			remove(old);
 			setHead(old);
 		} else {
 			Node created = new Node(key, value);
 			if (map.size() >= capacity) {
-				map.remove(end.key);
-				remove(end);
+				map.remove(tail.key);
+				remove(tail);
 				setHead(created);
 
 			} else {

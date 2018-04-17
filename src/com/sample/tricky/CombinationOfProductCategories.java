@@ -3,12 +3,13 @@ package com.sample.tricky;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CombinationOfProductAttributes {
+public class CombinationOfProductCategories {
 
 	public static List<List<String>> productAttributeCombinations(List<List<String>> productsAttributes) {
 		List<List<String>> res = new ArrayList<>();
 
 		combine(res, new ArrayList<>(), productsAttributes, 0);
+		System.out.println("Total Combination is " + res.size());
 		System.out.println(res.toString());
 		return res;
 	}

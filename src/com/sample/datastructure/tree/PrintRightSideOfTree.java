@@ -3,8 +3,6 @@ package com.sample.datastructure.tree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.sample.datastructure.tree.TreeLevelOrderTraverse.Node;
-
 /**
  * 1) Parse Tree by Level Order but from right to left. 2) If any one data is
  * printed break that row.
@@ -51,7 +49,7 @@ public class PrintRightSideOfTree {
 			}
 		}
 	}
-	
+
 	public void levelOrderTraverseWithPrintOnlyRight() {
 		if (root == null) {
 			return;
@@ -65,14 +63,14 @@ public class PrintRightSideOfTree {
 			while (queueMain.size() > 0) {
 				Node temp = queueMain.remove();
 				if (temp.left != null) {
-					if(!print) {
+					if (!print) {
 						print = true;
 						System.out.print(temp.left.data + " ");
 					}
 					queueTemp.offer(temp.left);
 				}
 				if (temp.right != null) {
-					if(!print) {
+					if (!print) {
 						print = true;
 						System.out.print(temp.right.data + " ");
 					}

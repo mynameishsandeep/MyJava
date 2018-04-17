@@ -21,10 +21,10 @@ import java.util.stream.IntStream;
  */
 public class PartitionToKEqualSumSubsets {
 	public static void main(String[] args) {
-		List<List<Integer>> allCombo = new ArrayList<>();
+		List<List<Integer>> allComboIndex = new ArrayList<>();
 		PartitionToKEqualSumSubsets s = new PartitionToKEqualSumSubsets();
-		int k = 4;
-		int input[] = new int[] { 4, 3, 2, 3, 5, 2, 1 };
+		int k = 2;
+		int input[] = new int[] { 1,5,11,5 };
 		int n = input.length;
 		int arrayTotal = 0;
 		for (int i = 0; i < n; i++) {
@@ -36,10 +36,12 @@ public class PartitionToKEqualSumSubsets {
 			System.out.println("false");
 		} else {
 			int target = total / k;
-			System.out.println(s.groupSum(0, input, target, 0, allCombo, new ArrayList<Integer>()));
-			System.out.println(allCombo);
+			System.out.println(s.groupSumGetAllComboIndex(0, input, target, 0, allComboIndex, new ArrayList<Integer>()));
+			System.out.println("=================Printing All Combo=================");
+			System.out.println(allComboIndex);
+			System.out.println("=================All Combo Printing Ends=================");
 
-			System.out.println(s.groupSum(0, allCombo, k, allCombo.size(), arrayTotal, new ArrayList<Integer>()));
+			System.out.println(s.groupSum(0, allComboIndex, k, allComboIndex.size(), arrayTotal, new ArrayList<Integer>()));
 		}
 	}
 
@@ -62,7 +64,7 @@ public class PartitionToKEqualSumSubsets {
 		return left || right;
 	}
 
-	private boolean groupSum(int start, int[] nums, int target, int sum, List<List<Integer>> result,
+	private boolean groupSumGetAllComboIndex(int start, int[] nums, int target, int sum, List<List<Integer>> result,
 			List<Integer> curResult) {
 		if (target == sum) {
 			if (curResult.size() > 0) {
@@ -75,8 +77,8 @@ public class PartitionToKEqualSumSubsets {
 		if (start == nums.length) {
 			return false;
 		}
-		Boolean left = groupSum(start + 1, nums, target, sum + nums[start], result, copy(curResult, start));
-		Boolean right = groupSum(start + 1, nums, target, sum, result, curResult);
+		Boolean left = groupSumGetAllComboIndex(start + 1, nums, target, sum + nums[start], result, copy(curResult, start));
+		Boolean right = groupSumGetAllComboIndex(start + 1, nums, target, sum, result, curResult);
 		return left || right;
 	}
 

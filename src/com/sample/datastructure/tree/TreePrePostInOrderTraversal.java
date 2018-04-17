@@ -105,12 +105,6 @@ public class TreePrePostInOrderTraversal {
 		}
 	}
 
-	public int treeHeight(Node root) {
-		if (root == null)
-			return 0;
-		return (1 + Math.max(treeHeight(root.left), treeHeight(root.right)));
-	}
-
 	public static void main(String[] args) {
 		TreePrePostInOrderTraversal p = new TreePrePostInOrderTraversal();
 		p.add(10);
@@ -120,17 +114,19 @@ public class TreePrePostInOrderTraversal {
 		p.add(20);
 		p.add(30);
 		p.add(15);
+		p.add(21);
+		p.add(22);
 		System.out.println("=====printPreOrderRecurse====");
 		p.printPreOrderRecurse(p.root);
-		System.out.println();System.out.println("=====printPreOrderUsingStack====");
-		p.printPreOrderUsingStack();
-		System.out.println();System.out.println("=====printPostOrderUsingStack====");
-		p.printPostOrderUsingStack(p.root);
-		System.out.println();System.out.println("=====printInOrderRecurse====");
-		p.printInOrderRecurse(p.root);
-		
 		System.out.println();
-		System.out.println("Height of the Tree is " + p.treeHeight(p.root));
+		System.out.println("=====printPreOrderUsingStack====");
+		p.printPreOrderUsingStack();
+		System.out.println();
+		System.out.println("=====printPostOrderUsingStack====");
+		p.printPostOrderUsingStack(p.root);
+		System.out.println();
+		System.out.println("=====printInOrderRecurse====");
+		p.printInOrderRecurse(p.root);
 
 	}
 

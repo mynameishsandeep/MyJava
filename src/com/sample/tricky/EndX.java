@@ -19,5 +19,9 @@ public class EndX {
 			return str.charAt(0) + endX(str.substring(1));
 		}
 	}
+	public static void main(String[] args) {
+		EndX e = new EndX();
+		System.out.println(e.endX("hixhixxx"));
+	}
 
 }

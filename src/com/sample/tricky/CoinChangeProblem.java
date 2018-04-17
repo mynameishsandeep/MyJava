@@ -1,6 +1,6 @@
 package com.sample.tricky;
 
-public class MoneyCoinProblem {
+public class CoinChangeProblem {
 	public static void main(String[] args) {
 		int money = 5;
 		int[] coins = { 1, 2, 3 };

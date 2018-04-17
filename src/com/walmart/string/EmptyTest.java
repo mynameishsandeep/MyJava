@@ -12,8 +12,8 @@ public class EmptyTest {
 			System.out.println("false");
 		}
 		
-		StringUtils.isEmpty(s);
-		StringUtils.isBlank(s);
+		System.out.println(StringUtils.isEmpty(s));
+		System.out.println(StringUtils.isBlank(s));
 
 	}
 

@@ -13,14 +13,14 @@ import java.util.Queue;
 public class FindKthLargestNumber {
 	public static void main(String[] args) {
 		// 2,3,5,7,8,9,10
-		int a[] = { 7, 3, 9, 2, 5, 10, 8 };
+		int a[] = { 3,2,1,5,6,4 };
 
 		System.out.println(findKthLargestUsingPriorityQueue(a, 3));
-		System.out.println(findKthLargetUsingQuickSelect(a, 3));
+		System.out.println(findKthLargetUsingQuickSelect(a, 2));
 	}
 
 	public static Integer findKthLargestUsingPriorityQueue(int a[], Integer k) {
-		Queue<Integer> pQ = new PriorityQueue<Integer>();
+		Queue<Integer> pQ = new PriorityQueue<>();
 		for (Integer data : a) {
 			pQ.offer(data);
 			if (pQ.size() > k) {
@@ -53,7 +53,7 @@ public class FindKthLargestNumber {
 			if (pivot + 1 == k) {
 				return input.get(k - 1);
 			} else if (pivot < k) {
-				pivot = partition(input, pivot, right);
+				pivot = partition(input, pivot+1, right);
 
 			} else {
 				pivot = partition(input, left, pivot - 1);
@@ -68,20 +68,31 @@ public class FindKthLargestNumber {
 	 * Then it rearranges the list in a way that all elements greater than pivot 
 	 * are on left side of pivot and others on right. 
 	 * It then returns index of the element upto which is sorted.
+	 * 
+	 * Use 4 variable... left, right, i, pivot
+	 * pick the pivot as last element
+	 * initially i and left are same. 
+	 * loop: i<=right
+	 * compare i and pivot.. swap left, i
+	 * last swap for left and pivot.
+	 * return left
 	 */
 
 	public static Integer partition(List<Integer> input, Integer left, Integer right) {
 
 		// Taking last element as pivot 
 		int pivot = right--;
-		for (int i = left; i <= right; i++) {
+		int i = left;
+		System.out.println("pivot " + pivot);
+		while (i <= right) {
 			if (input.get(i) >= input.get(pivot)) {
 				Collections.swap(input, i, left++);
 			}
+			i++;
 		}
 		Collections.swap(input, pivot, left);
-		System.out.println(input);
-		System.out.println(left);
+		//System.out.println(input);
+		System.out.println("left = " +left);
 		return left;
 
 	}

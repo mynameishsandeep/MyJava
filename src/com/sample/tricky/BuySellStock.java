@@ -1,20 +1,31 @@
 package com.sample.tricky;
 
+import com.interview.leetcode.amazon.easy.BestTimeToBuyAndSellStock;
+
 public class BuySellStock {
 
-	public static void main(String[] args) {
-		System.out.println(maxProfitBuyOneSellOne(new int[] { 7, 1, 5, 3, 6, 4 }));
+	public int maxProfit(int[] prices) {
+		Integer bestBuyPrice = Integer.MAX_VALUE;
+		Integer currentProfit = 0;
+		Integer maxProfit = 0;
+        for(Integer currentPrice : prices) {
+            bestBuyPrice = getBestBuyPrice(currentPrice, bestBuyPrice);
+            currentProfit = getCurrentProfit(currentPrice,bestBuyPrice);
+			maxProfit = Math.max(currentProfit, maxProfit);
+		}
+		return maxProfit;
 	}
 
-	public static int maxProfitBuyOneSellOne(int[] prices) {
-		int profit = 0;
-		int bestBuyPrice = Integer.MAX_VALUE;
-		for (int i = 0; i < prices.length; i++) {
+	public Integer getBestBuyPrice(Integer currentBuyPrice, Integer bestBuyPrice) {
+		return Math.min(currentBuyPrice, bestBuyPrice);
+	}
 
-			bestBuyPrice = Math.min(bestBuyPrice, prices[i]);
-			profit = Math.max(prices[i] - bestBuyPrice, profit);
-		}
-		return profit;
-
+	public Integer getCurrentProfit(Integer currentSellPrice, Integer bestBuyPrice) {
+		return currentSellPrice - bestBuyPrice;
+	}
+	
+	public static void main(String[] args) {
+		BestTimeToBuyAndSellStock b = new BestTimeToBuyAndSellStock();
+		System.out.println(b.maxProfit(new int[] { 7, 1, 5, 3, 6, 4 }));
 	}
 }

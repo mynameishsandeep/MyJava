@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * https://leetcode.com/problems/triangle/description/
  * 
  * Analysed Image is given in "US Problems Folder" "Minimal Triangle.jpg"
  * 
