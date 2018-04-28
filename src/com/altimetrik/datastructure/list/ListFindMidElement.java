@@ -8,7 +8,6 @@ public class ListFindMidElement {
 	 * move p2 second time. if next is null --> print p2
 	 * move p1. 
 	 * Above step continues till print
-	 * @param node
 	 */
 	public void findMidElement(SingleLinkedListCustom.Node node) {
 		SingleLinkedListCustom.Node p1 = node;

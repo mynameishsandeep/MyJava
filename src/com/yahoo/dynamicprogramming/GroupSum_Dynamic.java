@@ -2,11 +2,20 @@ package com.yahoo.dynamicprogramming;
 
 /*
  * https://www.youtube.com/watch?v=K20Tx8cdwYY
+ * 
+ * 1) Form 2 dimensional array.
+ * with target+1 number of columns. ex: for 12 (0 to 12)
+ * and nums[].length + 1 of rows ex: for 2,4,8 (0,2,4,8)
+ * 2) Set first row to 0.. Meaning i cannot form anything with 0
+ * 3) Set first column to 1. Meaning i can form the combination with same number.
+ * 4) if row index>
+ * 
+ * 
  */
-public class GroupSum {
+public class GroupSum_Dynamic {
 
 	public static void main(String[] args) {
-		GroupSum g = new GroupSum();
+		GroupSum_Dynamic g = new GroupSum_Dynamic();
 		int target = 12;
 		int nums[] = { 2, 4, 8 };
 

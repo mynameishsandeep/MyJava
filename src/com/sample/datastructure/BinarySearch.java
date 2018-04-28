@@ -1,5 +1,14 @@
 package com.sample.datastructure;
 
+/*
+ * If we use "int mid =(low + high) / 2;"
+ *  
+ * Then if the sum of low and high is greater than the maximum positive int value (2^31 - 1). 
+ * The sum overflows to a negative value, and the value stays negative when divided by two. 
+ * Then code throws ArrayIndexOutOfBoundsException.
+ * 
+ * So use "int mid = low + ((high - low) / 2);"
+ */
 public class BinarySearch {
 
 	public static void main(String[] args) {
@@ -45,6 +54,12 @@ public class BinarySearch {
 		return -1;
 	}
 
+	/* For the search key, if duplicate is found on the input array. Get the index of last duplicate.
+	
+	 Input : arr[] = {1, 3, 5, 5, 5, 5 ,67, 123, 125}    
+	 x = 5
+	 Output : Last Occurrence = 5
+	 */
 	public static int binarySearchRecFindLast(int arr[], int start, int end, int search) {
 		if (start <= end) {
 			//System.out.println("start = " + start + " end " + end);
@@ -62,7 +77,13 @@ public class BinarySearch {
 		}
 		return -1;
 	}
+
+	/* For the search key, if duplicate is found on the input array. Get the index of first duplicate.
 	
+	Input : arr[] = {1, 3, 5, 5, 5, 5 ,67, 123, 125}    
+	x = 5
+	Output : First Occurrence = 2
+	 */
 	public static int binarySearchRecFindFirst(int arr[], int start, int end, int search) {
 		if (start <= end) {
 			//System.out.println("start = " + start + " end " + end);

@@ -10,29 +10,29 @@ import java.util.List;
  */
 public class CoinChangeProblem {
 	public static void main(String[] args) {
-		int coins[] = { 2,3,7 };
+		int coins[] = { 2, 3, 7 };
 		int sum = 12;
-		System.out.println(maxCoinCombination(coins, sum, 0, 0));
-		
+		System.out.println(maxCoinCombination(coins, sum, 0));
+
 		List<List<Integer>> allCombo = new ArrayList<>();
 		coinPermutations(coins, sum, new ArrayList<>(), allCombo, 0);
 		System.out.println(allCombo);
 
 	}
 
-	public static int maxCoinCombination(int coins[], int sum, int currentSum, int index) {
+	public static int maxCoinCombination(int coins[], int sum, int index) {
 
-		if (sum == currentSum) {
+		if (sum == 0) {
 			return 1;
 		}
-		if (currentSum > sum) {
+		if (sum < 0) {
 			return 0;
 		}
 		if (index == coins.length) {
 			return 0;
 		}
-		int left = maxCoinCombination(coins, sum, currentSum + coins[index], index);
-		int right = maxCoinCombination(coins, sum, currentSum, index + 1);
+		int left = maxCoinCombination(coins, sum - coins[index], index);
+		int right = maxCoinCombination(coins, sum, index + 1);
 		return left + right;
 	}
 

@@ -11,31 +11,27 @@ public class GroupSum_Important {
 
 	public static void main(String[] args) {
 		System.out.println(new GroupSum_Important().groupSum(0, new int[] { 2, 4, 8 }, 12));
-		System.out.println(new GroupSum_Important().groupSumAlternate(0, new int[] { 2, 4, 8 }, 12));
+		System.out.println(new GroupSum_Important().groupSum(0, new int[] { 2, 4, 8 }, 12, 0));
 	}
 
-	/*
+	/**
 	 * I can reduce a variable by reducing the target, instead of taking sum as an argument.
 	 */
-	public boolean groupSum(int start, int[] nums, int target) {
+	public boolean groupSum(int index, int[] nums, int target) {
 		if (target == 0) {
 			return true;
 		}
-		if (start == nums.length) {
+		if (index == nums.length) {
 			return false;
 		}
-		boolean left = groupSum(start + 1, nums, target - nums[start]);
-		boolean right = groupSum(start + 1, nums, target);
+		boolean left = groupSum(index + 1, nums, target - nums[index]);
+		boolean right = groupSum(index + 1, nums, target);
 		return left || right;
 	}
 
 	/**
 	 * This takes an additional variable sum... 
 	 */
-	public boolean groupSumAlternate(int start, int[] nums, int target) {
-		return groupSum(start, nums, target, 0);
-	}
-
 	public boolean groupSum(int start, int[] nums, int target, int sum) {
 		if (target == sum) {
 			return true;

@@ -9,6 +9,7 @@ import java.util.Queue;
  * 
  * 1) Find Largest Number using priority queue
  * 2) Find Largest Number using Quick select algorithm
+ * Image is Present on US Problems folder "Quick Select.jpg"
  */
 public class FindKthLargestNumber {
 	public static void main(String[] args) {
@@ -78,10 +79,9 @@ public class FindKthLargestNumber {
 	 * return left
 	 */
 
-	public static Integer partition(List<Integer> input, Integer left, Integer right) {
-
-		// Taking last element as pivot 
-		int pivot = right--;
+	// Taking last element as pivot 
+	public static Integer partition(List<Integer> input, Integer left, Integer pivot) {
+		int right = pivot-1;
 		int i = left;
 		System.out.println("pivot " + pivot);
 		while (i <= right) {

@@ -13,56 +13,49 @@ public class MapSortByValue {
 		map.put("aa", 75);
 		map.put("a", 25);
 		map.put("b", 50);
-		
-		
-		for(Map.Entry<String, Integer> entry : map.entrySet()) {
-			System.out.println(entry.getKey());
-			System.out.println(entry.getValue());
+
+		System.out.println("==========Initial Key Value===========");
+		for (Map.Entry<String, Integer> entry : map.entrySet()) {
+			System.out.println(entry.getKey() + " " + entry.getValue());
 		}
-		System.out.println("=====================");
+		System.out.println("==========Sort By Key===========");
 		TreeMap<String, Integer> tMap = new TreeMap<>(map);
-		for(Map.Entry<String, Integer> entry : tMap.entrySet()) {
-			System.out.println(entry.getKey());
-			System.out.println(entry.getValue());
+		for (Map.Entry<String, Integer> entry : tMap.entrySet()) {
+			System.out.println(entry.getKey() + " " + entry.getValue());
 		}
-		System.out.println("=====================");
+		System.out.println("==========Sort By Key in Reverse ===========");
 		TreeMap<String, Integer> tMap1 = new TreeMap<>(new StringComparator());
 		tMap1.putAll(map);
-		for(Map.Entry<String, Integer> entry : tMap1.entrySet()) {
-			System.out.println(entry.getKey());
-			System.out.println(entry.getValue());
+		for (Map.Entry<String, Integer> entry : tMap1.entrySet()) {
+			System.out.println(entry.getKey() + " " + entry.getValue());
 		}
-		System.out.println("=====================");
-		
+		System.out.println("==========Sort By Value===========");
 		TreeMap<String, Integer> sorted = new TreeMap<String, Integer>(new ValueComparator(map));
-        sorted.putAll(map);
-        //sorted.put("e", 10); put will fail
-        System.out.println("Sorted Map: " + Arrays.toString(sorted.entrySet().toArray()));
+		sorted.putAll(map);
+		System.out.println("Sorted Map: " + Arrays.toString(sorted.entrySet().toArray()));
+		//System.out.println("==========Sort By Value Error===========");
+		//sorted.put("e", 10); put will fail
+		//System.out.println("Sorted Map: " + Arrays.toString(sorted.entrySet().toArray()));
 	}
-	
-	
-}
 
+}
 
 class ValueComparator implements Comparator<String> {
+	private Map<String, Integer> map;
 
-    private Map<String, Integer> map;
+	public ValueComparator(Map<String, Integer> map) {
+		this.map = map;
+	}
 
-    public ValueComparator(Map<String, Integer> map) {
-        this.map = map;
-    }
-
-    public int compare(String a, String b) {
-    	System.out.println("input1 " + a + " input2 "+b);
-        return map.get(a).compareTo(map.get(b));
-    }
+	public int compare(String a, String b) {
+		//System.out.println("input1 " + a + " input2 " + b);
+		return map.get(a).compareTo(map.get(b));
+	}
 }
-class StringComparator implements Comparator<String> {
 
+class StringComparator implements Comparator<String> {
 	@Override
 	public int compare(String o1, String o2) {
 		return o2.compareTo(o1);
 	}
-
-
 }

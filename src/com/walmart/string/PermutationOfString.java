@@ -7,19 +7,19 @@ import java.util.List;
 public class PermutationOfString {
 
 	public static void main(String args[]) {
-		String permute = "abc";
-		System.out.println("Total Combination is " + factorial(permute.length()));
-		char[] cInput = permute.toCharArray();
-		List<Character> input = new ArrayList<>();
+		String input = "abc";
+		System.out.println("Total Combination is " + factorial(input.length()));
+		char[] cInput = input.toCharArray();
+		List<Character> inputList = new ArrayList<>();
 		for (int i = 0; i < cInput.length; i++) {
-			input.add(cInput[i]);
+			inputList.add(cInput[i]);
 		}
 		List<List<Character>> result = new ArrayList<>();
-		permutationNew(input, result, 0);
+		permutationNew(inputList, result, 0);
 		System.out.println(result);
-		
+
 		List<String> result1 = new ArrayList<>();
-		permute(0, permute, result1);
+		permute(input, result1, 0);
 		System.out.println(result1);
 
 	}
@@ -30,7 +30,6 @@ public class PermutationOfString {
 		else
 			return number * factorial(number - 1);
 	}
-
 
 	private static void permutationNew(List<Character> input, List<List<Character>> result, Integer currentIndex) {
 		if (currentIndex == input.size() - 1) {
@@ -45,7 +44,7 @@ public class PermutationOfString {
 
 	}
 
-	public static void permute(Integer curIndex, String input, List<String> result) {
+	public static void permute(String input, List<String> result, Integer curIndex) {
 
 		if (input.length() - 1 == curIndex) {
 			result.add(input);
@@ -53,7 +52,7 @@ public class PermutationOfString {
 		}
 		for (int i = curIndex; i < input.length(); i++) {
 			input = swapCharUsingStringBuilder(input, curIndex, i);
-			permute(curIndex + 1, input, result);
+			permute(input, result, curIndex + 1);
 			input = swapCharUsingStringBuilder(input, curIndex, i);
 		}
 	}
@@ -65,8 +64,5 @@ public class PermutationOfString {
 		return s.toString();
 
 	}
-
-
-
 
 }

@@ -2,36 +2,46 @@ package com.sample.datastructure.recursion;
 
 import java.util.Arrays;
 
+/*
+ * Merge Sort is a Divide and Conquer algorithm. 
+ * It splits input array in two halves, 
+ * calls itself for the two halves and then merges the two sorted halves
+ * 
+ * https://www.geeksforgeeks.org/merge-sort/
+ */
 public class MergeSort {
 
 	public static void main(String[] args) {
 		int arr[] = { 4, 2, 6, 1, 8, 5, 7 };
 		System.out.println(Arrays.toString(arr));
-		mergeSort(arr);
+		split(arr);
 	}
 
-	public static int[] mergeSort(int a[]) {
-		int n = a.length;
-		if (n == 1) {
-			return a;
+	private static int[] copyArray(int source[], int startIndex, int endIndex) {
+		int[] destination = new int[endIndex - startIndex +1];
+		for (int i = startIndex, j = 0; i <= endIndex; i++) {
+			destination[j++] = source[i];
 		}
-		int mid = n / 2;
-		
-		// Copy left side data
-		int left[] = new int[mid];
-		for (int i = 0; i < mid; i++) {
-			left[i] = a[i];
-		}
-		// Copy right side data
-		int right[] = new int[n - mid];
-		for (int i = 0, j = mid; i < right.length; i++, j++) {
-			right[i] = a[j];
-		}
+		return destination;
+	}
 
-		mergeSort(left);
-		mergeSort(right);
-		merge(left, right, a);
-		return a;
+	public static int[] split(int inputArr[]) {
+		int leftIndex = 0;
+		int rightIndex = inputArr.length - 1;
+		if (rightIndex <= leftIndex) {
+			return inputArr;
+		}
+		int mid = leftIndex + rightIndex / 2;
+
+		// Copy left side data from 0 to mid
+		int leftArr[] = copyArray(inputArr, leftIndex, mid);
+		// Copy right side data from mid to end
+		int rightArr[] = copyArray(inputArr, mid + 1, rightIndex);
+
+		split(leftArr);
+		split(rightArr);
+		merge(leftArr, rightArr, inputArr);
+		return inputArr;
 	}
 
 	public static int[] merge(int left[], int right[], int result[]) {
@@ -54,6 +64,5 @@ public class MergeSort {
 		System.out.println(Arrays.toString(result));
 		return result;
 	}
-
 
 }

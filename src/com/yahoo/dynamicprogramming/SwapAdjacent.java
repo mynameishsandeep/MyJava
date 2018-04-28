@@ -6,7 +6,7 @@ public class SwapAdjacent {
 	private static String word = "12345"; //I assume the consecutive characters are not the same
 	
 	public static void main(String[] args) {
-		System.out.println(adj(word.length())); //8
+		System.out.println(adj(9)); //8
 	}
 	
 	public static int adj(int i) { //Returns the number of permutations

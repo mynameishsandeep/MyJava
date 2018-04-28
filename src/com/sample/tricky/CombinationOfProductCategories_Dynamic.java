@@ -7,10 +7,9 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-@SuppressWarnings("unchecked")
 public class CombinationOfProductCategories_Dynamic {
 
-	public static List<List<String>> productAttributeCombinations(List<String>... productsAttributes) {
+	public static List<List<String>> productAttributeCombinations(List<List<String>> productsAttributes) {
 		LinkedList<List<String>> queue = new LinkedList<>();
 
 		combine(queue, productsAttributes);
@@ -19,12 +18,12 @@ public class CombinationOfProductCategories_Dynamic {
 		return queue;
 	}
 
-	private static void combine(LinkedList<List<String>> queue, List<String>... input) {
+	private static void combine(LinkedList<List<String>> queue, List<List<String>> input) {
 		queue.offer(Arrays.asList(""));
-		for (int i = 0; i < input.length; i++) {
-			List<String> currentItem = input[i];
+		for (int i = 0; i < input.size(); i++) {
+			List<String> currentItem = input.get(i);
 			int currentQueueSize = queue.size();
-			
+
 			for (int j = 0; j < currentQueueSize; j++) {
 				List<String> queueItem = queue.poll();
 				for (String c : currentItem) {
@@ -57,6 +56,11 @@ public class CombinationOfProductCategories_Dynamic {
 		patternValues.add("p2");
 		patternValues.add("p3");
 
-		productAttributeCombinations(colorValues, sizeValues, patternValues).toString();
+		List<List<String>> currentProductsCategoriesValueList = new ArrayList<>();
+		currentProductsCategoriesValueList.add(colorValues);
+		currentProductsCategoriesValueList.add(sizeValues);
+		currentProductsCategoriesValueList.add(patternValues);
+
+		productAttributeCombinations(currentProductsCategoriesValueList).toString();
 	}
 }

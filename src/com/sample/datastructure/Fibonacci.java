@@ -3,6 +3,9 @@ package com.sample.datastructure;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * f(n) = { f(n-1) -f(n-2) } 
+ */
 public class Fibonacci {
 	static Map<Integer, Integer> cache = new HashMap<>();
 
@@ -12,6 +15,7 @@ public class Fibonacci {
 		System.out.println(fibMemoization(10));
 	}
 
+	// Time Complexity is O(2^n)
 	public static int fibRecursive(int n) {
 		if (n <= 1) {// Exit Condition
 			return n;
@@ -21,16 +25,19 @@ public class Fibonacci {
 		}
 	}
 
-	/**
-	 * Copied from Book Elements of Programming Interviews. Page 303 
-	 */
 	private static int fibMemoization(int n) {
 		if (n <= 1) {
 			return n;
-		} else if (!cache.containsKey(n)) {
-			cache.put(n, fibMemoization(n - 2) + fibMemoization(n - 1));
 		}
-		return cache.get(n);
+		if (cache.containsKey(n)) {
+			return cache.get(n);
+		} else {
+			Integer nMinus1 = fibMemoization(n - 1);
+			cache.put(n-1, nMinus1);
+			Integer nMinus2 = fibMemoization(n - 2);
+			cache.put(n-2, nMinus2);
+			return nMinus1 + nMinus2;
+		}
 	}
 
 	/*
@@ -42,7 +49,7 @@ public class Fibonacci {
 		}
 		int fNMinus2 = 0;
 		int fNMinus1 = 1;
-		int fN = 0;
+		int fN = 1;
 		for (int i = 2; i <= n; i++) {
 			fN = fNMinus2 + fNMinus1;
 			fNMinus2 = fNMinus1;

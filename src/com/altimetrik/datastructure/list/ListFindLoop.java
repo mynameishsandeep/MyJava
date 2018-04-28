@@ -1,35 +1,25 @@
 package com.altimetrik.datastructure.list;
 
+/**
+ * Use the logic single pointer and double pointer.
+ * 1) Verify if the double pointer is not null. Then increment double pointer.
+ * 2) Verify again if the double pointer is not null. Then increment double pointer.
+ * 3) If double pointer is null. Then there is no loop.
+ * 4) Increment single pointer. 
+ * 5) If single pointer == double pointer. Then found loop.
+ *   
+ */
 public class ListFindLoop {
-	public boolean hasCycle(ListNode head) {
-		ListNode doublePointer = head;
-		while (doublePointer != null) {
-			head = head.next;
-			doublePointer = doublePointer.next;
-			if (doublePointer != null) {
-				doublePointer = doublePointer.next;
-			} else {
-				return false;
-			}
-			if (head == doublePointer) {
+	public boolean hasCycle(ListNode singlePointer) {
+        ListNode doublePointer = singlePointer;
+		while (doublePointer != null && doublePointer.next!=null) {
+			doublePointer = doublePointer.next.next;
+			singlePointer = singlePointer.next;
+			if (singlePointer == doublePointer) {
 				return true;
 			}
 		}
 		return false;
-	}
+    }
 
-	public static void main(String[] args) {
-		ListFindMidElement l = new ListFindMidElement();
-		SingleLinkedListCustom list = new SingleLinkedListCustom();
-		list.add(10);
-		list.add(20);
-		list.add(30);
-		list.add(40);
-		list.add(50);
-		list.add(60);
-		list.add(70);
-		list.add(80);
-		list.add(90);
-		list.makeALoop(70);
-	}
 }
