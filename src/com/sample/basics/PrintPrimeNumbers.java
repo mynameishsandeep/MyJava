@@ -15,7 +15,7 @@ public class PrintPrimeNumbers {
 	public static void main(String[] args) {
 		Integer n = 50;
 		PrintPrimeNumbers p = new PrintPrimeNumbers();
-		System.out.println("Count: " + p.countPrimes(6));
+		System.out.println("Count: " + p.countPrimes(n));
 
 	}
 	public int countPrimes(int n) {
@@ -26,9 +26,9 @@ public class PrintPrimeNumbers {
 		for (int i = 2; i <= sqrtN; i++) {
 			if(result[i]) {
 				//System.out.println(i);
-				for(int j=i+i; j<n-i; ) {
-					
+				for(int j=i+i; j<n; ) {
 					result[j] = false;
+					j= j+i;
 				}
 			}
 		}

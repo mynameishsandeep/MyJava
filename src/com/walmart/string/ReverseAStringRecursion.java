@@ -8,7 +8,7 @@ public class ReverseAStringRecursion {
 	}
 	
 	/*
-	 * taste
+	 * ab
 	 * aste + t = etsat
 	 * ste + a = etsa
 	 * te + s = ets

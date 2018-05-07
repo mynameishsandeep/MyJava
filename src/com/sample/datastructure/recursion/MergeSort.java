@@ -7,6 +7,8 @@ import java.util.Arrays;
  * It splits input array in two halves, 
  * calls itself for the two halves and then merges the two sorted halves
  * 
+ * Note: during split process it creates too many memory spaces. 
+ * 
  * https://www.geeksforgeeks.org/merge-sort/
  */
 public class MergeSort {

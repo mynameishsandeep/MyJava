@@ -10,6 +10,6 @@ public class ReverseAStringRecursion {
 		if (input.length() == 0) {
 			return "";
 		}
-		return recurse(input.substring(1, input.length())) + input.charAt(0);
+		return recurse(input.substring(1)) + input.charAt(0);
 	}
 }

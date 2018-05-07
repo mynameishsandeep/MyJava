@@ -20,6 +20,9 @@ public class JSONParser {
 		if(StringUtils.isEmpty(value)) {
 			System.out.println("Blank");
 		}
+		int val =-1;
+		val = j.optInt("NotPresent" );
+		System.out.println("optInt default is "+val);
 		
 
 	}

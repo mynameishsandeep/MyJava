@@ -1,6 +1,15 @@
 package com.sample.designpattern;
 
-class ClassicSingleton {
+// Cannot be extended because Singleton has private Constructor.
+public class SingletonTest { // extends ClassicSingleton {
+
+	public static void main(String[] args) {
+
+	}
+
+}
+
+final class ClassicSingleton {
 	private static ClassicSingleton instance = new ClassicSingleton();
 	private static volatile ClassicSingleton instance2;
 
@@ -26,13 +35,4 @@ class ClassicSingleton {
 		}
 		return instance2;
 	}
-}
-
-// Cannot be extended because Singleton has private Constructor.
-public class SingletonTest { // extends ClassicSingleton {
-
-	public static void main(String[] args) {
-
-	}
-
 }

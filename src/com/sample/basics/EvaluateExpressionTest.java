@@ -1,57 +1,45 @@
 package com.sample.basics;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.Stack;
 
 //Evaluate expression [{()}]-->success [(])-->failure.
 public class EvaluateExpressionTest {
 
 	public static void main(String[] args) {
+		EvaluateExpressionTest e = new EvaluateExpressionTest();
+		String input = "{{}}";
+		System.out.println(e.evalExpression(input));
+		input = "{{}{";
+		System.out.println(e.evalExpression(input));
+		input = "{[}]";
+		System.out.println(e.evalExpression(input));
 
+	}
+
+	private Boolean evalExpression(String input) {
 		Map<Character, Character> charMap = new HashMap<>();
 		charMap.put('(', ')');
 		charMap.put('{', '}');
 		charMap.put('[', ']');
 
-		Scanner in = new Scanner(System.in);
-
 		Deque<Character> stack = new LinkedList<Character>();
-		String currentString = "";
-		String closeOperand = "})]";
-		String openOperand = "{([";
-		Scanner scan = new Scanner(System.in);
-		int n = in.nextInt();
-		for (int i = 0; i < n; i++) {
-			in.nextLine();
-			currentString = in.next();
-			System.out.println(currentString);
-			stack = new LinkedList<Character>();
-			for (int j = 0; j < currentString.length(); j++) {
-				char currentChar = currentString.charAt(j);
-				if (closeOperand.indexOf(currentChar) == -1) {
-					if (openOperand.indexOf(currentChar) > -1)
-						stack.push(currentChar);
-				} else {
-					if (stack.size() == 0) {
-						stack.push(currentChar);
-						break;
-					}
-					char c = stack.pop();
-					if (currentChar != charMap.get(c)) {
-						stack.push(currentChar);
-						break;
-					}
+		List<Character> closeOperand = Arrays.asList('}', ')', ']');
+
+		for (Character currentChar : input.toCharArray()) {
+			if (closeOperand.contains(currentChar)) {
+				Character previousChar = stack.pop();
+				if (charMap.get(previousChar) != currentChar) {
+					return false;
 				}
-			}
-			if (stack.size() > 0) {
-				System.out.println("NO");
 			} else {
-				System.out.println("YES");
+				stack.push(currentChar);
 			}
 		}
+		return stack.size() == 0;
 	}
 }

@@ -1,6 +1,7 @@
 package com.sample.tricky;
 
 import java.util.HashMap;
+
 /**
  * https://www.programcreek.com/2013/03/leetcode-lru-cache-java/
  * 
@@ -18,28 +19,29 @@ import java.util.HashMap;
  * 4) put the node to map. 
  * 
  * get : 
- * 1) Whenever data is accessed, move(remove from current and move) that to head. So, that old data will always present in tail and we can delete tail during LRU is full during put operation.
+ * 1) Whenever data is accessed, move(remove from current and move) that to head. 
+ * So, that old data will always present in tail and we can delete tail during LRU is full during put operation.
  * 2) if key is present  do above
  * 3) else -1.
  * 
  */
 public class LRUCache {
-	class Node {
+	class DLLNode {
 		int key;
 		int value;
-		Node prevNode;
-		Node nextNode;
+		DLLNode prevNode;
+		DLLNode nextNode;
 
-		public Node(int key, int value) {
+		public DLLNode(int key, int value) {
 			this.key = key;
 			this.value = value;
 		}
 	}
 
 	int capacity;
-	HashMap<Integer, Node> map = new HashMap<Integer, Node>();
-	Node head = null;
-	Node tail = null;
+	HashMap<Integer, DLLNode> map = new HashMap<Integer, DLLNode>();
+	DLLNode head = null;
+	DLLNode tail = null;
 
 	public LRUCache(int capacity) {
 		this.capacity = capacity;
@@ -47,7 +49,7 @@ public class LRUCache {
 
 	public int get(int key) {
 		if (map.containsKey(key)) {
-			Node n = map.get(key);
+			DLLNode n = map.get(key);
 			remove(n);
 			setHead(n);
 			return n.value;
@@ -56,7 +58,7 @@ public class LRUCache {
 		return -1;
 	}
 
-	private void remove(Node n) {
+	private void remove(DLLNode n) {
 		if (n.prevNode != null) {
 			n.prevNode.nextNode = n.nextNode;
 		} else {
@@ -71,7 +73,7 @@ public class LRUCache {
 
 	}
 
-	private void setHead(Node n) {
+	private void setHead(DLLNode n) {
 		n.nextNode = head;
 		n.prevNode = null;
 
@@ -85,13 +87,13 @@ public class LRUCache {
 	}
 
 	public void put(int key, int value) {
-		Node old = map.get(key);
-		if (old!=null) {
+		DLLNode old = map.get(key);
+		if (old != null) {
 			old.value = value;
 			remove(old);
 			setHead(old);
 		} else {
-			Node created = new Node(key, value);
+			DLLNode created = new DLLNode(key, value);
 			if (map.size() >= capacity) {
 				map.remove(tail.key);
 				remove(tail);
@@ -106,7 +108,7 @@ public class LRUCache {
 	}
 
 	public void print() {
-		Node temp = head;
+		DLLNode temp = head;
 		while (true) {
 			if (temp != null) {
 				System.out.println(temp.value);

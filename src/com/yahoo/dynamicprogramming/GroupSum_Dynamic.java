@@ -35,12 +35,13 @@ public class GroupSum_Dynamic {
 		Boolean[][] mm = new Boolean[nums.length + 1][target + 1];
 		fillFalseInFirstRow(mm);
 		fillTrueInFirstColumn(mm);
-		for(int i=1; i<=nums.length; i++) {
-			for(int j=1; j<=target; i++) {
-				mm[i][j] = mm[i-1][j];
-				int currentSubSetValue = nums[i-1];
-				if(j>currentSubSetValue) {
-					mm[i][j] = mm[i-1][j] || mm[i-1][currentSubSetValue]; 
+		int n = nums.length;
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= target; j++) {
+				mm[i][j] = mm[i - 1][j];
+				Integer currentSubSetValue = nums[i - 1];
+				if (j >= currentSubSetValue) {
+					mm[i][j] = (mm[i][j] || mm[i - 1][j - currentSubSetValue]);
 				}
 			}
 		}

@@ -8,30 +8,28 @@ public class KnapSack {
 
 	public static void main(String[] args) {
 
-		int weightValues[] = new int[] { 60, 100, 120 };
-		int weights[] = new int[] { 1, 2, 3 };
+		int weightValues[] = new int[] { 60, 100, 120, 80, 40, 200 };
+		int weights[] = new int[] { 1, 2, 3, 6, 4, 5 };
+		int knapSackWeight = 11;
+		System.out.println(knapSack(weightValues, weights, knapSackWeight, 0, 0));
+		
+		weightValues = new int[] { 60, 100, 120 };
+		weights = new int[] { 1, 2, 3 };
+		knapSackWeight = 3;
+		System.out.println(knapSack(weightValues, weights, knapSackWeight, 0, 0));
 
-		int knapSackWeight = 50;
-		int n = weights.length;
-		System.out.println(knapSack(weightValues, weights, knapSackWeight, n, 0, 0, 0));
 	}
 
-	public static int knapSack(int[] weightValues, int[] weights, int knapSackWeight, int n, int start,
-			int runTimeWeightValues, int runTimeWeights) {
-
-		if (runTimeWeights == knapSackWeight) {
-			return runTimeWeightValues;
+	private static int knapSack(int weightValues[], int weights[], int knapSackWeight, int currentSackWeightValues, int index) {
+		if(knapSackWeight<0 ) {
+			return currentSackWeightValues-weightValues[index-1];
 		}
-		if (runTimeWeights > knapSackWeight) {
-			return runTimeWeightValues - weightValues[start - 1];
+		if(knapSackWeight==0 || index == weights.length) {
+			return currentSackWeightValues;
 		}
-		if (start == n) {
-			return runTimeWeightValues;
-		}
-		int left = knapSack(weightValues, weights, knapSackWeight, n, start + 1,
-				runTimeWeightValues + weightValues[start], runTimeWeights + weights[start]);
-
-		int right = knapSack(weightValues, weights, knapSackWeight, n, start + 1, runTimeWeightValues, runTimeWeights);
+		
+		Integer left = knapSack(weightValues, weights, knapSackWeight-weights[index], currentSackWeightValues+weightValues[index], index+1);
+		Integer right = knapSack(weightValues, weights, knapSackWeight, currentSackWeightValues, index+1);
 		//System.out.println(left + " : " + right);
 		return Math.max(left, right);
 	}

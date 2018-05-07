@@ -4,15 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * f(n) = { f(n-1) -f(n-2) } 
+ * f(n) = { f(n-1) + f(n-2) }
  */
 public class Fibonacci {
 	static Map<Integer, Integer> cache = new HashMap<>();
 
 	public static void main(String[] args) {
-		System.out.println(fibRecursive(10));
-		System.out.println(fibWhile(10));
-		System.out.println(fibMemoization(10));
+
+		int n = 6;
+		System.out.println(fibRecursive(n));
+		System.out.println(fibWhile(n));
+		System.out.println(fibMemoization(n));
 	}
 
 	// Time Complexity is O(2^n)
@@ -25,6 +27,7 @@ public class Fibonacci {
 		}
 	}
 
+	// Time Complexity is O(n)
 	private static int fibMemoization(int n) {
 		if (n <= 1) {
 			return n;
@@ -32,11 +35,10 @@ public class Fibonacci {
 		if (cache.containsKey(n)) {
 			return cache.get(n);
 		} else {
-			Integer nMinus1 = fibMemoization(n - 1);
-			cache.put(n-1, nMinus1);
-			Integer nMinus2 = fibMemoization(n - 2);
-			cache.put(n-2, nMinus2);
-			return nMinus1 + nMinus2;
+			Integer result = fibMemoization(n - 1) + fibMemoization(n - 2);
+			cache.put(n, result);
+			//System.out.println(result);
+			return result;
 		}
 	}
 
