@@ -1,31 +1,25 @@
 package com.sample.basics;
 
-import java.util.Scanner;
-
 public class ReverseAString {
 
+	/**
+	 * Swap 1st and n th character, then
+	 * 2nd and n-1 character... So half traversal is enough
+	 */
+	public static String reverse(String s) {
+		char[] array = s.toCharArray();
+		int i = 0, j = array.length - 1;
+		while (i < j) {
+			char tmp = array[i];
+			array[i++] = array[j];
+			array[j--] = tmp;
+		}
+		return new String(array);
+	}
+
 	public static void main(String[] args) {
-		try (Scanner scan = new Scanner(System.in)) {
-			String input = scan.next();
+		System.out.println(reverse("Test"));
 
-			if (isPali(input)) {
-				System.out.println("Yes");
-			} else {
-				System.out.println("No");
-			}
-		}
-	}
-
-	public static boolean isPalindrome(String str) {
-		return str.equals(new StringBuilder(str).reverse().toString());
-	}
-	
-	public static boolean isPali(String str) {
-		String reverseString = "";
-		for(int i=str.length(); i>0; i--) {
-			reverseString = reverseString + str.charAt(i-1);
-		}
-		return reverseString.compareTo(str)==0?true:false;
 	}
 
 }

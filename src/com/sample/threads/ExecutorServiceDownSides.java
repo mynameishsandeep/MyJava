@@ -5,6 +5,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -24,6 +26,10 @@ public class ExecutorServiceDownSides {
 		Callable<String> task1 = () -> c.myRemoteService1();
 		ExecutorService exec1 = Executors.newFixedThreadPool(2);
 
+		ExecutorService executorService = 
+				  new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,   
+				  new LinkedBlockingQueue<Runnable>());
+		
 		Callable<String> task2 = () -> c.myRemoteService2();
 
 		Future<String> future1 = exec1.submit(task1);

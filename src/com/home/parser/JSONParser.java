@@ -1,13 +1,21 @@
 package com.home.parser;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JSONParser {
 	public static void main(String[] args) {
 		JSONObject j = new JSONObject();
-		String s = null;
-		j.put("k", "");
+	
+		JSONArray jA = new JSONArray();
+		jA.put("some");
+		j.put("k", jA);
+		JSONArray jA1 = new JSONArray();
+		jA1.put("some1");
+		j.put("k", jA1);
+		//j.put("k", "2");
+		System.out.println(j);
 		
 		String v = j.optString("k", null);
 		System.out.println("Result K" + v);

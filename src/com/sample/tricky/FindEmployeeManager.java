@@ -1,7 +1,9 @@
 package com.sample.tricky;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class FindEmployeeManager {
 	public static void main(String[] args) {
@@ -15,6 +17,35 @@ public class FindEmployeeManager {
 		empMap.put(100, 4);
 		System.out.println(findBoss(empMap, 100, 7));
 		System.out.println(findBoss(empMap, 100, 1));
+		System.out.println(findCommonBoss(empMap, 2, 100));
+		System.out.println(findCommonBoss(empMap, 2, 3));
+
+	}
+
+	public static void getHierarchy(Map<Integer, Integer> empMap, Integer emp, Set<Integer> empHierarchy) {
+		empHierarchy.add(emp);
+		while (true) {
+			Integer boss = empMap.get(emp);
+			if (null == boss) {
+				break;
+			} else {
+				empHierarchy.add(boss);
+				emp = boss;
+			}
+		}
+	}
+
+	public static Integer findCommonBoss(Map<Integer, Integer> empMap, Integer emp1, Integer emp2) {
+		Set<Integer> emp1Hierarchy = new LinkedHashSet<>();
+		getHierarchy(empMap, emp1, emp1Hierarchy);
+		Set<Integer> emp2Hierarchy = new LinkedHashSet<>();
+		getHierarchy(empMap, emp2, emp2Hierarchy);
+		for (Integer boss : emp1Hierarchy) {
+			if (emp2Hierarchy.contains(boss)) {
+				return boss;
+			}
+		}
+		return null;
 	}
 
 	public static boolean findBoss(Map<Integer, Integer> empMap, Integer emp, Integer mgr) {
@@ -28,7 +59,6 @@ public class FindEmployeeManager {
 				emp = boss;
 			}
 		}
-
 	}
 
 }

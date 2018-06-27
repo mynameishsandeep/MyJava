@@ -1,5 +1,16 @@
 package com.sample.datastructure.tree;
 
+/*
+ * The height of a binary tree is the number of edges between the tree's root and its furthest leaf. 
+ * A tree containing a single node has a height of 0, if we count by edges.
+ * A tree containing a single node has a height of 1, if we go by node count.
+ * 
+ * Note:To return the count of nodes "return 0" in recursive base condition. 
+ * https://www.youtube.com/watch?v=_pnqMz5nrRs at 5.02 timing
+ * https://www.youtube.com/watch?v=_SiwrPXG9-g --- understanding call stack...
+ *  
+ *  Time Complexity : O(n)
+ */
 public class PrintTreeHeight {
 
 	class Node {
@@ -11,8 +22,9 @@ public class PrintTreeHeight {
 	Node root;
 
 	public int treeHeight(Node root) {
-		if (root == null)
-			return 0;
+		if (root == null) {
+			return -1;
+		}
 		int left = 1 + treeHeight(root.left);
 		int right = 1 + treeHeight(root.right);
 		return Math.max(left, right);

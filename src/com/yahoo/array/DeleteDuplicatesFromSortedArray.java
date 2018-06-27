@@ -6,7 +6,9 @@ package com.yahoo.array;
 	
 	Approach
 	1) Iterate from 0 to n
-	2) if current Index == duplicate Index... Increment duplicate index. Else replace current with duplicate 
+	2) keep 2 pointer current and duplicate. 
+	3) if current Index == duplicate Index... Increment duplicate index. 
+	Else increment current, replace current with duplicate. Increment duplicate index.
  */
 public class DeleteDuplicatesFromSortedArray {
 

@@ -3,43 +3,35 @@ package com.interview.leetcode.amazon.easy;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+/*
+ * 1) 2 Stack is used. 
+ * 2) 1 to store value and 2nd to store minimum at that point.
+ * Note: Storing min value for each value is costlier operation. So this is better approach than custom class with value and min-value
+ * 
+ */
 class MinStack {
-	class SData {
-		int data;
-		int min;
-
-		public SData(int data, int min) {
-			this.data = data;
-			this.min = min;
-		}
-	}
-
-	Deque<SData> stack = new ArrayDeque<>();
+	Deque<Integer> valueStack = new ArrayDeque<>();
+	Deque<Integer> minValueStack = new ArrayDeque<>();
 
 	public void push(int x) {
-		SData s = new SData(x, getMin(x));
-		stack.push(s);
+		valueStack.push(x);
+		if ((minValueStack.size() == 0) || (minValueStack.peek() >= x)) {
+			minValueStack.push(x);
+		}
 	}
 
 	public void pop() {
-		stack.pop();
+		int x = valueStack.pop();
+		if (minValueStack.peek() == x) {
+			minValueStack.pop();
+		}
 	}
 
 	public int top() {
-		return stack.peek().data;
-	}
-
-	public int getMin(int x) {
-		if (stack.size() > 0 && stack.peek().min < x) {
-			return stack.peek().min;
-		}
-		return x;
+		return valueStack.peek();
 	}
 
 	public int getMin() {
-		if (stack.size() > 0) {
-			return stack.peek().min;
-		}
-		return Integer.MAX_VALUE;
+		return minValueStack.peek();
 	}
 }

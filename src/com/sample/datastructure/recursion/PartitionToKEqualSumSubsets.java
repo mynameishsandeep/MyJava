@@ -25,6 +25,8 @@ public class PartitionToKEqualSumSubsets {
 		PartitionToKEqualSumSubsets s = new PartitionToKEqualSumSubsets();
 		int k = 2;
 		int input[] = new int[] { 1,5,11,5 };
+		//int k = 3;
+		//int input[] = new int[] { 1, 2, 3, 4, 5 };
 		int n = input.length;
 		int arrayTotal = 0;
 		for (int i = 0; i < n; i++) {
@@ -36,21 +38,25 @@ public class PartitionToKEqualSumSubsets {
 			System.out.println("false");
 		} else {
 			int target = total / k;
-			System.out.println(s.groupSumGetAllComboIndex(0, input, target, 0, allComboIndex, new ArrayList<Integer>()));
+			System.out
+					.println(s.groupSumGetAllComboIndex(0, input, target, 0, allComboIndex, new ArrayList<Integer>()));
 			System.out.println("=================Printing All Combo=================");
 			System.out.println(allComboIndex);
 			System.out.println("=================All Combo Printing Ends=================");
 
-			System.out.println(s.groupSum(0, allComboIndex, k, allComboIndex.size(), arrayTotal, new ArrayList<Integer>()));
+			System.out.println(
+					s.groupSum(0, n, allComboIndex, k, allComboIndex.size(), arrayTotal, new ArrayList<Integer>()));
 		}
 	}
 
-	private boolean groupSum(int start, List<List<Integer>> input, int k, int n, int total, List<Integer> result) {
+	private boolean groupSum(int start, int originalN, List<List<Integer>> input, int k, int n, int total,
+			List<Integer> result) {
 		if (start == n) {
 			System.out.println(result);
-			if (k == 0 && total == result.stream().mapToInt(Integer::intValue).sum()) {
+			int x = result.stream().mapToInt(Integer::intValue).sum();
+			if (k == 0 && total == x) {
 				Set<Integer> hashSet = new HashSet<>(result);
-				if (hashSet.size() == n) {
+				if (hashSet.size() == originalN) {
 					System.out.println("Trueeeeee");
 					return true;
 				}
@@ -59,8 +65,8 @@ public class PartitionToKEqualSumSubsets {
 				return false;
 			}
 		}
-		Boolean left = groupSum(start + 1, input, k - 1, n, total, copy(result, input.get(start)));
-		Boolean right = groupSum(start + 1, input, k, n, total, result);
+		Boolean left = groupSum(start + 1, originalN, input, k - 1, n, total, copy(result, input.get(start)));
+		Boolean right = groupSum(start + 1, originalN, input, k, n, total, result);
 		return left || right;
 	}
 
@@ -77,7 +83,8 @@ public class PartitionToKEqualSumSubsets {
 		if (start == nums.length) {
 			return false;
 		}
-		Boolean left = groupSumGetAllComboIndex(start + 1, nums, target, sum + nums[start], result, copy(curResult, start));
+		Boolean left = groupSumGetAllComboIndex(start + 1, nums, target, sum + nums[start], result,
+				copy(curResult, start));
 		Boolean right = groupSumGetAllComboIndex(start + 1, nums, target, sum, result, curResult);
 		return left || right;
 	}

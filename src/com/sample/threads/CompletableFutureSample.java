@@ -22,6 +22,8 @@ public class CompletableFutureSample {
 		service2Result.thenAccept((String result) -> System.out.println((result)));
 		System.out.println("Both threads Started");
 		exec1.shutdown();
+		// This will still print without Thread2 finishing
+		System.out.println("Both threads Ended");
 	}
 
 	public String myRemoteService1() {
