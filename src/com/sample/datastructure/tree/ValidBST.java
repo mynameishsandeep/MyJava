@@ -11,7 +11,7 @@ import java.util.List;
  * 
  * Solution 2) --- We can avoid the use of Auxiliary Array. Tree Image is present in "US Problems" "ValidBST.jpg" 
  * 		a) Traverse in anyone of In-Order or Pre-Order or Post-Order. 
- * 		   aq	Mostly Pre-Order for better understanding
+ * 		   aq)	Mostly Pre-Order for better understanding
  * 		b) Set min and max to Long.MIN_VALUE and Long.MAX_VALUE.
  * 		c) At any point node value should lie between min and max. Else False. 
  * 		d) For left side traverse, update max with current data.
@@ -26,6 +26,7 @@ public class ValidBST {
 		Node left;
 		Node right;
 	}
+
 	List<Integer> result = new ArrayList<>();
 	private Node root;
 	private Node prev;
@@ -58,21 +59,21 @@ public class ValidBST {
 	}
 
 	public boolean isValidBST(Node root) {
-	    return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);    
+		return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
 	}
-	 
-	public boolean isValidBST(Node root, long min, long max) {
-        if(root!=null) {
-            if(root.data <= min || root.data >= max) {
-                return false;
-            }
-            Boolean left = isValidBST(root.left, min, root.data);
-            Boolean right = isValidBST(root.right, root.data, max);
-            return left && right;
-        }
-        return true;
-    }
-	
+
+	public boolean isValidBST(Node root, long leftData, long rightData) {
+		if (root == null) {
+			return true;
+		}
+		if (root.data <= leftData || root.data >= rightData) {
+			return false;
+		}
+		Boolean left = isValidBST(root.left, leftData, root.data);
+		Boolean right = isValidBST(root.right, root.data, rightData);
+		return left && right;
+	}
+
 	public void printInOrderRecurse(Node root) {
 		if (root != null) {
 			printInOrderRecurse(root.left);
@@ -81,7 +82,6 @@ public class ValidBST {
 			printInOrderRecurse(root.right);
 		}
 	}
-
 
 	public static void main(String[] args) {
 		ValidBST p = new ValidBST();

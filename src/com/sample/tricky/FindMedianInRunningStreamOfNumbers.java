@@ -4,7 +4,8 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-/* What is Median? When the input size is odd, we take the middle element of sorted data. If the input size is even, we pick average of middle two elements in sorted data.
+/* What is Median? When the input size is odd, we take the middle element of sorted data. 
+ * If the input size is even, we pick average of middle two elements in sorted data.
  * https://leetcode.com/problems/find-median-from-data-stream/description/
  * 
  * Refer diagram "Median for Stream of Numbers.jpg" in US Problems folder

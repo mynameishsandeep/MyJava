@@ -42,6 +42,7 @@ public class ThreeSumProblem {
 		}
 		return result;
 	}
+	
 	public static void main(String[] args) {
 		ThreeSumProblem t = new ThreeSumProblem();
 		int[] i = new int[] {-1,0,1,2,-1,-4};

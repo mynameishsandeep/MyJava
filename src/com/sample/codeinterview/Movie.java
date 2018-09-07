@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Find the related movies with rating greater the passed movies - asked in Amazon
- * @author chandrasekhar
- *
  */
-@Data
+@Getter
+@Setter
 public class Movie {
 	private int id;
 	private int rating;

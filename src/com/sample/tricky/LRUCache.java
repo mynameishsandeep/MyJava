@@ -5,6 +5,12 @@ import java.util.HashMap;
 /**
  * https://www.programcreek.com/2013/03/leetcode-lru-cache-java/
  * 
+ * Logic:
+ * 1) Keep new data(when adding/updating data or when an element is accessed) at head.
+ * 2) When put is happening and not enough space, remove tail. Add new element to head
+ * 3) When get is happening move data from anywhere to head.
+ * 
+ * Tactics:
  * 1) Reason why doubly linked list selected is, during removal operation, get that node. join previous with next.
  * Which makes the operation 0(1). If Single linked list is selected. Then entire list has to be traversed for removal operation O(n).
  * 2) Node key is used in only one scenario. Because when LRU is full. tail is deleted. from tail key,map key is removed.
@@ -39,7 +45,7 @@ public class LRUCache {
 	}
 
 	int capacity;
-	HashMap<Integer, DLLNode> map = new HashMap<Integer, DLLNode>();
+	HashMap<Integer, DLLNode> map = new HashMap<>();
 	DLLNode head = null;
 	DLLNode tail = null;
 

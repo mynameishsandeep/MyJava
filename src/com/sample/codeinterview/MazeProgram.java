@@ -17,13 +17,11 @@ public class MazeProgram {
 	public static void main(String[] args) {
 		int a[][] = { { 0, 0, 0 }, { 0, 1, 0 }, { 1, 0, 1 } };
 
-		System.out.println(findMinNumSteps(a, 3, 3, 2, 1));
+		System.out.println(findMinNumSteps(a, 2, 1));
 	}
 
 	// METHOD SIGNATURE BEGINS, THIS METHOD IS REQUIRED
-	public static int findMinNumSteps(int[][] maze, int rows, int columns, int exitRow, int exitCol) {
-		int count = 0;
-		boolean success = false;
+	public static int findMinNumSteps(int[][] maze, int exitRow, int exitCol) {
 		Stack<Node> stack = new Stack<>();
 		Node n = new Node(0, 0);
 		stack.push(n);

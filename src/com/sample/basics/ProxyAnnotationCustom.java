@@ -7,18 +7,29 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Method;
 import java.util.Scanner;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @interface EmployeeEvent {
 	String employeeRole() default "GUEST";
+
 	int budgetLimit() default 0;
 }
 
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 class Employee {
 	String name;
+
+	Employee() {
+
+	}
+
 	Employee(String name) {
 		this.name = name;
 	}
+
 	@EmployeeEvent(employeeRole = "SENIOR", budgetLimit = 100)
 	public void seniorEmployeeBenefits(int budget, int moneySpend) {
 		System.out.println("Employee Name is " + name);
@@ -42,16 +53,13 @@ class EmployeeProxy {
 			Method[] methods = emp.getClass().getMethods();
 			for (Method method : methods) {
 				if (method.isAnnotationPresent(EmployeeEvent.class)) {
-					EmployeeEvent family = method
-							.getAnnotation(EmployeeEvent.class);
+					EmployeeEvent family = method.getAnnotation(EmployeeEvent.class);
 					String userRole = family.employeeRole();
 					int userBudget = family.budgetLimit();
 					if (userRole.equals(role)) {
 						if (userBudget > spend) {
-							System.out
-									.println("Employee Proxy is called before Employee invocation");
-							method.invoke(emp,
-									userBudget, spend);
+							System.out.println("Employee Proxy is called before Employee invocation");
+							method.invoke(emp, userBudget, spend);
 						} else {
 							System.out.println("Budget Limit Over");
 						}
@@ -61,8 +69,7 @@ class EmployeeProxy {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			System.out
-					.println("Employee Proxy is called after Employee invocation");
+			System.out.println("Employee Proxy is called after Employee invocation");
 		}
 
 	}

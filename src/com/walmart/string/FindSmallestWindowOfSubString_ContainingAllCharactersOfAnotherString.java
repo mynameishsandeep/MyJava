@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Find the smallest window in a string containing all characters of another
- * string
+ * Find the smallest window in a string containing all characters of another string
+ * 
  * http://www.geeksforgeeks.org/find-the-smallest-window-in-a-string-containing-all-characters-of-another-string/
  * 
  * 1) Iterate input by Character. 

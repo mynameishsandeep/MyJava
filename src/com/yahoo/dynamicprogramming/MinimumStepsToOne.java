@@ -1,5 +1,24 @@
 package com.yahoo.dynamicprogramming;
 
+/*
+ * 
+Given a number n, count minimum steps to minimize it to 1. Below 3 operations are allowed
+
+1) If n is divisible by 2 then we may reduce n to n/2.
+2) If n is divisible by 3 then you may reduce n to n/3.
+3) Decrement n by 1.
+
+If we observe carefully, the greedy strategy doesn’t work here.
+Eg: Given n = 10 , Greedy –> 10 /2 = 5 -1 = 4 /2 = 2 /2 = 1 ( 4 steps ).
+But the optimal way is –> 10 -1 = 9 /3 = 3 /3 = 1 ( 3 steps ).
+
+Solution: 
+1) Recursively store all 3 computations till reaching 1. In the recursion order, 
+if condition for 3 and 2 can change but subtract 1 should be at 3rd condition.
+2) Memoitation is possible. Because after some division, they will intersect.
+
+ https://www.geeksforgeeks.org/minimum-steps-minimize-n-per-given-condition/
+ */
 import java.util.HashMap;
 import java.util.Map;
 

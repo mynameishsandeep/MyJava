@@ -14,9 +14,9 @@ public class FindTheFirstRepeatedCharacterInAString {
 		// ASCII has 0 to 127 character...So initializing with 128.
 		// To save only a-z... go for a[charVal]-'a'
 		// To save only A-Z... go for a[charVal]-'A'
-		Character ch[] = new Character[128];
+		char ch[] = new char[128];
 		for (Character c : input.toCharArray()) {
-			if (ch[c] == null) {
+			if (ch[c] == 0) {
 				ch[c] = 1;
 			} else {
 				return c;

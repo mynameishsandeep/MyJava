@@ -25,9 +25,9 @@ public class PrintTreeHeight {
 		if (root == null) {
 			return -1;
 		}
-		int left = 1 + treeHeight(root.left);
-		int right = 1 + treeHeight(root.right);
-		return Math.max(left, right);
+		int left = treeHeight(root.left);
+		int right = treeHeight(root.right);
+		return Math.max(left, right) + 1;
 	}
 
 	public void add(int data) {

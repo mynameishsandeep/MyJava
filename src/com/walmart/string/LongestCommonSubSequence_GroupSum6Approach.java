@@ -1,6 +1,14 @@
 package com.walmart.string;
 
 /**
+ * The longest common subsequence (LCS) problem is the problem of finding the longest subsequence common to all sequences
+   It differs from the longest common substring problem
+   Ex: 
+   String s1 = "AGGTAB";
+   String s2 = "GXTXAYB"
+                = = = =
+   Here common subsequence is GTAB and the length is 4.
+     
 1) select first character from string1 and select first character from string2.
 2) if match found then continue with second character from both string ,increment the count.
 3) if not matched then 
@@ -33,11 +41,16 @@ public class LongestCommonSubSequence_GroupSum6Approach {
 		LongestCommonSubSequence_GroupSum6Approach lcs = new LongestCommonSubSequence_GroupSum6Approach();
 		String s1 = "AGGTAB";
 		String s2 = "GXTXAYB";
-
 		char[] X = s1.toCharArray();
 		char[] Y = s2.toCharArray();
-
 		System.out.println("Length of LCS is" + " " + lcs.lcs(X, Y, 0, 0));
+
+		s1 = "ab123cde";
+		s2 = "acaceb123";
+		X = s1.toCharArray();
+		Y = s2.toCharArray();
+		System.out.println("Length of LCS is" + " " + lcs.lcs(X, Y, 0, 0));
+
 	}
 
 }

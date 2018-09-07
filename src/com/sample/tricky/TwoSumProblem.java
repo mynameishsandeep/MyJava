@@ -9,26 +9,28 @@ import java.util.Set;
 /**
  * given an array, find whether there exists 3 elements a,b,c in it such that
  * a+b=c using efficient method.
+ * 1) If the question is simply 2 sum problem without any constraint. Implement using Set.
+ * 2) Then interviewer might ask to get index. Then use Map approach.
+ * 3) Then interviewer might ask without using variable. Then go for sort and 2 pointer approach.
  * 
- * 
- * @author chandrasekhar
- *
+ * Note: If the interviewer says duplicate element can present, then set and map options cannot be used.
  */
 public class TwoSumProblem {
 	public static void main(String[] args) {
 		Integer a[] = { 2, 7, 8, 10, 5, 8 };
-		System.out.println(Arrays.toString(twoSumReturnIndex(a, 12)));
-		System.out.println(findSum(a, 11));
-		System.out.println(" Find 16 " +findSum(new Integer[] {8,8}, 16));
-		System.out.println(findSum(a, 7));
+		System.out.println(Arrays.toString(twoSumReturnIndexUsingMap(a, 12)));
+		System.out.println(twoSumUsingSet(a, 11));
+		System.out.println(" Find 16 " +twoSumUsingSet(new Integer[] {8,8}, 16));
+		System.out.println(twoSumUsingSet(a, 7));
 		Integer aa[] = { 3, 2, 4 };
 		System.out.println(twoSum(aa, 6));
 	}
 
 	/*
 	 * O(n) time complexity
+	 * out of 2 elements. keep 1 in current variable and another 1 in Set.
 	 */
-	public static boolean findSum(Integer a[], Integer key) {
+	public static boolean twoSumUsingSet(Integer a[], Integer key) {
 		Set<Integer> set = new HashSet<>();
 		for (int i = 0; i < a.length; i++) {
 			if (set.contains(key - a[i])) {
@@ -41,7 +43,24 @@ public class TwoSumProblem {
 	}
 
 	/*
-	 * This is 2 pointer approach.
+	 * O(n) time complexity
+	 * out of 2 elements. keep 1 in current variable and another 1 in map.
+	 * map helps in saving and getting index.
+	 */
+	public static int[] twoSumReturnIndexUsingMap(Integer[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i=0; i<nums.length; i++) {
+            if(map.containsKey(target-nums[i])) {
+                return new int[] {map.get(target-nums[i]), i};
+            } else {
+                map.put(nums[i], i);
+            }
+        }
+        return null;
+    }
+
+	/*
+	 * This is 2 pointer approach. Without using additional variable.
 	 * 
 	 * O(log N) complexity. due to sorting
 	 * 
@@ -63,18 +82,4 @@ public class TwoSumProblem {
 
 	}
 	
-	/*
-	 * O(n) time complexity
-	 */
-	public static int[] twoSumReturnIndex(Integer[] nums, int target) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for(int i=0; i<nums.length; i++) {
-            if(map.containsKey(target-nums[i])) {
-                return new int[] {map.get(target-nums[i]), i};
-            } else {
-                map.put(nums[i], i);
-            }
-        }
-        return null;
-    }
 }

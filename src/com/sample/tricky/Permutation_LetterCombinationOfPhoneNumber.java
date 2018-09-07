@@ -9,7 +9,7 @@ import java.util.List;
  * Note: There will be 3 for loops
  */
 
-public class LetterCombinationOfPhoneNumber {
+public class Permutation_LetterCombinationOfPhoneNumber {
 
 
 	public List<String> letterCombinations(String digits) {
@@ -34,7 +34,7 @@ public class LetterCombinationOfPhoneNumber {
 	}
 
 	public static void main(String[] args) {
-		LetterCombinationOfPhoneNumber l = new LetterCombinationOfPhoneNumber();
+		Permutation_LetterCombinationOfPhoneNumber l = new Permutation_LetterCombinationOfPhoneNumber();
 		System.out.println(l.letterCombinations("23"));
 	}
 }

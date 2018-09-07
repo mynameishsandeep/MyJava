@@ -22,31 +22,31 @@ public class BinarySearch {
 
 	public static int binarySearchWhile(int arr[]) {
 		int search = 4;
-		int start = 0;
-		int end = arr.length;
-		int mid = end / 2;
-		while (start <= end) {
+		int low = 0;
+		int high = arr.length;
+		int mid = high / 2;
+		while (low <= high) {
 			if (search == arr[mid]) {
 				System.out.println("Element Found at location " + mid);
 				return mid;
 			} else if (search > arr[mid]) {
-				start = mid;
-				mid = (mid + end) / 2;
+				low = mid;
+				mid = (mid + high) / 2;
 			} else {
-				end = (start + end) / 2;
-				mid = end / 2;
+				high = (low + high) / 2;
+				mid = high / 2;
 			}
 		}
 		return -1;
 	}
 
-	public static int binarySearchRec(int arr[], int start, int end, int search) {
-		if (start <= end) {
-			int mid = start + ((end - start) / 2);
+	public static int binarySearchRec(int arr[], int low, int high, int search) {
+		if (low <= high) {
+			int mid = low + ((high - low) / 2);
 			if (search > arr[mid]) {
-				return binarySearchRec(arr, mid + 1, end, search);
+				return binarySearchRec(arr, mid + 1, high, search);
 			} else if (search < arr[mid]) {
-				return binarySearchRec(arr, start, mid - 1, search);
+				return binarySearchRec(arr, low, mid - 1, search);
 			} else {
 				return mid;
 			}
@@ -60,20 +60,20 @@ public class BinarySearch {
 	 x = 5
 	 Output : Last Occurrence = 5
 	 */
-	public static int binarySearchRecFindLast(int arr[], int start, int end, int search) {
-		if (start <= end) {
-			//System.out.println("start = " + start + " end " + end);
-			int mid = start + (end - start) / 2;
+	public static int binarySearchRecFindLast(int arr[], int low, int high, int search) {
+		if (low <= high) {
+			//System.out.println("low = " + low + " high " + high);
+			int mid = low + (high - low) / 2;
 			if (search > arr[mid]) {
-				return binarySearchRecFindLast(arr, mid + 1, end, search);
+				return binarySearchRecFindLast(arr, mid + 1, high, search);
 			} else if (search < arr[mid]) {
-				return binarySearchRecFindLast(arr, start, mid - 1, search);
+				return binarySearchRecFindLast(arr, low, mid - 1, search);
 			} else {
-				return binarySearchRecFindLast(arr, mid + 1, end, search);
+				return binarySearchRecFindLast(arr, mid + 1, high, search);
 			}
 		}
-		if (arr[end] == search) {
-			return end;
+		if (arr[high] == search) {
+			return high;
 		}
 		return -1;
 	}
@@ -84,20 +84,20 @@ public class BinarySearch {
 	x = 5
 	Output : First Occurrence = 2
 	 */
-	public static int binarySearchRecFindFirst(int arr[], int start, int end, int search) {
-		if (start <= end) {
-			//System.out.println("start = " + start + " end " + end);
-			int mid = start + (end - start) / 2;
+	public static int binarySearchRecFindFirst(int arr[], int low, int high, int search) {
+		if (low <= high) {
+			//System.out.println("low = " + low + " high " + high);
+			int mid = low + (high - low) / 2;
 			if (search > arr[mid]) {
-				return binarySearchRecFindFirst(arr, mid + 1, end, search);
+				return binarySearchRecFindFirst(arr, mid + 1, high, search);
 			} else if (search < arr[mid]) {
-				return binarySearchRecFindFirst(arr, start, mid - 1, search);
+				return binarySearchRecFindFirst(arr, low, mid - 1, search);
 			} else {
-				return binarySearchRecFindFirst(arr, start, mid - 1, search);
+				return binarySearchRecFindFirst(arr, low, mid - 1, search);
 			}
 		}
-		if (arr[end] == search) {
-			return end;
+		if (arr[high] == search) {
+			return high;
 		}
 		return -1;
 	}
