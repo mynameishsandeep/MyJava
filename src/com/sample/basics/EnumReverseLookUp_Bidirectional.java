@@ -11,10 +11,10 @@ public class EnumReverseLookUp_Bidirectional {
 		WAITING(0), READY(1), SKIPPED(-1), COMPLETED(5);
 
 		private int code;
-		private static final Map<Integer, Status> LOOKUP = new HashMap<Integer, Status>();
+		private static final Map<Integer, Status> LOOKUP_BY_VALUE = new HashMap<Integer, Status>();
 		static {
 			for (Status s : EnumSet.allOf(Status.class))
-				LOOKUP.put(s.getCode(), s);
+				LOOKUP_BY_VALUE.put(s.getCode(), s);
 		}
 
 		private static final Set<String> LOOKUP_BY_KEY = new HashSet<>();
@@ -36,7 +36,7 @@ public class EnumReverseLookUp_Bidirectional {
 		}
 
 		public static Status get(int code) {
-			return LOOKUP.get(code);
+			return LOOKUP_BY_VALUE.get(code);
 		}
 	}
 

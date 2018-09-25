@@ -28,14 +28,14 @@ public class LongestCommonSubString {
 		// first column entries have no logical meaning, they are used only
 		// for simplicity of program
 		int LCStuff[][] = new int[m + 1][n + 1];
-		int result = 0;  // To store length of the longest common substring
+		int result = 0; // To store length of the longest common substring
 
 		// Following steps build LCSuff[m+1][n+1] in bottom up fashion
 		for (int i = 0; i <= m; i++) {
 			for (int j = 0; j <= n; j++) {
-				if (i == 0 || j == 0)
+				if (i == 0 || j == 0) { // Fill 0th row and 0th column with 0.
 					LCStuff[i][j] = 0;
-				else if (X[i - 1] == Y[j - 1]) {
+				} else if (X[i - 1] == Y[j - 1]) {
 					LCStuff[i][j] = LCStuff[i - 1][j - 1] + 1;
 					result = Integer.max(result, LCStuff[i][j]);
 				} else
@@ -45,7 +45,7 @@ public class LongestCommonSubString {
 		return result;
 	}
 
-// Driver Program to test above function
+	// Driver Program to test above function
 	public static void main(String[] args) {
 		String X = "ABCDGH";
 		String Y = "AEDFHR";

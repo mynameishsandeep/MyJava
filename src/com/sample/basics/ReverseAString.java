@@ -3,8 +3,11 @@ package com.sample.basics;
 public class ReverseAString {
 
 	/**
-	 * Swap 1st and n th character, then
-	 * 2nd and n-1 character... So half traversal is enough
+	 * 1) Convert String to Character Array
+	 * 2) Swap 1st and n th character, then
+	 * 3) 2nd and n-1 character... So half traversal is enough
+	 * 
+	 * Note: This saves a lot of object creation in memory. instead of using string concat operation with stringbuilder
 	 */
 	public static String reverse(String s) {
 		char[] array = s.toCharArray();

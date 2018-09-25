@@ -21,7 +21,7 @@ public class GroupSum_Important {
 		if (target == 0) {
 			return true;
 		}
-		if (index == nums.length) {
+		if (index == nums.length) { // (target < 0 || index==a.length) for positive numbers
 			return false;
 		}
 		boolean left = groupSum(index + 1, nums, target - nums[index]);

@@ -7,7 +7,7 @@ import java.util.Arrays;
  * 
  * 
  */
-public class GraphValidTree {
+public class GraphValidTree_UnionFind {
 
 	public boolean validTree(int n, int[][] edges) {
         // initialize n isolated islands
@@ -17,9 +17,9 @@ public class GraphValidTree {
             return false;
         }
         // perform union find
-        for (int i = 0; i < edges.length; i++) {
-            int x = find(nums, edges[i][0]);
-            int y = find(nums, edges[i][1]);
+        for (int[] edge : edges) {
+            int x = find(nums, edge[0]);
+            int y = find(nums, edge[1]);
             
             // if two vertices happen to be in the same set
             // then there's a cycle
@@ -37,7 +37,7 @@ public class GraphValidTree {
     }
 
 	public static void main(String[] args) {
-		GraphValidTree g = new GraphValidTree();
+		GraphValidTree_UnionFind g = new GraphValidTree_UnionFind();
 		int i[][]= new int[5][];
 		i[0] = new int[]{0,1};
 		i[1] = new int[]{0,2};

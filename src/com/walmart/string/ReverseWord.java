@@ -4,13 +4,14 @@ package com.walmart.string;
  * =========== Approach 1=============
  * 1) Reverse each word. Use Approach ReverseAString
  * 2) Reverse the entire word
+ * 3) Step1,Step2  or Step2, Step1 both will work
  *
  * Ex:
  * Input : "12 34"
  * Step1 : "21 34"
  * Step2 : "21 43"
  * Step3 : "34 12" 
- * =========== Approach 2======== Too many edge cases will fail when input has spaces(" ") in start and end. So don't try
+ * =========== Approach 2======== Too many edge cases will fail in approach2, when input has spaces(" ") in start and end. So don't try
  * Reversing the 1st and last word. Similar to ReverseAString. 
  * This approach has issue when input has spaces(" ") in start and end.
  * Separate logic needs to be added for spaces(" ") in start and end.
@@ -45,7 +46,6 @@ public class ReverseWord {
 	public static void main(String[] args) {
 		String s = " 12 34 ";
 		reverseWords(s.toCharArray());
-
 	}
 
 }

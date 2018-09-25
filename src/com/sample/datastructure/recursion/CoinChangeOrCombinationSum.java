@@ -15,37 +15,19 @@ import java.util.List;
  * 
  * This solution will take too much time, if sum or coin is big. 
  */
-public class CoinChange_Permute {
+public class CoinChangeOrCombinationSum {
 	public static void main(String[] args) {
 		int coins[] = { 2, 3, 7 };
 		int sum = 12;
-		System.out.println(maxCoinCombination(coins, sum, 0));
+		System.out.println(coinPermutationCount(coins, sum, 0));
 
 		List<List<Integer>> allCombo = new ArrayList<>();
 		coinPermutations(coins, sum, new ArrayList<>(), allCombo, 0);
 		System.out.println(allCombo);
-
-	}
-
-	public static int maxCoinCombination(int coins[], int sum, int index) {
-
-		if (sum == 0) {
-			return 1;
-		}
-		if (sum < 0) {
-			return 0;
-		}
-		if (index == coins.length) {
-			return 0;
-		}
-		int left = maxCoinCombination(coins, sum - coins[index], index);
-		int right = maxCoinCombination(coins, sum, index + 1);
-		return left + right;
 	}
 
 	public static void coinPermutations(int coins[], int sum, List<Integer> currentCoins, List<List<Integer>> result,
 			int index) {
-
 		if (sum == sum(currentCoins)) {
 			result.add(currentCoins);
 			return;
@@ -73,5 +55,21 @@ public class CoinChange_Permute {
 			result += coin;
 		}
 		return result;
+	}
+
+	public static int coinPermutationCount(int coins[], int sum, int index) {
+
+		if (sum == 0) {
+			return 1;
+		}
+		if (sum < 0) {
+			return 0;
+		}
+		if (index == coins.length) {
+			return 0;
+		}
+		int left = coinPermutationCount(coins, sum - coins[index], index);
+		int right = coinPermutationCount(coins, sum, index + 1);
+		return left + right;
 	}
 }

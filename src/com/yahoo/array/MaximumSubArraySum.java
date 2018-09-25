@@ -2,6 +2,8 @@ package com.yahoo.array;
 
 /*
  * https://leetcode.com/problems/maximum-subarray/description/
+ * 
+ * =====Look for "maxSubArrayMathematicalApproach" and compare with "MaximumProductSubarray.java"========
  */
 public class MaximumSubArraySum {
 
@@ -14,8 +16,21 @@ public class MaximumSubArraySum {
 		System.out.println(maxSubArray(input2));
 	}
 
-	public static int maxSubArray(int[] nums) {
+	/*
+	 * Below is the clean and mathematical approach. I am not setting defaults to "sum" or "maxSum".. 
+	 * Use this logic in interview. 
+	 */
+	public static int maxSubArrayMathematicalApproach(int[] nums) {
+		int sum = nums[0];
+		int maxSum = nums[0];
+		for (int i = 1; i < nums.length; i++) {
+			sum = Math.max(sum + nums[i], nums[i]);
+			maxSum = Math.max(sum, maxSum);
+		}
+		return maxSum;
+	}
 
+	public static int maxSubArray(int[] nums) {
 		int sum = 0;
 		// If i put maxSum to 0. Then it will not work for case {-1,-2,-3} . i.e all negative value.
 		int maxSum = Integer.MIN_VALUE;
@@ -32,4 +47,5 @@ public class MaximumSubArraySum {
 		}
 		return maxSum;
 	}
+
 }

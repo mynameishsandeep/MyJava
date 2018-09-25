@@ -17,7 +17,7 @@ public class GroupSum6 {
 	 */
 	public boolean groupSum6(int start_index, int[] nums, int target) {
 		//System.out.println(target);
-		if (start_index >= nums.length)
+		if (start_index == nums.length)
 			return target == 0;
 
 		Boolean left = false;
@@ -33,14 +33,12 @@ public class GroupSum6 {
 	}
 	
 	private boolean groupSum6_Longer(int start_index, int[] nums, int target) {
-		// Below 3 if case can be replaced with 1 in above groupSum6 method 
-		if (nums.length == start_index) {
-			return target == 0;
-		}
+		// Below 2 if case can be replaced with 1 in above groupSum6 method.
+		// But in above groupSum6 method recursion go till end of index, which is performance issue.
 		if (target == 0) {
 			return true;
 		}
-		if (target < 0) {
+		if (nums.length == start_index) {
 			return false;
 		}
 		boolean left = false;
