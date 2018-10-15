@@ -3,7 +3,7 @@ package com.interview.leetcode.linkedin.medium;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.leetcode.RandomListNode;
+import com.interview.leetcode.RandomListNode;
 
 /*
  * https://leetcode.com/problems/copy-list-with-random-pointer/description/

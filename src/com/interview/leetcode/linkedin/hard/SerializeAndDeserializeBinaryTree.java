@@ -3,24 +3,37 @@ package com.interview.leetcode.linkedin.hard;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.leetcode.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 /*
  * https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/
+ * 
+ * See image for how it is saved "SerializeDeSerializeBinaryTree.JPG"
  * 
  * Serialization can be done in any ways, as long as it can be de-serialized. 
  * https://leetcode.com/problems/serialize-and-deserialize-binary-tree/discuss/74253/Easy-to-understand-Java-Solution
  * Above link serialize using in-order. Print the data and verify what is passed to de-serialize method
  * 
- * 1) Serialize:
- * 		a) Travel tree by level order traversal. For null insert #
- * 2) De-Serialize:
+ * 1) Serialize: (Modified Level Order Traversal. If node null insert #)
+ * 		a) Logic is not inserting # for end of level. It is about inserting # for end of "left node" or "right node".
+ * 		b) =====Note: I don't have to worry about level at all....=========
+ * 		c) So for a tree with 1 node there will be 2 #,
+ * 			  for a tree with 3 node there will be 4 #.. check the diagram SerializeAndDeSerializeBinaryTree.jpg
+ * 			   
+ * 2) De-Serialize:(Queue approach, but not level order traversal. Only one for loop)
  * 		a) Split the string by ","
- * 		b) Use level order traversal and append data to result string. 
+ * 		b) Iterate each data and look for #.  If it # then skip creating node and skip adding node to queue.  
+ * 		c) =====Doubt: how come if a tree growing one side and without managing level, how de-serialization works?
+ * 				It works, because each node has exactly 2 child left and right. 
+ * 				At any point, if a left or right child is null, I will skip adding child(left or right) to the parent.
+ * 				It works also because of Queue
+ * 	=====This Logic will not work for n-ary tree because n-ary tree has more than 2(left and right) node==========    
  * 		
  */
 public class SerializeAndDeserializeBinaryTree {
-	// Encodes a tree to a single string.
+	
+	public static final String EMPTY_NODE_INDICATOR = "#";
+	public static final String NODE_SEPERATOR = ",";
 	public String serialize(TreeNode root) {
 		if (root == null) {
 			return "";
@@ -33,9 +46,9 @@ public class SerializeAndDeserializeBinaryTree {
 			for (int i = 0; i < size; i++) {
 				TreeNode node = q.poll();
 				if (node == null) {
-					result = result.append("#,");
+					result = result.append(EMPTY_NODE_INDICATOR + NODE_SEPERATOR );
 				} else {
-					result.append(node.val + ",");
+					result.append(node.val + NODE_SEPERATOR);
 					q.offer(node.left);
 					q.offer(node.right);
 				}
@@ -48,24 +61,25 @@ public class SerializeAndDeserializeBinaryTree {
 	public TreeNode deserialize(String data) {
 		if ("".equals(data))
 			return null;
-		String dataArray[] = data.split(",");
+		String dataArray[] = data.split(NODE_SEPERATOR);
 		TreeNode root = new TreeNode(new Integer(dataArray[0]));
-		Queue<TreeNode> node = new LinkedList<>();
-		node.offer(root);
-		for (int i = 1; i < dataArray.length;) {
-			TreeNode parent = node.poll();
-			if (!dataArray[i].equals("#")) {
-				TreeNode left = new TreeNode(new Integer(dataArray[i]));
+		Queue<TreeNode> q = new LinkedList<>();
+		q.offer(root);
+		int dataIndex = 1;
+		while (q.size()>0) {
+			TreeNode parent = q.poll();
+			if (!dataArray[dataIndex].equals(EMPTY_NODE_INDICATOR)) {
+				TreeNode left = new TreeNode(new Integer(dataArray[dataIndex]));
 				parent.left = left;
-				node.offer(left);
+				q.offer(left);
 			}
-			i++;
-			if (!dataArray[i].equals("#")) {
-				TreeNode right = new TreeNode(new Integer(dataArray[i]));
+			dataIndex++;
+			if (!dataArray[dataIndex].equals(EMPTY_NODE_INDICATOR)) {
+				TreeNode right = new TreeNode(new Integer(dataArray[dataIndex]));
 				parent.right = right;
-				node.offer(right);
+				q.offer(right);
 			}
-			i++;
+			dataIndex++;
 		}
 		return root;
 	}

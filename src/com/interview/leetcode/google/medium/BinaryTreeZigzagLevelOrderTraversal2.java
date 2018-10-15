@@ -3,7 +3,7 @@ package com.interview.leetcode.google.medium;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.leetcode.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 /*
  * https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/

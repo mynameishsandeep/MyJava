@@ -4,11 +4,16 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /*
- * This is not an simple problem. It is complex one. Trying with 2 for loops with temp variable will fail for so many cases. 
+ * This is not an simple problem. It is complex one. Trying with 2 for loops with temp variable will fail for so many cases.
+ * 
+ *  https://leetcode.com/problems/longest-increasing-subsequence/description/
+ *  
+ *  1) Keep i as constant and move j from 0 to i.
+ *  2) if value at i is greater than value of j, then result is max( value at j+1, i)
  * 
  * https://www.youtube.com/watch?v=CE2b_-XfVDk
  */
-public class LongestIncreasingSubSequence {
+public class LongestIncreasingSubSequence_dp {
 
 	public static void main(String[] args) {
 
@@ -16,22 +21,20 @@ public class LongestIncreasingSubSequence {
 		System.out.println(lengthOfLIS(input));
 	}
 
-	/*
-	 * BruteForce. Compare element at each index with all element next to it. 
-	 *  O(n square)
-	 */
 	public static int lengthOfLIS(Integer[] nums) {
-		Integer[] result = new Integer[nums.length];
-		Arrays.fill(result, 1);
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+		Integer[] dp = new Integer[nums.length];
+		Arrays.fill(dp, 1);
 		for (int i = 1; i < nums.length; i++) {
 			for (int j = 0; j < i; j++) {
-				if (nums[i] >= nums[j]) {
-					result[i] = Math.max(result[j] + 1, result[i]);
+				if (nums[i] > nums[j]) {
+					dp[i] = Math.max(dp[j] + 1, dp[i]);
 				}
 			}
 		}
-		return Collections.max(Arrays.asList(result));
-
+		return Collections.max(Arrays.asList(dp));
 	}
 
 	public int lengthOfLIS(int[] nums) {

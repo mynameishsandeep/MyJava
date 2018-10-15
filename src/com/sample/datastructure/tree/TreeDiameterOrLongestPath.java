@@ -1,84 +1,46 @@
 package com.sample.datastructure.tree;
 
+import com.interview.leetcode.TreeNode;
+
 /*
+ * https://leetcode.com/problems/diameter-of-binary-tree/description/
+ * 
+ * Same code as tree height, with 2 changes
+ * 1) return 0. instead of -1.
+ * 2) add 1 extra line, which stores maxDiameter from left and right total.
+ * 
  *  Diameter of a tree can be calculated by only using the height function, 
  *  Because the diameter of a tree is nothing but maximum value of (left_height + right_height + 1) for each node. 
- *  So we need to calculate this value (left_height + right_height + 1) for each node and update the result. 
+ *  So we need to calculate this value (left_height + right_height + 1) for each node and update the result.
+ *  
+ *  =====We calculate height for each node. Because, biggest diameter may or may not pass through the root.===== 
  *  Time complexity – O(n)
  *  
  *  Note: result is not the number of nodes. result is number of edges(connecting line)
  *  https://www.geeksforgeeks.org/diameter-of-a-binary-tree-in-on-a-new-method/
  *  
- *  Note: Using array since it is immutable. Integer or int will not work
+ *  Note: Using array since it is immutable. Integer or int will not work.. or we need to go for global variable
  */
 public class TreeDiameterOrLongestPath {
 
 	public int diameterOfBinaryTree(TreeNode root) {
-		int[] dia = new int[] { 0 };
-		diameterOfBinaryTree(root, dia);
-		return dia[0];
+		int[] maxDiameter = new int[1];
+		diameterOfBinaryTree(root, maxDiameter);
+		return maxDiameter[0];
 	}
 
-	public int diameterOfBinaryTree(TreeNode root, int[] dia) {
-		System.out.println("Called");
+	public int diameterOfBinaryTree(TreeNode root, int[] maxDiameter) {
 		if (null == root) {
-			return -1;
+			return 0;
 		}
-		int left = 1 + diameterOfBinaryTree(root.left, dia);
-		int right = 1 + diameterOfBinaryTree(root.right, dia);
-		dia[0] = Math.max(dia[0], left + right);
-		return Math.max(left, right);
+		int left = diameterOfBinaryTree(root.left, maxDiameter);
+		int right = diameterOfBinaryTree(root.right, maxDiameter);
+		updateMaxDiameter(left, right, maxDiameter);
+		return Math.max(left, right) + 1;
 	}
 
-	class TreeNode {
-		int data;
-		TreeNode left;
-		TreeNode right;
+	private void updateMaxDiameter(int left, int right, int[] maxDiameter) {
+		maxDiameter[0] = Math.max(maxDiameter[0], left + right);
 	}
 
-	TreeNode root;
-
-	public void add(int data) {
-		TreeNode tempRoot = root;
-		TreeNode currNode = new TreeNode();
-		currNode.data = data;
-		if (tempRoot == null) {
-			root = currNode;
-		} else {
-			while (true) {
-				if (data < tempRoot.data) {
-					if (tempRoot.left != null) {
-						tempRoot = tempRoot.left;
-					} else {
-						tempRoot.left = currNode;
-						break;
-					}
-				} else {
-					if (tempRoot.right != null) {
-						tempRoot = tempRoot.right;
-					} else {
-						tempRoot.right = currNode;
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	public static void main(String[] args) {
-		TreeDiameterOrLongestPath p = new TreeDiameterOrLongestPath();
-		p.add(10);
-		p.add(5);
-		p.add(4);
-		p.add(6);
-		p.add(20);
-		p.add(30);
-		p.add(15);
-		p.add(21);
-		p.add(22);
-
-		System.out.println();
-		System.out.println("Diameter of the Tree is " + p.diameterOfBinaryTree(p.root));
-
-	}
 }

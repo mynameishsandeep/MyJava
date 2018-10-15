@@ -4,9 +4,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 /*
- * Given a string, determine if a permutation of the string could form a palindrome.
-For example,
-"code" -> False, "aab" -> True, "carerac" -> True.
+ * Given a string, determine if re-arranging characters of the string could form a palindrome.
+
+Solution is simple: 
+1) For even number of character....To be a palindrome, every character should occur even. 
+2) For odd number of character....To be a palindrome, every character should occur even and one character can occur once.
+
+
+For example:
+"code" -> False, 
+"aab" -> True, 
+"carerac" -> True. (carerac)
+
+
  */
 
 public class PalindromePermutation {
@@ -19,9 +29,9 @@ public class PalindromePermutation {
 				set.add(c);
 			}
 		}
-		return set.size() <= 1;
+		return set.size() <= 1;// For Odd character palindrome
 	}
-	
+
 	public static void main(String[] args) {
 		System.out.println(canPermutePalindrome("as"));
 	}

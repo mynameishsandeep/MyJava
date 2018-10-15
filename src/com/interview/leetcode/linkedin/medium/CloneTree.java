@@ -1,6 +1,6 @@
 package com.interview.leetcode.linkedin.medium;
 
-import com.leetcode.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 /*
  * https://coding-interview-solutions.hackingnote.com/problems/clone-binary-tree.html

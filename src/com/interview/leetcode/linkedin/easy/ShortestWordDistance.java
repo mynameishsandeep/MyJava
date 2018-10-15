@@ -12,17 +12,17 @@ public class ShortestWordDistance {
 		int word1Index = -1;
 		int word2Index = -1;
 		int shortestPath = Integer.MAX_VALUE;
-		int i = 0;
+		int currentWordIndex = 0;
 		for (String word : words) {
 			if (word.equals(word1)) {
-				word1Index = i;
+				word1Index = currentWordIndex;
 			} else if (word.equals(word2)) {
-				word2Index = i;
+				word2Index = currentWordIndex;
 			}
 			if (word1Index != -1 && word2Index != -1) {
 				shortestPath = Math.min(shortestPath, Math.abs(word1Index - word2Index));
 			}
-			i++;
+			currentWordIndex++;
 		}
 		return shortestPath;
 	}

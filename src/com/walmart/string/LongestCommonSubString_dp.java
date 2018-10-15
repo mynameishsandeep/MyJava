@@ -1,32 +1,32 @@
 package com.walmart.string;
 
-//Java implementation of finding length of longest 
-//Common substring using Dynamic Programming
-
 /**
  * https://en.wikipedia.org/wiki/Longest_common_substring_problem
  *
  *	Can be solved by bruteforce or suffix tree or DP. Below is DP approach
  *
  *==============BruteForce==============
- * 1) Find all combination substrings of search string 
- * 2) For every substring verify it exists in input string. 
+ * 1) Take all combination of search string and put it in map. Ex: a b c --> combination would be--> a,b,c,ab,bc,abc 
+ * 2) For every substring, verify it exists in input string Ex: a b d. 
  * 3) Keep track of the maximum length substring. 
  * 4) There will be O(m^2) substrings and 
  * we can find whether a string is substring on another string in O(n). 
  * 5) So overall time complexity of this method would be O(n * m^2)
+ *============DP========================
+ * 1) The first row and first column entries, says for 0 "search string" for "input string" output is 0.
+ * 2) If character matches then pick value diagonally and add1. Else 0.
+ * ====Logically if a column matches and next column don't matches. It should pick the value from previous. But we put 0 only, don't confuse.=======
+ * ====But in Longest Common Sub Sequence we pick previous value. Still it contradicts for 1 element comparism=========
+ * 
+ * 				a || 
+ * 				======
+ * 				  || current
+ * 
+ * current = a+1 if matches, else 0
+
  */
-public class LongestCommonSubString {
-	/* 
-	   Returns length of longest common substring  
-	   of X[0..m-1] and Y[0..n-1] 
-	*/
+public class LongestCommonSubString_dp {
 	static int LCSubStr(char X[], char Y[], int m, int n) {
-		// Create a table to store lengths of longest common suffixes of
-		// substrings. Note that LCSuff[i][j] contains length of longest
-		// common suffix of X[0..i-1] and Y[0..j-1]. The first row and
-		// first column entries have no logical meaning, they are used only
-		// for simplicity of program
 		int LCStuff[][] = new int[m + 1][n + 1];
 		int result = 0; // To store length of the longest common substring
 
@@ -47,8 +47,8 @@ public class LongestCommonSubString {
 
 	// Driver Program to test above function
 	public static void main(String[] args) {
-		String X = "ABCDGH";
-		String Y = "AEDFHR";
+		String X = "ABC";
+		String Y = "ABD";
 
 		int m = X.length();
 		int n = Y.length();

@@ -17,6 +17,12 @@ public class PalindromeNumbers {
 		System.out.println(result);
 		System.out.println(data);
 		System.out.println(result==data);
+		System.out.println(reverse(data));
+	}
+	
+	public static boolean reverse(int number) {
+		int reverseNumber = Integer.reverse(number);
+		return number == reverseNumber;
 	}
 
 }

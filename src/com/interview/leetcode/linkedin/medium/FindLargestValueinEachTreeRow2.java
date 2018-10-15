@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import com.leetcode.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 public class FindLargestValueinEachTreeRow2 {
 

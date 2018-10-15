@@ -1,22 +1,18 @@
 package com.interview.leetcode.linkedin.medium;
 
-import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 /*
  * https://leetcode.com/problems/evaluate-reverse-polish-notation/description/
- * 
  */
 public class EvaluateReversePolishNotation {
 	public int evalRPN(String[] tokens) {
-		Set<String> operator = new HashSet<>();
-		Deque<String> stack = new ArrayDeque<>();
-		operator.add("+");
-		operator.add("-");
-		operator.add("*");
-		operator.add("/");
+		Set<String> operator = new HashSet<>(Arrays.asList("+", "-", "*", "/"));
+		Deque<String> stack = new LinkedList<>();
 		for (String str : tokens) {
 			if (operator.contains(str)) {
 				int num1 = new Integer(stack.pop());

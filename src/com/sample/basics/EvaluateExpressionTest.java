@@ -27,7 +27,7 @@ public class EvaluateExpressionTest {
 		charMap.put('{', '}');
 		charMap.put('[', ']');
 
-		Deque<Character> stack = new LinkedList<Character>();
+		Deque<Character> stack = new LinkedList<>();
 		List<Character> closeOperand = Arrays.asList('}', ')', ']');
 
 		for (Character currentChar : input.toCharArray()) {

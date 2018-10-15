@@ -28,42 +28,41 @@ public class QuickSelect {
 	 * It then returns index of the element upto which is sorted.
 	 */
 
-	public static Integer partition(List<Integer> input, Integer left, Integer right) {
+	public static Integer partition(List<Integer> input, Integer leftIndex, Integer rightIndex) {
 
 		// Taking last element as pivot 
-		int pivot = right--;
-		for (int i = left; i <= right; i++) {
-			if (input.get(i) <= input.get(pivot)) {
-				Collections.swap(input, i, left++);
+		int pivotIndex = rightIndex--;
+		for (int i = leftIndex; i <= rightIndex; i++) {
+			if (input.get(i) <= input.get(pivotIndex)) {
+				Collections.swap(input, i, leftIndex++);
 			}
 		}
-		Collections.swap(input, pivot, left);
+		Collections.swap(input, pivotIndex, leftIndex);
 		System.out.println(input);
-		System.out.println(left);
-		return left;
+		System.out.println(leftIndex);
+		return leftIndex;
 	}
 
-	
 	public static Integer quick(Integer[] nums, Integer k) {
 		if (nums.length == 1) {
 			return nums[0];
 		}
-		Integer left = 0;
+		int leftIndex = 0;
 		List<Integer> input = new ArrayList<>();
 		for (int i = 0; i < nums.length; i++) {
 			input.add(nums[i]);
 		}
-		Integer right = input.size() - 1;
-		Integer pivot = partition(input, left, right);
+		Integer rightIndex = input.size() - 1;
+		Integer pivotIndex = partition(input, leftIndex, rightIndex);
 		while (true) {
 			// if 
-			if (pivot + 1 == k) {
+			if (pivotIndex + 1 == k) {
 				return input.get(k - 1);
-			} else if (pivot < k) {
-				pivot = partition(input, pivot, right);
+			} else if (pivotIndex < k) {
+				pivotIndex = partition(input, pivotIndex, rightIndex);
 
 			} else {
-				pivot = partition(input, left, pivot - 1);
+				pivotIndex = partition(input, leftIndex, pivotIndex - 1);
 
 			}
 		}

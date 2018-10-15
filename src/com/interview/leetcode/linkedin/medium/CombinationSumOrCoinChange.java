@@ -6,6 +6,8 @@ import java.util.List;
 /*
  * https://leetcode.com/problems/combination-sum/description/
  * 
+ * No duplicates in candidates
+ * 
 []
 [2]
 [2, 2]
@@ -56,31 +58,26 @@ import java.util.List;
 public class CombinationSumOrCoinChange {
 	public List<List<Integer>> combinationSum(int[] candidates, int target) {
 		List<List<Integer>> result = new ArrayList<>();
-		combine(result, new ArrayList<>(), candidates, 0, 0, target);
+		combine(result, new ArrayList<>(), candidates, target, 0);
 		return result;
 	}
 
-	public void combine(List<List<Integer>> result, List<Integer> tempCombo, int[] input, int currentIndex,
-			int currentSum, int target) {
-		if (currentSum == target) {
-			System.out.println(tempCombo);
-			result.add(new ArrayList<>(tempCombo));
-		} else if (currentSum > target) {
-			System.out.println(tempCombo);
+	public void combine(List<List<Integer>> result, List<Integer> tempCombo, int[] input, int target, int currentIndex) {
+		if (0 == target) {
+			result.add(new ArrayList<>(tempCombo));// Note: not directly adding tempCombo.
+		} else if (target < 0) {
 			return;
 		} else {
-			while (currentIndex < input.length) {
-				System.out.println(tempCombo);
-				tempCombo.add(input[currentIndex]);
-				combine(result, tempCombo, input, currentIndex, currentSum + input[currentIndex], target);
-				tempCombo.remove(tempCombo.size() - 1);
-				currentIndex++;
+			for (int i = currentIndex; i < input.length; i++) {
+				tempCombo.add(input[i]);
+				combine(result, tempCombo, input, target - input[i], i);
+				tempCombo.remove(tempCombo.size() - 1); // Remove the last element from the arraylist
 			}
 		}
 	}
 
 	public static void main(String[] args) {
 		CombinationSumOrCoinChange c = new CombinationSumOrCoinChange();
-		c.combinationSum(new int[] { 2, 3, 7, 6 }, 7);
+		System.out.println(c.combinationSum(new int[] { 1, 2, 3, 7, 6 }, 7));
 	}
 }

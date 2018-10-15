@@ -2,7 +2,7 @@ package com.interview.leetcode.linkedin.hard;
 
 import java.util.StringTokenizer;
 
-import com.leetcode.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 /*
  * https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/

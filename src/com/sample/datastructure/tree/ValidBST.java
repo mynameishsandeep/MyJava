@@ -1,106 +1,48 @@
 package com.sample.datastructure.tree;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.interview.leetcode.TreeNode;
 
 /**
- * Solution 1) 
+ * https://leetcode.com/problems/validate-binary-search-tree/description/
+ * 
+ * Solution 1) BruteForce 
  * 		a) Do In-Order Traversal of the given tree and store the result in a temp array. 
  * 		b) Check if the temp array is sorted in ascending order, if it is, then the tree is BST.
  * 		Time Complexity: O(n) Space Complexity: O(n)
  * 
- * Solution 2) --- We can avoid the use of Auxiliary Array. Tree Image is present in "US Problems" "ValidBST.jpg" 
- * 		a) Traverse in anyone of In-Order or Pre-Order or Post-Order. 
- * 		   aq)	Mostly Pre-Order for better understanding
- * 		b) Set min and max to Long.MIN_VALUE and Long.MAX_VALUE.
- * 		c) At any point node value should lie between min and max. Else False. 
- * 		d) For left side traverse, update max with current data.
- * 		e) For right side traverse, update min with current data.
- * 		Time Complexity: O(n) Space Complexity: O(h)--> h is height of tree  
+ * Solution 2)
+ * 		1) Consider 3 node.... 2 1 3 --> 2 is root, 1 is left and 3 is right
+ * 		2) At any point left is left and right is greater.
+ * 		3) Set min and max...
+ * 		4) Then Validate ---> node lies between ---> min and max...
+ * 		5) For root --> min,  root,      max    --> 	-∞, 2, ∞
+ * 		6) For left --> min,  root.left, root   --> 	-∞, 1, 2
+ * 		7) For right--> root, roo.right, max    -->	  	 2, 3, ∞ 
+ * 		8) At any point if "current value" is "less than or equal to min" or greater than or equal to max" return false.
+ * 		9) if reached end, return true. 
+ * 		10) result = left && right ==note here===  
+ *    
+ * 		Time Complexity: O(n) Space Complexity: O(1)  
  * 
  */
 public class ValidBST {
 
-	class Node {
-		int data;
-		Node left;
-		Node right;
+	public boolean isValidBST(TreeNode root) {
+		long max = Long.MAX_VALUE;
+		long min = Long.MIN_VALUE;
+		return isValid(min, root, max);
 	}
 
-	List<Integer> result = new ArrayList<>();
-	private Node root;
-	private Node prev;
-
-	public void add(int data) {
-		Node tempRoot = root;
-		Node currNode = new Node();
-		currNode.data = data;
-		if (tempRoot == null) {
-			root = currNode;
-		} else {
-			while (true) {
-				if (data < tempRoot.data) {
-					if (tempRoot.left != null) {
-						tempRoot = tempRoot.left;
-					} else {
-						tempRoot.left = currNode;
-						break;
-					}
-				} else {
-					if (tempRoot.right != null) {
-						tempRoot = tempRoot.right;
-					} else {
-						tempRoot.right = currNode;
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	public boolean isValidBST(Node root) {
-		return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
-	}
-
-	public boolean isValidBST(Node root, long leftData, long rightData) {
+	private boolean isValid(long min, TreeNode root, long max) {
 		if (root == null) {
 			return true;
 		}
-		if (root.data <= leftData || root.data >= rightData) {
+		if (root.val <= min || root.val >= max) {
 			return false;
 		}
-		Boolean left = isValidBST(root.left, leftData, root.data);
-		Boolean right = isValidBST(root.right, root.data, rightData);
+		boolean left = isValid(min, root.left, root.val);
+		boolean right = isValid(root.val, root.right, max);
 		return left && right;
-	}
-
-	public void printInOrderRecurse(Node root) {
-		if (root != null) {
-			printInOrderRecurse(root.left);
-			// Visit the node by Printing the node data
-			result.add(root.data);
-			printInOrderRecurse(root.right);
-		}
-	}
-
-	public static void main(String[] args) {
-		ValidBST p = new ValidBST();
-		p.add(10);
-		p.add(5);
-		p.add(4);
-		p.add(6);
-		p.add(20);
-		p.add(30);
-		p.add(15);
-		p.printInOrderRecurse(p.root);
-		System.out.println(p.result.toString());
-		p.result.clear();
-
-		p.add(21);
-		p.printInOrderRecurse(p.root);
-		System.out.println(p.result.toString());
-
-		System.out.println(p.isValidBST(p.root));
 	}
 
 }

@@ -12,6 +12,8 @@ public class RegExNumberMatch {
 		System.out.println(hexaDecimalNumberMatches("123AF"));
 		System.out.println(hexaDecimalNumberMatches("123AG"));
 		
+		System.out.println(numberMatchesOnly1And2("12"));
+		
 	}
 	
 	public static boolean numberMatches(String input) {
@@ -19,6 +21,11 @@ public class RegExNumberMatch {
 		return input.matches(regex);
 	}
 	
+	public static boolean numberMatchesOnly1And2(String input) {
+		String regex = "[1,2]+";
+		return input.matches(regex);
+	}
+
 	public static boolean numberMatchesWith3Number(String input) {
 		String regex = "[0-9]{1,3}";
 		return input.matches(regex);

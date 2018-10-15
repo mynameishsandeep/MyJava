@@ -13,7 +13,7 @@ public class ValidParentheses {
 	 * Push the close element instead of open element and compare.
 	 * So no need for HashMap
 	 */
-	public boolean isValidBrilliant(String s) {
+	public boolean isValid_Efficient(String s) {
 		Deque<Character> stack = new ArrayDeque<>();
 		for (Character c : s.toCharArray()) {
 			switch (c) {
@@ -57,8 +57,4 @@ public class ValidParentheses {
 		return stack.isEmpty();
 	}
 
-	public static void main(String[] args) {
-		ValidParentheses v = new ValidParentheses();
-		System.out.println(v.isValid("[]"));
-	}
 }

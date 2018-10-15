@@ -3,7 +3,7 @@ package com.interview.leetcode.linkedin.easy;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import com.leetcode.Interval;
+import com.interview.leetcode.Interval;
 
 /*
  * https://leetcode.com/problems/meeting-rooms/description/

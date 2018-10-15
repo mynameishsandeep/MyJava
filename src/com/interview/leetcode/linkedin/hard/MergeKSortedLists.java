@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import com.leetcode.ListNode;
+import com.interview.leetcode.ListNode;
 
 /*
  * https://leetcode.com/problems/merge-k-sorted-lists/description/

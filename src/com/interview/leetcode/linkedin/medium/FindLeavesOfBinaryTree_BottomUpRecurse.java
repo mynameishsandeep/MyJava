@@ -3,7 +3,7 @@ package com.interview.leetcode.linkedin.medium;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.leetcode.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 /*
  * https://leetcode.com/problems/find-leaves-of-binary-tree/description/

@@ -1,0 +1,9 @@
+1) Combination Sum in 2 Flavors
+
+Flavour1
+a) output can contain duplicates. 
+b) output cannot contain duplicates.
+
+Flavour2
+a) input can contain duplicates.
+b) input cannot contain duplicates

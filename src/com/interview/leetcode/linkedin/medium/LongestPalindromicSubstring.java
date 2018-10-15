@@ -1,40 +1,33 @@
 package com.interview.leetcode.linkedin.medium;
 
 /*
+ * https://leetcode.com/problems/longest-palindromic-substring/description/
  * 
+ * Below is BruteForce algorithm based on "PalindromicSubstrings"
  */
 public class LongestPalindromicSubstring {
+	private int start, end;
+
 	public String longestPalindrome(String s) {
-		if (s.length() == 0)
+		if (s.length() < 2) {
 			return s;
-		char[] c = s.toCharArray();
-		String maxPalin = Character.toString(c[0]);
-		for (int i = 0; i < c.length; i++) {
-			//odd length palindrome
-			int ii = i;
-			int id = i;
-			while (id >= 0 && ii < c.length) {
-				if (c[ii] == c[id]) {
-					if (maxPalin.length() < s.substring(id, ii + 1).length())
-						maxPalin = s.substring(id, ii + 1);
-					ii++;
-					id--;
-				} else
-					break;
+		}
+		for (int i = 0; i < s.length(); i++) {
+			palindrome(s, i, i); // Odd Length Palindrome
+			palindrome(s, i, i + 1); // Even Length Palindrome
+		}
+		return s.substring(start, end);
+	}
+
+	public void palindrome(String s, int left, int right) {
+		if (s.charAt(left) == s.charAt(right)) {
+			if (end - start < right - left) {
+				start = left;
+				end = right;
 			}
-			ii = i + 1;
-			id = i;
-			//even length palindrome
-			while (id >= 0 && ii < c.length) {
-				if (c[ii] == c[id]) {
-					if (maxPalin.length() < s.substring(id, ii + 1).length())
-						maxPalin = s.substring(id, ii + 1);
-					ii++;
-					id--;
-				} else
-					break;
+			if (left - 1 >= 0 && right + 1 < s.length()) { // Check Palindrome for next length
+				palindrome(s, left - 1, right + 1);
 			}
 		}
-		return maxPalin;
 	}
 }

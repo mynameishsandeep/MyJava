@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import com.leetcode.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 /*
  * https://leetcode.com/problems/closest-binary-search-tree-value-ii/discuss/70511/AC-clean-Java-solution-using-two-stacks
@@ -17,7 +17,7 @@ import com.leetcode.TreeNode;
  * 5) pop a value from lowToHigh and add it to result.
  * 6) else  pop a value from highToLow and add it to result.
  * 
- * Note: Same problem can be solved using approach "FindClosestElement.java"
+ * Note: Same problem can be solved using approach "FindKClosestElement.java"
  * 
  * ======Same problem can also be solved using PriorityQueue. ============
  */

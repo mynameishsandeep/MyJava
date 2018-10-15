@@ -1,6 +1,6 @@
 package com.interview.leetcode.linkedin.easy;
 
-import com.leetcode.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 public class SameTree {
 	public boolean isSameTree(TreeNode p, TreeNode q) {

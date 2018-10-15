@@ -13,11 +13,71 @@ public class BinarySearch {
 
 	public static void main(String[] args) {
 		int a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		System.out.println(binarySearchWhile(a));
 		System.out.println(binarySearchRec(a, 0, 9, 9));
-		int a1[] = { 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 7, 8, 9, 10 };
-		System.out.println(binarySearchRecFindLast(a1, 0, 16, 5));
-		System.out.println(binarySearchRecFindFirst(a1, 0, 16, 5));
+		int nums[] = { 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 7, 8, 9, 10 };
+		System.out.println(binarySearchRecFindFirst(nums, 0, nums.length - 1, 5));
+		System.out.println(binarySearchRecFindLast(nums, 0, nums.length - 1, 5));
+	}
+
+	public static int binarySearchRec(int nums[], int low, int high, int target) {
+		if (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (nums[mid] == target) {
+				return mid;
+			} else if (nums[mid] > target) {
+				return binarySearchRec(nums, low, mid - 1, target);
+			} else {
+				return binarySearchRec(nums, mid + 1, high, target);
+			}
+		}
+
+		return -1;
+	}
+
+	/* For the search key, if duplicate is found on the input array. Get the index of first duplicate.
+	
+	Input : arr[] = {1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 7, 8, 9, 10}    
+	x = 5
+	Output : First Occurrence = 4
+	 */
+	public static int binarySearchRecFindFirst(int nums[], int low, int high, int target) {
+		if (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (nums[mid] == target) {
+				return binarySearchRecFindFirst(nums, low, mid - 1, target);
+			} else if (nums[mid] > target) {
+				return binarySearchRecFindFirst(nums, low, mid - 1, target);
+			} else {
+				return binarySearchRecFindFirst(nums, mid + 1, high, target);
+			}
+		}
+		if (nums[low] == target) {
+			return low;
+		}
+		return -1;
+	}
+
+	/* For the search key, if duplicate is found on the input array. Get the index of last duplicate.
+	
+	 Input : arr[] = {1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 7, 8, 9, 10}    
+	 x = 5
+	 Output : Last Occurrence = 11
+	 */
+	public static int binarySearchRecFindLast(int nums[], int low, int high, int target) {
+		if (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (nums[mid] == target) {
+				return binarySearchRecFindLast(nums, mid + 1, high, target);
+			} else if (nums[mid] > target) {
+				return binarySearchRecFindLast(nums, low, mid - 1, target);
+			} else {
+				return binarySearchRecFindLast(nums, mid + 1, high, target);
+			}
+		}
+		if (nums[high] == target) {
+			return high;
+		}
+		return -1;
 	}
 
 	public static int binarySearchWhile(int arr[]) {
@@ -36,68 +96,6 @@ public class BinarySearch {
 				high = (low + high) / 2;
 				mid = high / 2;
 			}
-		}
-		return -1;
-	}
-
-	public static int binarySearchRec(int arr[], int low, int high, int search) {
-		if (low <= high) {
-			int mid = low + ((high - low) / 2);
-			if (search > arr[mid]) {
-				return binarySearchRec(arr, mid + 1, high, search);
-			} else if (search < arr[mid]) {
-				return binarySearchRec(arr, low, mid - 1, search);
-			} else {
-				return mid;
-			}
-		}
-		return -1;
-	}
-
-	/* For the search key, if duplicate is found on the input array. Get the index of last duplicate.
-	
-	 Input : arr[] = {1, 3, 5, 5, 5, 5 ,67, 123, 125}    
-	 x = 5
-	 Output : Last Occurrence = 5
-	 */
-	public static int binarySearchRecFindLast(int arr[], int low, int high, int search) {
-		if (low <= high) {
-			//System.out.println("low = " + low + " high " + high);
-			int mid = low + (high - low) / 2;
-			if (search > arr[mid]) {
-				return binarySearchRecFindLast(arr, mid + 1, high, search);
-			} else if (search < arr[mid]) {
-				return binarySearchRecFindLast(arr, low, mid - 1, search);
-			} else {
-				return binarySearchRecFindLast(arr, mid + 1, high, search);
-			}
-		}
-		if (arr[high] == search) {
-			return high;
-		}
-		return -1;
-	}
-
-	/* For the search key, if duplicate is found on the input array. Get the index of first duplicate.
-	
-	Input : arr[] = {1, 3, 5, 5, 5, 5 ,67, 123, 125}    
-	x = 5
-	Output : First Occurrence = 2
-	 */
-	public static int binarySearchRecFindFirst(int arr[], int low, int high, int search) {
-		if (low <= high) {
-			//System.out.println("low = " + low + " high " + high);
-			int mid = low + (high - low) / 2;
-			if (search > arr[mid]) {
-				return binarySearchRecFindFirst(arr, mid + 1, high, search);
-			} else if (search < arr[mid]) {
-				return binarySearchRecFindFirst(arr, low, mid - 1, search);
-			} else {
-				return binarySearchRecFindFirst(arr, low, mid - 1, search);
-			}
-		}
-		if (arr[high] == search) {
-			return high;
 		}
 		return -1;
 	}

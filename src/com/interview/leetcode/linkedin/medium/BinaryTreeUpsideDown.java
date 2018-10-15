@@ -1,6 +1,6 @@
 package com.interview.leetcode.linkedin.medium;
 
-import com.leetcode.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 /*
  * https://leetcode.com/problems/binary-tree-upside-down/description/

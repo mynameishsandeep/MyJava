@@ -3,7 +3,7 @@ package com.interview.leetcode.linkedin.medium;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.leetcode.UndirectedGraphNode;
+import com.interview.leetcode.UndirectedGraphNode;
 
 /*
  * https://leetcode.com/problems/clone-graph/description/

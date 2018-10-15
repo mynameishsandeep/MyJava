@@ -20,7 +20,7 @@ package com.yahoo.array;
 	5) if maxJumpIndex less than currentJumpIndex, then update maxJumpIndex with currentJumpIndex.
 	6) if maxJumpIndex == currentJumpIndex. Then check for Exit Condition: if 0 on index then return false.
 	
-	Note: Don't try to jump more than 1 element. Iterate element by element.
+==========Note: Don't try to jump more than 1 element. Iterate element by element.==========
  */
 public class JumpGame_Important {
 
@@ -39,9 +39,8 @@ public class JumpGame_Important {
 				maxJumpIndex = currentJumpIndex;
 			} else if (maxJumpIndex > currentJumpIndex) {
 				// do nothing, already reached higher
-			} else {
-				// Exit Condition
-				if (0 == nums[i]) {
+			} else { // maxjumpIndex == currentJumpIndex
+				if (0 == nums[i]) {	// Exit Condition.. maxjumpIndex == currentJumpIndex and cannot go further
 					return false;
 				}
 			}
