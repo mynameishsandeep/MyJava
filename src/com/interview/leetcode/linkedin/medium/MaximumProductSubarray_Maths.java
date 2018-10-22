@@ -22,20 +22,22 @@ I spent more than 2 hours and was failing at various test cases and nothing succ
 
 
  */
-public class MaximumProductSubarray {
+public class MaximumProductSubarray_Maths {
 
 	public int maxProduct(int nums[]) {
-		int currMaxProduct = nums[0];
-		int prevMaxProduct = nums[0];
+		int currentMaxProduct = nums[0];
+		int currentMinProduct = nums[0];
+		int previousMaxProduct = nums[0];
 		int maxProduct = nums[0];
-		int minProduct = nums[0];
 
 		for (int i = 1; i < nums.length; i++) {
 			int currentNumber = nums[i];
-			currMaxProduct = Math.max(Math.max(prevMaxProduct * currentNumber, minProduct * currentNumber), currentNumber);
-			minProduct = Math.min(Math.min(prevMaxProduct * currentNumber, minProduct * currentNumber), currentNumber);
-			maxProduct = Math.max(maxProduct, currMaxProduct);
-			prevMaxProduct = currMaxProduct;
+			currentMaxProduct = Math.max(
+					Math.max(previousMaxProduct * currentNumber, currentMinProduct * currentNumber), currentNumber);
+			currentMinProduct = Math.min(
+					Math.min(previousMaxProduct * currentNumber, currentMinProduct * currentNumber), currentNumber);
+			maxProduct = Math.max(maxProduct, currentMaxProduct);
+			previousMaxProduct = currentMaxProduct;
 		}
 		return maxProduct;
 	}

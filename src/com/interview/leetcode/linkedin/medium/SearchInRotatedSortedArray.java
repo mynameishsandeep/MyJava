@@ -20,9 +20,9 @@ public class SearchInRotatedSortedArray {
 				return mid;
 			} else if (nums[low] <= nums[mid]) { // Left Side Sorted.
 				if (target >= nums[low] && target <= nums[mid]) {// Check target lies in left side
-					return searchBinary(nums, target, low, mid - 1);
+					return searchBinary(nums, target, low, mid - 1); // Yes target lies in left side. Go Left
 				} else {
-					return searchBinary(nums, target, mid + 1, high);
+					return searchBinary(nums, target, mid + 1, high);// No target lies in right side. Go Right
 				}
 			} else { // Right Side Sorted 
 				if (target >= nums[mid] && target <= nums[high]) {// Check target lies in right side

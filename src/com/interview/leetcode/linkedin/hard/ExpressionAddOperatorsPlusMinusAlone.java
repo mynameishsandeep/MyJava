@@ -31,6 +31,7 @@ public class ExpressionAddOperatorsPlusMinusAlone {
 	}
 
 	public void helper(List<String> result, String prefix, String input, int target, int index, long currentResult) {
+		System.out.println("prefix " + prefix);
 		if (index == input.length()) {
 			if (target == currentResult) {
 				result.add(prefix);
@@ -39,7 +40,6 @@ public class ExpressionAddOperatorsPlusMinusAlone {
 		}
 		for (int i = index; i < input.length(); i++) {
 			long suffix = Long.parseLong(input.substring(index, i + 1));
-			System.out.println("suffix" + suffix);
 			if (index == 0) {
 				helper(result, prefix + suffix, input, target, i + 1, suffix);
 			} else {
@@ -54,7 +54,7 @@ public class ExpressionAddOperatorsPlusMinusAlone {
 	public static void main(String[] args) {
 		ExpressionAddOperatorsPlusMinusAlone e = new ExpressionAddOperatorsPlusMinusAlone();
 		e.addOperators("123", 6);
-		e.addOperators("1234", 2); // Skipping if condition will get result "-1+2-3+4" which is wrong
+		//e.addOperators("1234", 2); // Skipping if condition will get result "-1+2-3+4" which is wrong
 	}
 
 }

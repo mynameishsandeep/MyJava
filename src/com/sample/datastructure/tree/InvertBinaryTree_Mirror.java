@@ -1,6 +1,6 @@
 package com.sample.datastructure.tree;
 
-import com.sample.datastructure.tree.TreeDiameterOrLongestPath.TreeNode;
+import com.interview.leetcode.TreeNode;
 
 /*
  *https://leetcode.com/problems/invert-binary-tree/description/ 

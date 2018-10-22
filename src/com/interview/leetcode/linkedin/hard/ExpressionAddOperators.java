@@ -55,10 +55,7 @@ public class ExpressionAddOperators {
 
 	public void helper(List<String> result, String prefix, String input, int target, int index, long eval,
 			long multed) {
-		System.out.println("path " + prefix);
-		System.out.println("num " + input);
-		System.out.println("prefix " + eval);
-		System.out.println("multed " + multed);
+		
 		if (index == input.length()) {
 			if (target == eval) {
 				result.add(prefix);
@@ -76,6 +73,12 @@ public class ExpressionAddOperators {
 
 				helper(result, prefix + "-" + suffix, input, target, i + 1, eval - suffix, -suffix);
 
+				System.out.println();
+				System.out.println("eval " + eval);
+				System.out.println("path " + prefix);
+				System.out.println("num " + input);
+				System.out.println("prefix " + eval);
+				System.out.println("multed " + multed);
 				helper(result, prefix + "*" + suffix, input, target, i + 1, eval - multed + multed * suffix,
 						multed * suffix);
 			}

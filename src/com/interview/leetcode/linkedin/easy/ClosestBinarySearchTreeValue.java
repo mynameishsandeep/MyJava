@@ -29,7 +29,7 @@ public class ClosestBinarySearchTreeValue {
 
 	private int closest(TreeNode root, double target, int currentCloseValue) {
 		if (root != null) {
-			currentCloseValue = updateClosestPoint(root, target, currentCloseValue);
+			currentCloseValue = updateClosestPoint(root.val, target, currentCloseValue);
 			if (target < root.val) {
 				currentCloseValue = closest(root.left, target, currentCloseValue);
 			} else {
@@ -41,9 +41,9 @@ public class ClosestBinarySearchTreeValue {
 
 	// Math.abs --> removes negative value... Because closest can occur in upper or lower bound. 
 	// target= 4... root.val=2  currentCloseValue= 3.5 --> Here without "Math.abs" logic will fail.
-	private int updateClosestPoint(TreeNode root, double target, int currentCloseValue) {
-		if (Math.abs(root.val - target) < Math.abs(currentCloseValue - target))
-			return root.val;
+	private int updateClosestPoint(int currentValue, double target, int currentCloseValue) {
+		if (Math.abs(currentValue - target) < Math.abs(currentCloseValue - target))
+			return currentValue;
 		return currentCloseValue;
 	}
 }

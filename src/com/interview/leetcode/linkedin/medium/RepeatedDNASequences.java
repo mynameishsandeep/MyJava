@@ -23,6 +23,7 @@ public class RepeatedDNASequences {
 			if (!seen.add(ten))
 				repeated.add(ten);
 		}
+		System.out.println(seen);
 		return new ArrayList<>(repeated);
 	}
 

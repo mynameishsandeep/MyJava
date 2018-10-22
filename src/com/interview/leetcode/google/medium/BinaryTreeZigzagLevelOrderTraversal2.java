@@ -16,7 +16,7 @@ import com.interview.leetcode.TreeNode;
 public class BinaryTreeZigzagLevelOrderTraversal2 {
 
 	public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-		List<List<Integer>> res = new ArrayList();
+		List<List<Integer>> res = new ArrayList<>();
 		travel(res, 0, root);
 		return res;
 	}
@@ -24,7 +24,7 @@ public class BinaryTreeZigzagLevelOrderTraversal2 {
 	private void travel(List<List<Integer>> res, int level, TreeNode cur) {
 		if (cur == null)
 			return;
-		if (res.size() <= level) {
+		if (res.size() == level) {
 			res.add(new ArrayList<Integer>());
 		}
 		if (level % 2 == 0) {

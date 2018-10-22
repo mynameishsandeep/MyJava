@@ -4,6 +4,10 @@ package com.interview.leetcode.linkedin.medium;
  * https://leetcode.com/problems/longest-palindromic-substring/description/
  * 
  * Below is BruteForce algorithm based on "PalindromicSubstrings"
+ * 
+ * 1) Start from 0 th character. Do it for Odd Length Palindrome and then Even Length Palindrome
+ * 2) Save the index of left and right.
+ * 3) Code can be optimized using memoization. 
  */
 public class LongestPalindromicSubstring {
 	private int start, end;

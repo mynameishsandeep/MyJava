@@ -1,78 +1,48 @@
 package com.interview.leetcode.linkedin.medium;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+/*
+ * https://leetcode.com/problems/factor-combinations/
+ * 
+ * Approach1 : Like groupsum approach, target can be reduced each time and check target==0
+ * 			or 
+ * Approach2 : keep an additional variable "currentSum" and check if target==currentSum
+ * 
+ * But approach2 will generate too many combinations and will throw timelimitexception
+ * 
+ * 
+ */
 public class FactorCombinations {
-	Map<Integer, Integer> cache = new HashMap<>();
-
 	public List<List<Integer>> getFactors(int n) {
 		List<List<Integer>> result = new ArrayList<>();
-		for (int i = 2; i <= n / 2; i++) {
-			if (cache.containsKey(i)) {
-				List<Integer> curr = new ArrayList<>();
-				curr.add(i);
-				curr.add(cache.get(i));
-				boolean same = false;
-				for (int l = 0; l < result.size(); l++) {
-					if (result.get(l).containsAll(curr) && curr.containsAll(result.get(l))) {
-						same = true;
-						break;
-					}
-				}
-				if (!same) {
-					result.add(curr);
-				}
-			} else {
-				List<Integer> curr = new ArrayList<>();
-				recursion(result, curr, i, n);
-				calculateCache(curr);
-			}
-		}
+		getFactors(result, new ArrayList<>(), n, 2, 1);
 		System.out.println(result);
 		return result;
 	}
 
-	public void calculateCache(List<Integer> curr) {
-		for (int i = 0; i < curr.size(); i++) {
-			int key = curr.get(i);
-			if (cache.containsKey(key)) {
-				continue;
-			}
-			int value = 1;
-			for (int j = 0; j < curr.size(); j++) {
-				if (i != j) {
-					value = value * curr.get(j);
-				}
-			}
-			cache.put(value, key);
-			cache.put(key, value);
-		}
-	}
-
-	public void recursion(List<List<Integer>> result, List<Integer> curr, int start, int target) {
-		if (target == 1) {
-			if (curr.size() != 1) {
-				result.add(curr);
-			}
+	public void getFactors(List<List<Integer>> result, List<Integer> tempResult, int target, int currentIndex,
+			long eval) {
+		System.out.println(tempResult);
+		if (eval == target) {
+			//System.out.println(tempResult);
+			result.add(new ArrayList<>(tempResult));
+			return;
+		} else if (eval > target) {
 			return;
 		}
-		if (start > target) {
-			return;
+		for (int i = currentIndex; i <= target / 2; i++) {
+			tempResult.add(i);
+			getFactors(result, tempResult, target, i, eval * i);
+			tempResult.remove(tempResult.size() - 1);
+			//System.out.println(tempResult);
 		}
-		if (target % start == 0) {
-			curr.add(start);
-			recursion(result, curr, start, target / start);
-		} else {
-			recursion(result, curr, start + 1, target);
-		}
-
 	}
 
 	public static void main(String[] args) {
 		FactorCombinations f = new FactorCombinations();
-		f.getFactors(12);
+		f.getFactors(16);
+		//f.getFactors(23848713);
 	}
 }

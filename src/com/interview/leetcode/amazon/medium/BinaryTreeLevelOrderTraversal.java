@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import com.interview.leetcode.TreeNode;
+
 /**
  * https://leetcode.com/problems/binary-tree-level-order-traversal/description/
  * 
@@ -46,11 +48,5 @@ public class BinaryTreeLevelOrderTraversal {
 			}
 		}
 		return result;
-	}
-
-	public class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
 	}
 }

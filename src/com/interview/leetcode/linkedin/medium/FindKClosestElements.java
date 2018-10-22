@@ -26,9 +26,9 @@ public class FindKClosestElements {
 		int index = binarySearch(arr, x, 0, arr.length - 1);
 		int leftIndex = index, rightIndex = index;
 		while (k - 1 > 0) {
-			if (leftIndex == 0) {
+			if (leftIndex == 0) { // Reached minimum index. So go right.
 				rightIndex++;
-			} else if (rightIndex == arr.length - 1) {
+			} else if (rightIndex == arr.length - 1) { // Reached Maximum index. So go left.
 				leftIndex--;
 			} else if (Math.abs(arr[leftIndex - 1] - x) <= Math.abs(arr[rightIndex + 1] - x)) {
 				leftIndex--;

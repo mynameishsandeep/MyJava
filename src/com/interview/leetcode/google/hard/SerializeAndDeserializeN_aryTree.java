@@ -95,7 +95,7 @@ public class SerializeAndDeserializeN_aryTree {
 				Node child = new Node(Integer.valueOf(dataArray[dataIndex]), new ArrayList<>());
 				parentNode.children.add(child);
 				q.offer(new Pair(child, dataArray[dataIndex + 1]));
-				dataIndex += 2;
+				dataIndex += 2; // node value and child size are consumed. So increment by2
 				neighborSize--;
 			}
 		}

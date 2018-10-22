@@ -9,7 +9,7 @@ import java.util.List;
 //https://leetcode.com/problems/merge-intervals/discuss/
 /**
  * 1) Sort the intervals by start time.
- * 2) Compare overlaps with previous and current. If no overlap add to result.
+ * 2) Compare overlaps of previous and current. If no overlap add to result.
  * 3) ========Note:=========== in the overlap method, u don't need to compare the previous start...
  *  Because it will be always equal or greater than current start, since intervals are sorted.
  *  So u can directly compare previous end with current start then with current end.

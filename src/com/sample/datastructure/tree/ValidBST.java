@@ -13,12 +13,12 @@ import com.interview.leetcode.TreeNode;
  * Solution 2)
  * 		1) Consider 3 node.... 2 1 3 --> 2 is root, 1 is left and 3 is right
  * 		2) At any point left is left and right is greater.
- * 		3) Set min and max...
- * 		4) Then Validate ---> node lies between ---> min and max...
- * 		5) For root --> min,  root,      max    --> 	-∞, 2, ∞
- * 		6) For left --> min,  root.left, root   --> 	-∞, 1, 2
- * 		7) For right--> root, roo.right, max    -->	  	 2, 3, ∞ 
- * 		8) At any point if "current value" is "less than or equal to min" or greater than or equal to max" return false.
+ * 		3) Set low and high...
+ * 		4) Then Validate ---> node lies between ---> low and high...
+ * 		5) For root --> low,  root,      high    --> 	-∞, 2, ∞
+ * 		6) For left --> low,  root.left, root   --> 	-∞, 1, 2
+ * 		7) For right--> root, roo.right, high    -->	  	 2, 3, ∞ 
+ * 		8) At any point if "current value" is "less than or equal to low" or greater than or equal to high" return false.
  * 		9) if reached end, return true. 
  * 		10) result = left && right ==note here===  
  *    
@@ -28,21 +28,20 @@ import com.interview.leetcode.TreeNode;
 public class ValidBST {
 
 	public boolean isValidBST(TreeNode root) {
-		long max = Long.MAX_VALUE;
-		long min = Long.MIN_VALUE;
-		return isValid(min, root, max);
+		long high = Long.MAX_VALUE;
+		long low = Long.MIN_VALUE;
+		return isValid(low, root, high);
 	}
 
-	private boolean isValid(long min, TreeNode root, long max) {
-		if (root == null) {
+	private boolean isValid(long low, TreeNode mid, long high) {
+		if (mid == null) {
 			return true;
 		}
-		if (root.val <= min || root.val >= max) {
-			return false;
+		if (mid.val < high && mid.val > low) {
+			boolean left = isValid(low, mid.left, mid.val);
+			boolean right = isValid(mid.val, mid.right, high);
+			return left && right;
 		}
-		boolean left = isValid(min, root.left, root.val);
-		boolean right = isValid(root.val, root.right, max);
-		return left && right;
+		return false;
 	}
-
 }

@@ -15,7 +15,9 @@ import com.interview.leetcode.TreeNode;
  * 
  *  There are 2 points to note here.
  * 1) Finding the index of leaf node from bottom to top, which is achieved by backtracking (Height Of Tree Logic)
- * 2) Create ArrayList "only one time" for each level from bottom and Saving the node data to specific level index.  
+ * 2) Create ArrayList "only one time" for each level from bottom and Saving the node data to specific level index.
+ * 
+ *   == Note: Don't think of List<Integer> tempResult ========
  *  
  * 
  */

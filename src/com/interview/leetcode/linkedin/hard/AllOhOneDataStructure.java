@@ -15,7 +15,7 @@ import java.util.List;
  * 4) If there is a duplicate in value it will be saved in existing node.
  * 5) To save a, b... there will be 2 key in map, but there will be only one doubleLinkedList node. 
  * But the doubleLinkedList curKeys will have 2 keys. i.e tail (curKeys)will be updated. 
- * 6) To save a, a, b... there will be 2 key in map, but there will be 2 doubleLinkedList node. 
+ * 6) To save a, a, b... there will be 2 key in map, and there will be 2 doubleLinkedList node. 
  *  tail will have value 1 with curKeys(b). head will have value 2 with curKeys(a)
  * 7) To save a, a, b, c, c, c, d... there will be 4 key in map, but there will be 3 doubleLinkedList node.
  * tail will have value 1 with curKeys(b,d). head will have value 3 with curKeys(c). 

@@ -17,14 +17,15 @@ import java.util.TreeSet;
  */
 public class KEmptySlots {
 	public int kEmptySlots(int[] flowers, int k) {
-		TreeSet<Integer> active = new TreeSet<>();
+		TreeSet<Integer> flowerSlot = new TreeSet<>();
 		int day = 0;
-		for (int flower : flowers) {
+		for (int flowerAtCurrentIndex : flowers) {
 			day++;
-			active.add(flower);
-			Integer lower = active.lower(flower);
-			Integer higher = active.higher(flower);
-			if (lower != null && flower - lower - 1 == k || higher != null && higher - flower - 1 == k)
+			flowerSlot.add(flowerAtCurrentIndex);
+			Integer flowerAtLowerIndex = flowerSlot.lower(flowerAtCurrentIndex);
+			Integer flowerAtHigherIndex = flowerSlot.higher(flowerAtCurrentIndex);
+			if (flowerAtLowerIndex != null && flowerAtCurrentIndex - flowerAtLowerIndex - 1 == k
+					|| flowerAtHigherIndex != null && flowerAtHigherIndex - flowerAtCurrentIndex - 1 == k)
 				return day;
 		}
 		return -1;
@@ -34,19 +35,22 @@ public class KEmptySlots {
 		KEmptySlots k = new KEmptySlots();
 		System.out.println(k.kEmptySlots(new int[] { 5, 3, 2 }, 1));
 		/*
-		 * 0 0 0 0 1
-		 * 0 0 1 0 1 ---> Result Found for Day2 (Right To Left), no need to traverse 3rd day
+		 * 0 0 0 0 1 ---> higher = null and lower = null
+		 * 0 0 1 0 1 ---> higher = 5 and lower = null (5-3-1=1) // Result Found
+		 * 			  	  Result Found for Day2 (Right To Left), no need to traverse 3rd day
 		 */
 		System.out.println(k.kEmptySlots(new int[] { 2, 5, 1, 4, 3 }, 2));
 		/*
-		 * 0 1 0 0 0
-		 * 0 1 0 0 1 --- Result Found for Day2 ( Left To Right), no need to traverse 3rd day
+		 * 0 1 0 0 0 ---> higher = null and lower = null
+		 * 0 1 0 0 1 ---> higher = null and lower = 2 (5-2-1 = 2) // Result Found
+		 * 				  Result Found for Day2 ( Left To Right), no need to traverse 3rd day
 		 */
 		System.out.println(k.kEmptySlots(new int[] { 1, 4, 3, 5, 2 }, 1));
 		/*
-		 * 1 0 0 0 0
-		 * 1 0 0 1 0 
-		 * 1 0 1 1 0 --- Result Found for Day2 (Right To Left), no need to traverse 3rd day
+		 * 1 0 0 0 0 ---> higher = null and lower = null
+		 * 1 0 0 1 0 ---> higher = null and lower = 1 (4-1-1 = 2) // Result Not Found. Because 1!=2
+		 * 1 0 1 1 0 ---> higher = 4 and lower = 1 --> 3-1-1=1. Result Found. Or Condition will not execute(Left to Right is 4-3-1=0) 
+		 *  --- Result Found for Day2 (Right To Left), no need to traverse 4th day
 		 */
 
 	}

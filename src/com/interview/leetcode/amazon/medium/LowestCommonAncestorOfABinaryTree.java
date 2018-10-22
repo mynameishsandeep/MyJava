@@ -1,5 +1,7 @@
 package com.interview.leetcode.amazon.medium;
 
+import com.interview.leetcode.TreeNode;
+
 /*
  * 
 Approach1: (Using 2 Traversal. By Storing root to n1 and root to n2 paths):
@@ -50,9 +52,4 @@ public class LowestCommonAncestorOfABinaryTree {
 		}
 	}
 
-	public class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-	}
 }
