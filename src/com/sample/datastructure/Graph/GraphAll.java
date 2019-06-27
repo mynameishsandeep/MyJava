@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.Stack;
 
 /**
-**   1. Graph representation
+**   1. Graph representation - matrix vs list
  *   2. DFS/BFS
  *   3. isConnected - given 2 vertices see if they are connected
  *   4. detect_cycle in a directed graph

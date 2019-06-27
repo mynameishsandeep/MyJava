@@ -12,19 +12,17 @@ import java.util.function.Function;
  */
 public class LambdaFunctionFunction {
 	public static void main(String[] args) {
-		Function<Integer, Integer> sumFunction= (x)->x+10;
+		Function<Integer, Integer> sumFunction = (x) -> x + 10;
 		int sumResult = testFunction(sumFunction, 10);
 		//System.out.println(sumFunction.apply(10));
 		System.out.println(sumResult);
-		
-		Function<Integer, Integer> multiplyFunction= (x)->x*10;
+
+		Function<Integer, Integer> multiplyFunction = (x) -> x * 10;
 		int multiplyResult = testFunction(multiplyFunction, 10);
 		System.out.println(multiplyResult);
-		
+
 	}
-	
-	
-	
+
 	public static Integer testFunction(Function<Integer, Integer> function, int data) {
 		return function.apply(data);
 	}

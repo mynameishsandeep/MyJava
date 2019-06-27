@@ -17,12 +17,20 @@ import com.interview.leetcode.ListNode;
  * That will make the probability as
  * 1/2, 1/2, 1/2, 1/2 every time, which is wrong
  * 
- * 4) The Random should works like the probability 1/2, 1/3, 1/4, 1/5, 1/6..
+ * 4) The Random should works like the probability 1, 1/2, 1/3, 1/4, 1/5, 1/6..
+ * Lets say list has 5 numbers.
+ * During the iteration of 1st number, the probability of picking 1st number is 1.
+ * During the iteration of 2nd number , the probability of picking 1st number and 2nd number is 1/2.
+ * During the iteration of 3rd number , the probability of picking 1st number,2nd number or 3rd number is 1/3.
  * 
  * Step 3 is 100% wrong,. Ex: for a 50 data in list. 
  * 50th data has the probability of winning 50%
  * whereas 1st data has to survive a lot or 0% to survive and cannot till end.
  * The property "same probability of being chosen" is gone.
+ * 
+ * 
+ * See also "RandomPickIndex"
+ * This is also called "Reservoir Sampling solution"
  */
 public class LinkedListRandomNode {
 
@@ -34,18 +42,33 @@ public class LinkedListRandomNode {
 		random = new Random();
 	}
 
+	// Picking 0 as Sample
 	public int getRandom() {
 		ListNode head = tempHead;
-		int prevVal = head.val;
-		int count = 1;
-		while (head.next != null) {
-			head = head.next;
-			if (random.nextInt(++count) == 1) {
-				prevVal = head.val;
+		int count = 0;
+		int result = -1;
+		while (head != null) {
+			if (random.nextInt(++count) == 0) {
+				result = head.val;
 			}
+			head = head.next;
 		}
+		return result;
+	}
 
-		return prevVal;
+	// Picking current list size as Sample
+	public int getRandomSolution2() {
+		ListNode head = tempHead;
+		int count = 0;
+		int result = -1;
+		while (head != null) {
+			int randomPick = random.nextInt(++count) + 1;
+			if (count == randomPick) {
+				result = head.val;
+			}
+			head = head.next;
+		}
+		return result;
 	}
 
 	public int getRandomWrongVersion() {

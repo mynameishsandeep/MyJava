@@ -11,7 +11,6 @@ public class CombinationOfProductCategories_Dynamic {
 
 	public static List<List<String>> productAttributeCombinations(List<List<String>> productsAttributes) {
 		LinkedList<List<String>> queue = new LinkedList<>();
-
 		combine(queue, productsAttributes);
 		System.out.println("Total Combination is " + queue.size());
 		System.out.println(queue.toString());

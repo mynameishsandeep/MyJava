@@ -3,6 +3,10 @@ package com.sample.basics;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+	StringBuilder is mutable. So if lots of String concat operation is needed StringBuilder is good, because it overrides its value.
+
+ */
 public class StringBuilderTest {
 
 	public static void main(String[] args) {

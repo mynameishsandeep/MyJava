@@ -18,6 +18,10 @@ import java.util.TreeMap;
  * 1) Save each K element in TreeMap with key as data and value as number of occurrence of data. 
  * 	  Note : If the input doesn't contains duplicate, then TreeSet is enough instead of TreeMap.
  * 2) Save each K element in LinkedList. So head("lowest index" "value") elements will be searched in TreeMap and removed. 
+ * 
+ * 
+ * O(n log w) to insert into map. w is the window
+ * O(1) to delete from map.
  */
 public class SlidingWindowMaximum {
 
@@ -31,23 +35,14 @@ public class SlidingWindowMaximum {
 
 		int resultIndex = 0;
 		for (int i = 0; i < nums.length; i++) {
-			addElementToMap(dataMap, nums, i);
+			dataMap.put(nums[i], dataMap.getOrDefault(nums[i], 0) + 1);
 			indexValue.add(nums[i]);
-			if (i > k) {
+			if (i >= k-1) {
 				result[resultIndex++] = dataMap.entrySet().iterator().next().getKey();
-				removeElementFromMap(dataMap, indexValue.get(0));
-				indexValue.remove(0);
+				removeElementFromMap(dataMap, indexValue.remove(0));
 			}
 		}
 		return result;
-	}
-
-	private void addElementToMap(Map<Integer, Integer> dataMap, int[] nums, int i) {
-		if (dataMap.get(nums[i]) == null) {
-			dataMap.put(nums[i], 1);
-		} else {
-			dataMap.put(nums[i], dataMap.get(nums[i]) + 1);
-		}
 	}
 
 	private void removeElementFromMap(Map<Integer, Integer> dataMap, int val) {
@@ -61,7 +56,7 @@ public class SlidingWindowMaximum {
 
 	public static void main(String[] args) {
 		SlidingWindowMaximum s = new SlidingWindowMaximum();
-		int input[] = new int[] { 1,3,-1,-3,5,3,6,7 };
+		int input[] = new int[] { 1, 3, -1, -3, 5, 3, 6, 7 };
 		System.out.println(Arrays.toString(s.maxSlidingWindow(input, 3)));
 	}
 }

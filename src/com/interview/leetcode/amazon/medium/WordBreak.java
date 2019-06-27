@@ -26,6 +26,16 @@ Output: false
 
 Input: s = "cars", wordDict = ["car","ca","rs"]
 Output: true
+
+Input: s = "cars", wordDict = ["ca","cars"]
+Output: true
+
+
+Solution approach:
+1) start from 0th character as "prefixString", check if it is available in dictionary.
+		a) If available, then then do step1 for remaining characters of word.
+		b) Else increase the size of "prefixString".
+2)  
  */
 public class WordBreak {
 
@@ -33,13 +43,14 @@ public class WordBreak {
 		return word_Break(s, new HashSet<>(wordDict), 0);
 	}
 
-	public boolean word_Break(String s, Set<String> wordDict, int start) {
-		if (start == s.length()) {
+	public boolean word_Break(String inputString, Set<String> wordDict, int startIndex) {
+		if (startIndex == inputString.length()) {
 			return true;
 		}
-		for (int end = start + 1; end <= s.length(); end++) {
-			if (wordDict.contains(s.substring(start, end))) {
-				if (word_Break(s, wordDict, end)) {
+		for (int end = startIndex + 1; end <= inputString.length(); end++) {
+			String prefixString = inputString.substring(startIndex, end);
+			if (wordDict.contains(prefixString)) {
+				if (word_Break(inputString, wordDict, end)) {
 					return true;
 				}
 			}

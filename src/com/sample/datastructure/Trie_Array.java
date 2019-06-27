@@ -15,7 +15,17 @@ package com.sample.datastructure;
  * 2) There after there will be one empty leaf node all the time. 
  * 3) The empty leaf node will have the "isEnd" set to true. 
  * 	Ex: for the input "a". There will be 2 node. root[0] will point to another node. 
- * 		next node will have isLeaf = true.  
+ * 		next node will have isLeaf = true.
+ * =====Solution Note===========================
+ * This data structure is like onion. Nothing will be saved in array index. meaning position of index for a character saves next node.
+ * Character 'a' will have position. Character 'b' will have position.  
+ * I tried the below in interview which is totally wrong. 
+ * 		class Trie {
+ * 			boolean dictionary[] = new boolean[26];
+ * 			boolean isEnd;
+ * 			Trie nextLevel;
+ * 		}  
+ *==========================================
  */
 public class Trie_Array {
 	class TrieNode {

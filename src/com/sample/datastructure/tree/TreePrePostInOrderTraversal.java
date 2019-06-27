@@ -1,5 +1,9 @@
 package com.sample.datastructure.tree;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 import java.util.Stack;
 
 public class TreePrePostInOrderTraversal {
@@ -39,7 +43,12 @@ public class TreePrePostInOrderTraversal {
 		}
 	}
 
-	// This method is similar to depth first search of a element
+	/*
+					    10
+					5        15
+				4      7  13    20
+				Result should be : 10 5 4 7 15 13 20
+	 */
 	public void printPreOrderUsingStack() {
 		if (root == null)
 			return;
@@ -70,20 +79,27 @@ public class TreePrePostInOrderTraversal {
 
 	}
 
+	/*
+	 * Slight modification from pre-order with stack.
+	 * Instead of printing, push it to list. and print in reverse finally.
+	 */
 	public void printPostOrderUsingStack(Node root) {
 		Stack<Node> stack = new Stack<>();
+		List<Integer> list = new ArrayList<>();
 		stack.push(root);
 		while (!stack.isEmpty()) {
-			Node node = stack.pop();
-
-			if (node.left != null) {
-				stack.push(node.left);
+			Node n = stack.pop();
+			list.add(n.data);
+			if (n.left != null) {
+				stack.push(n.left);
 			}
-			if (node.right != null) {
-				stack.push(node.right);
+			if (n.right != null) {
+				stack.push(n.right);
 			}
-			System.out.printf("%d ", node.data);
-
+		}
+		// Print all elements of second stack 
+		for (int i = list.size() - 1; i >= 0; i--) {
+			System.out.print(list.get(i) + " ");
 		}
 	}
 
@@ -105,6 +121,25 @@ public class TreePrePostInOrderTraversal {
 		}
 	}
 
+	public void printInOrderStack(Node root) {
+		Deque<Node> stack = new ArrayDeque<>();
+		while (root != null || !stack.isEmpty()) {
+			while (root != null) {
+				stack.push(root);
+				root = root.left;
+			}
+			root = stack.pop();
+			System.out.print(root.data + " ");
+			root = root.right;
+		}
+	}
+
+	/*
+	 * 				  10
+	 *           5 		   20	
+	 *        4     6	15	   30
+	 */
+
 	public static void main(String[] args) {
 		TreePrePostInOrderTraversal p = new TreePrePostInOrderTraversal();
 		p.add(10);
@@ -114,19 +149,24 @@ public class TreePrePostInOrderTraversal {
 		p.add(20);
 		p.add(30);
 		p.add(15);
-		p.add(21);
-		p.add(22);
+		//		p.add(21);
+		//		p.add(22);
 		System.out.println("=====printPreOrderRecurse====");
 		p.printPreOrderRecurse(p.root);
 		System.out.println();
 		System.out.println("=====printPreOrderUsingStack====");
 		p.printPreOrderUsingStack();
 		System.out.println();
-		System.out.println("=====printPostOrderUsingStack====");
+		System.out.println("=====printPostOrderUsingRecurse====");
+		p.printPostOrderRecurse(p.root);
+
+		System.out.println("\n=====printPostOrderUsingStack====");
 		p.printPostOrderUsingStack(p.root);
 		System.out.println();
 		System.out.println("=====printInOrderRecurse====");
 		p.printInOrderRecurse(p.root);
+		System.out.println("\n=====printInOrderUsingStack====");
+		p.printInOrderStack(p.root);
 
 	}
 

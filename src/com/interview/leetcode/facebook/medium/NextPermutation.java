@@ -4,6 +4,8 @@ package com.interview.leetcode.facebook.medium;
  * https://leetcode.com/problems/next-permutation/
  * 
  * https://www.programcreek.com/2014/06/leetcode-next-permutation-java/
+https://leetcode.com/problems/next-permutation/discuss/13994/Readable-code-without-confusing-ij-and-with-explanation
+==========Case1==============
 1) scan from right to left, find the first element that is less than its previous one.
 
 		4 5 6 3 2 1 
@@ -23,7 +25,9 @@ package com.interview.leetcode.facebook.medium;
 4)	 reverse elements [p+1, nums.length]
 
 		4 6 1 2 3 5 
-	 		    		 
+=============Case2================
+In step3) if p&q ==0 reverse from 0 to n-1 and return
+============	 		    		 
  */
 public class NextPermutation {
 	public void nextPermutation(int[] nums) {

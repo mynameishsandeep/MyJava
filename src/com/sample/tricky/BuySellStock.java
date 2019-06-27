@@ -3,10 +3,12 @@ package com.sample.tricky;
 import com.interview.leetcode.amazon.easy.BestTimeToBuyAndSellStock;
 
 /*
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+ * 
 		1) Buy at low price and sell at max price.
 		2) Keep Max Profit constant.
 		3) Update low buy price
-		4) Update max profit.
+		4) Update max profit and low buy price.
 
  */
 public class BuySellStock {

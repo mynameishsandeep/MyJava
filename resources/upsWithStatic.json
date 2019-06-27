@@ -1,0 +1,516 @@
+{
+  "HasTaxRuleIds": 1,
+  "TaxShipUrl": null,
+  "ShipMethodCount": 3,
+  "ShipCategory": {
+    "Custom": {},
+    "General": {
+      "Downloadable": null,
+      "Air (3-5 days)": 1,
+      "FedEx Ground": null,
+      "Ground (5-7 days)": 1,
+      "Express (1-2 days)": null
+    },
+    "Ups": {
+      "UPS Ground": 1
+    }
+  },
+  "rtErrorOrderAcceptance": "reject",
+  "Misc": [""],
+  "DonotLimitBillingStates": 0,
+  "gwStates": null,
+  "CountriesMode": "AsIs",
+  "States": [],
+  "ShipUrl": "https://p9.secure.hostingprod.com/@ysbsqa-st65-https-sep22-1.xyz/ssl/ysbsqa-ship-rtl.php",
+  "TaxShipEmails": null,
+  "TaxRuleCount": 2,
+  "EnableShip": 2,
+  "StdShip": null,
+  "EnableTax": 1,
+  "Ship": [
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [
+          null
+        ],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "Ground (5-7 days)",
+        "Zip": "",
+        "Specific": "Inside",
+        "US_Zip": "",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [
+          "CA California"
+        ],
+        "US_State": "CA",
+        "State": "CA"
+      },
+      {
+        "BlessName": "FlatFormula",
+        "Value": "2",
+        "ITEMS": "4",
+        "WEIGHT": "3",
+        "Overwrite": 1
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "Air (3-5 days)",
+        "Zip": "94089, 95129*3438_4234",
+        "Specific": "Inside",
+        "US_Zip": "94089, 95129*3438_4234",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "AMOUNT": "0.1",
+        "BlessName": "LinearFormula",
+        "Overwrite": 2
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "",
+        "Specific": "Outside",
+        "US_Zip": null,
+        "CountryMode": "Outside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "AF Afghanistan",
+          "AL Albania",
+          "DZ Algeria",
+          "AS American Samoa",
+          "IN India"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "AMOUNT": "0.1",
+        "BlessName": "LinearFormula",
+        "Overwrite": 3
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "",
+        "Specific": "Inside",
+        "US_Zip": null,
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "IN India"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "AMOUNT": "0.1",
+        "BlessName": "LinearFormula",
+        "Overwrite": 4
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "8-9,7000",
+        "Specific": "Inside",
+        "US_Zip": "8-9,7000",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "BlessName": "FlatFormula",
+        "Value": "2",
+        "ITEMS": "2",
+        "WEIGHT": "2",
+        "Overwrite": 5
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [
+          null
+        ],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "123",
+        "Specific": "Inside",
+        "US_Zip": "123",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [
+          "Any State"
+        ],
+        "US_State": "Any",
+        "State": ""
+      },
+      {
+        "BlessName": "FlatFormula",
+        "Value": "5",
+        "ITEMS": "5",
+        "WEIGHT": "5",
+        "Overwrite": 6
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [
+          null,
+          "Any Province"
+        ],
+        "CA_Province": "Any",
+        "CA_Zip": "123",
+        "Method": "",
+        "Zip": "123",
+        "Specific": "Inside",
+        "US_Zip": "",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States",
+          "CA Canada"
+        ],
+        "US_States": [
+          "Any State",
+          null
+        ],
+        "US_State": "Any",
+        "State": ""
+      },
+      {
+        "BlessName": "FlatFormula",
+        "Value": "10",
+        "ITEMS": "10",
+        "WEIGHT": "10",
+        "Overwrite": 7
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "",
+        "Specific": "Inside",
+        "US_Zip": "",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "BlessName": "FlatFormula",
+        "Value": "15",
+        "ITEMS": "15",
+        "WEIGHT": "15",
+        "Overwrite": 8
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": "123-982",
+        "Method": "",
+        "Zip": "123-982",
+        "Specific": "Inside",
+        "US_Zip": null,
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "CA Canada"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "BlessName": "FlatFormula",
+        "Value": "12",
+        "ITEMS": "12",
+        "WEIGHT": "12",
+        "Overwrite": 9
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "",
+        "Specific": "Inside",
+        "US_Zip": "",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "KeyFmt": "%0.2f",
+        "Table": [
+          "0",
+          "2",
+          "3",
+          "3",
+          "5"
+        ],
+        "Varname": "NONTAXABLE_AMOUNT",
+        "ValFmt": "%0.2f",
+        "BlessName": "StepFormula",
+        "Overwrite": 10
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "",
+        "Specific": "Inside",
+        "US_Zip": "",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "KeyFmt": "%0.2f",
+        "Table": [
+          "0",
+          "5",
+          "10",
+          "10",
+          "15"
+        ],
+        "Varname": "AMOUNT",
+        "ValFmt": "%0.2f",
+        "BlessName": "StepFormula",
+        "Overwrite": 11
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "",
+        "Specific": "Inside",
+        "US_Zip": "",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "KeyFmt": "%0.2f",
+        "Table": [
+          "0",
+          "20",
+          "25",
+          "25",
+          "30"
+        ],
+        "Varname": "WEIGHT",
+        "ValFmt": "%0.2f",
+        "BlessName": "StepFormula",
+        "Overwrite": 12
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "",
+        "Specific": "Inside",
+        "US_Zip": "",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "KeyFmt": "%0.2f",
+        "Table": [
+          "10",
+          "50",
+          "10",
+          "50",
+          "20"
+        ],
+        "Varname": "ITEMS",
+        "ValFmt": "%0.2f",
+        "BlessName": "StepFormula",
+        "Overwrite": 13
+      }
+    ],
+    [
+      {
+        "Location": "Specific",
+        "CA_Provinces": [],
+        "CA_Province": "Any Province",
+        "CA_Zip": null,
+        "Method": "",
+        "Zip": "",
+        "Specific": "Inside",
+        "US_Zip": "",
+        "CountryMode": "Inside",
+        "BlessName": "MatchingRule",
+        "Countries": [
+          "US United States"
+        ],
+        "US_States": [],
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "KeyFmt": "%0.2f",
+        "Table": [
+          5,
+          2,
+          10,
+          3,
+          20
+        ],
+        "Varname": "TAXABLE_AMOUNT",
+        "ValFmt": "%0.2f",
+        "BlessName": "StepFormula",
+        "Overwrite": 14
+      }
+    ]
+  ],
+  "TaxRoundingMode": "DollarNearest",
+  "WeightShipRuleCount": 7,
+  "ShippingMethods": [
+    "Air (3-5 days)",
+    "Ground (5-7 days)",
+    "UPS Ground"
+  ],
+  "IsSeparateTaxShip": null,
+  "ShipRuleCount": 14,
+  "Countries": [],
+  "ups_negotiate_rates": "Published rates",
+  "Version": 2,
+  "EnableMisc": 0,
+  "MiscNames": null,
+  "TaxUrl": null,
+  "Tax": [
+    [
+      {
+        "Zip": "94089",
+        "CountryMode": "Inside",
+        "CA_Province": "Any Province",
+        "Countries": [
+          "US United States"
+        ],
+        "BlessName": "MatchingRule",
+        "US_State": "Any State",
+        "State": "CA"
+      },
+      {
+        "BlessName": "LinearFormula",
+        "TAXABLE_AMOUNT": "0.100000",
+        "SHIPPING": "0.200000",
+        "Overwrite": "0"
+      },
+      "T-571712"
+    ],
+    [
+      {
+        "Zip": "",
+        "CountryMode": "Inside",
+        "CA_Province": "Any Province",
+        "Countries": [
+          "US United States"
+        ],
+        "BlessName": "MatchingRule",
+        "US_State": "Any State",
+        "State": ""
+      },
+      {
+        "BlessName": "LinearFormula",
+        "TAXABLE_AMOUNT": "0.070000",
+        "SHIPPING": "0.090000",
+        "Overwrite": "0"
+      },
+      "T0730240"
+    ]
+  ],
+  "ExpShip": null
+}

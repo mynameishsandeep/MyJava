@@ -13,8 +13,7 @@ public class Fibonacci_Nbonacci {
 		}
 		int result = 0;
 		for (int i = 1; i <= numberOfSteps; i++) {
-			Integer currentResult = 0;
-			currentResult = fibXSteps(n - i, numberOfSteps);
+			int currentResult = fibXSteps(n - i, numberOfSteps);
 			result += currentResult;
 		}
 		return result;
@@ -22,7 +21,7 @@ public class Fibonacci_Nbonacci {
 
 	public static void main(String[] args) {
 		Fibonacci_Nbonacci c = new Fibonacci_Nbonacci();
-		System.out.println(c.fibXSteps(6, 2));
+		System.out.println(c.fibXSteps(6, 2)); // 0 1 1 2 3 5 8
 	}
 
 }

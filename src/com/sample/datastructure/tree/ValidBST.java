@@ -36,12 +36,12 @@ public class ValidBST {
 	private boolean isValid(long low, TreeNode mid, long high) {
 		if (mid == null) {
 			return true;
-		}
-		if (mid.val < high && mid.val > low) {
+		} else if (mid.val < high && mid.val > low) {
 			boolean left = isValid(low, mid.left, mid.val);
 			boolean right = isValid(mid.val, mid.right, high);
 			return left && right;
+		} else {
+			return false;
 		}
-		return false;
 	}
 }

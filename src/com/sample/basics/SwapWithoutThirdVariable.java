@@ -12,17 +12,42 @@ package com.sample.basics;
  */
 public class SwapWithoutThirdVariable {
 
-	public static void main(String a[]) {
+	public static void main(String[] args) {
+		SwapWithoutThirdVariable s = new SwapWithoutThirdVariable();
+		s.swapUsingXOR();
+	}
+
+	private void swapUsingXOR() {
 		int x = 10;
 		int y = 5;
-		// To avoid 
+		// If x and y are same then both will turn into 10(big number). So to avoid that 
 		if (x != y) {
 			// Code to swap 'x' (1010) and 'y' (0101)
 			x = x ^ y; // x now becomes 15 (1111)
 			y = x ^ y; // y becomes 10 (1010)
 			x = x ^ y; // x becomes 5 (0101)
 		}
+		System.out.println(x);
+		System.out.println(y);
 
-		System.out.println("After swap: x = " + x + ", y = " + y);
 	}
+
+	private void swapUsingAdditionSubtraction() {
+		int x = 10;
+		int y = 5;
+
+		x = x + y; // 15
+		y = x - y; // 10
+		x = x - y; // 5
+	}
+
+	private void swapUsingMultiplicationDivision() {
+		int x = 10;
+		int y = 5;
+
+		x = x * y; // 50
+		y = x / y; // 10
+		x = x / y; // 5
+	}
+
 }

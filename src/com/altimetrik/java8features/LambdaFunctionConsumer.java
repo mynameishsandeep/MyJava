@@ -20,13 +20,15 @@ import java.util.function.Consumer;
 public class LambdaFunctionConsumer {
 
 	public static void main(String[] args) {
-		Consumer<String> c = (x)->{print(x);}; // x->print(x);
+		Consumer<String> c = x -> {
+			print(x);
+		}; // x->print(x);
 		funPrint(c);
-		
+
 		c.accept("Four");
-		
-		funPrint(x->print1(x));
-		
+
+		funPrint(x -> print1(x));
+
 	}
 
 	public static void print(String data) {
@@ -42,7 +44,7 @@ public class LambdaFunctionConsumer {
 		data.accept("Two");
 		data.accept("Three");
 	}
-	
+
 	public static void consumerInJava() {
 		List<String> list = new ArrayList<>(Arrays.asList("1", "2", "3"));
 		list.parallelStream().forEach(System.out::println);// result order is

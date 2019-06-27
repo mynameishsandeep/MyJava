@@ -3,7 +3,7 @@ package com.sample.basics;
 
 public  class SwitchCaseSample {
     public static void main(String [] args) {
-            int i=5;
+            Integer i = null;
             switch(i) {
                     case 1 : 
                             System.out.println("Case 1");

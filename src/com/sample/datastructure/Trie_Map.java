@@ -30,7 +30,7 @@ public class Trie_Map {
 
 	TrieNode root = new TrieNode();
 
-	private void insert(String word) {
+	public void insert(String word) {
 		TrieNode temp = root;
 		for (Character c : word.toCharArray()) {
 			if (temp.node.containsKey(c)) {
@@ -46,7 +46,7 @@ public class Trie_Map {
 	}
 
 	// Returns if the complete word is in the trie.
-	private Boolean search(String word) {
+	public Boolean search(String word) {
 		TrieNode temp = root;
 		int count = 0;
 		for (Character c : word.toCharArray()) {

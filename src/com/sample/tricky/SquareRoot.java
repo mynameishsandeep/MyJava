@@ -37,7 +37,8 @@ public class SquareRoot {
 	public static void main(String[] args) {
 		//System.out.println(binarySearch(200, 1, 200));
 		//System.out.println(binarySearch(15, 1, 15));
-		System.out.println(binarySearch(17, 1, 17));
+		
+		System.out.println(binarySearch(17, 1, 17/2));
 	}
 
 }

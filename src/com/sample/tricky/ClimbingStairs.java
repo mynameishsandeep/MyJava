@@ -16,6 +16,23 @@ import java.util.Map;
  */
 public class ClimbingStairs {
 
+	static Map<Integer, Integer> cache = new HashMap<>();
+    public int climbStairs(int n) {
+        if (n <= 2) {// Exit Condition
+			return n;
+		} else {
+			if (cache.containsKey(n)) {
+				return cache.get(n);
+			} else {
+				// Recursive case
+				Integer result = climbStairs(n - 1) + climbStairs(n - 2);
+				cache.put(n, result);
+				
+				return result;
+			}
+		}
+    }
+    
 	private int fib2Steps(int n, Map<Integer, Integer> map) {
 		if (n <= 1) {
 			return n;

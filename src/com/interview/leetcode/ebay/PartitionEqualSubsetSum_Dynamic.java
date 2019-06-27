@@ -1,5 +1,7 @@
 package com.interview.leetcode.ebay;
 
+import java.util.Arrays;
+
 /*
  * https://leetcode.com/problems/partition-equal-subset-sum/description/
  * 
@@ -16,7 +18,7 @@ public class PartitionEqualSubsetSum_Dynamic {
 	}
 
 	public boolean canPartition(int[] nums) {
-		Integer sum = getSum(nums);
+		Integer sum = Arrays.stream(nums).sum();
 		if (sum % 2 == 1) {
 			return false;
 		}
@@ -25,15 +27,13 @@ public class PartitionEqualSubsetSum_Dynamic {
 
 	}
 
-	private Integer getSum(int nums[]) {
-		Integer result = 0;
-		for (int i = 0; i < nums.length; i++) {
-			result += nums[i];
-		}
-		return result;
-	}
-
+	
+	
 	/*
+	 * 
+	 *      
+	 * 
+	 * 
 	 * Form the memoization matrix
 	 * Set 0th row to false.
 	 * Set 1st column to true.
@@ -41,8 +41,7 @@ public class PartitionEqualSubsetSum_Dynamic {
 	 */
 	private boolean groupSumDynamic(int[] nums, int target) {
 		int n = nums.length;
-		Boolean[][] dp = new Boolean[n + 1][target + 1];
-		fill1stRowToFalse(dp);
+		boolean[][] dp = new boolean[n + 1][target + 1];
 		fill1stColumnsToTrue(dp);
 
 		for (int i = 1; i < n + 1; i++) {
@@ -54,17 +53,13 @@ public class PartitionEqualSubsetSum_Dynamic {
 				}
 			}
 		}
+		for(boolean[] d : dp) System.out.println(Arrays.toString(d) );  
 		return dp[n][target];
 
 	}
 
-	private void fill1stRowToFalse(Boolean mm[][]) {
-		for (int i = 0; i < mm[0].length; i++) {
-			mm[0][i] = false;
-		}
-	}
 
-	private void fill1stColumnsToTrue(Boolean mm[][]) {
+	private void fill1stColumnsToTrue(boolean mm[][]) {
 		for (int i = 0; i < mm.length; i++) {
 			mm[i][0] = true;
 		}

@@ -27,38 +27,38 @@ public class Maze {
 		boolean visited[][] = new boolean[maze.length][maze[0].length];
 		while (!stack.isEmpty()) {
 			start = stack.pop();
-			int i = start[0];
-			int j = start[1];
-			if (destination[0] == i && destination[1] == j) {
+			int row = start[0];
+			int col = start[1];
+			if (destination[0] == row && destination[1] == col) {
 				return true;
 			}
-			if (!visited[i][j]) {
-				while (movableLeftToRight(maze, i, j)) {
-					++j;
+			if (!visited[row][col]) {
+				while (movableLeftToRight(maze, row, col)) {
+					++col;
 				}
-				stack.push(new int[] { i, j });
+				stack.push(new int[] { row, col });
 
-				j = start[1]; // j updated so assigning back
-				while (movableRightToLeft(maze, i, j)) {
-					--j;
+				col = start[1]; // column updated so assigning back
+				while (movableRightToLeft(maze, row, col)) {
+					--col;
 				}
-				stack.push(new int[] { i, j });
+				stack.push(new int[] { row, col });
 
-				j = start[1];// j updated so assigning back
-				while (movableTopToBottom(maze, i, j)) {
-					++i;
+				col = start[1];// column updated so assigning back
+				while (movableTopToBottom(maze, row, col)) {
+					++row;
 				}
-				stack.push(new int[] { i, j });
+				stack.push(new int[] { row, col });
 
-				i = start[0];// i updated so assigning back
-				while (movableBottomToTop(maze, i, j)) {
-					--i;
+				row = start[0];// row updated so assigning back
+				while (movableBottomToTop(maze, row, col)) {
+					--row;
 				}
-				stack.push(new int[] { i, j });
+				stack.push(new int[] { row, col });
 
-				i = start[0];// i updated so assigning back
+				row = start[0];// row updated so assigning back
 			}
-			visited[i][j] = true;
+			visited[row][col] = true;
 		}
 
 		return false;

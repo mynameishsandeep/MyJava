@@ -4,6 +4,13 @@ import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+/*
+ * The Priority Queue implementation in the Java is a default min heap Priority Queue.
+ * Meaning------> minimum will be at top 
+
+In order to turn it into a max one I create a custom comparator object like below or Use Java's Collections.reverseOrder() comparator.
+
+ */
 public class PriorityQueueTest {
 
 	public static void main(String[] args) {
@@ -31,11 +38,11 @@ public class PriorityQueueTest {
 		 */
 		Iterator it1 = pQ1.iterator();
 		while (it1.hasNext()) {
-			System.out.print(it1.next()+" ");
+			System.out.print(it1.next() + " ");
 		}
-		System.out.println();
+		System.out.println("\n====Right Way of Doing is below======");
 		while (pQ1.size() > 0) {
-			System.out.print(pQ1.poll() +" ");
+			System.out.print(pQ1.poll() + " ");
 		}
 
 	}

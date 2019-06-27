@@ -1,6 +1,7 @@
 package com.sample.datastructure;
 
 /*
+ * ================
  * If we use "int mid =(low + high) / 2;"
  *  
  * Then if the sum of low and high is greater than the maximum positive int value (2^31 - 1). 
@@ -8,6 +9,11 @@ package com.sample.datastructure;
  * Then code throws ArrayIndexOutOfBoundsException.
  * 
  * So use "int mid = low + ((high - low) / 2);"
+ * ================
+ * Iterative solution has same O(logn) runtime complexity as the recursive solution but has better memory complexity.
+	Memory Complexity for Iterative : Constant, O(1).
+	Memory Complexity for Recursion : O(logn) as recursion consume memory on the stack.
+	==================
  */
 public class BinarySearch {
 

@@ -9,7 +9,7 @@ import com.interview.leetcode.TreeNode;
  * https://leetcode.com/submissions/detail/180297071/
 
     1) Requirement is to use uses O(h) memory..
-    So save data on left side of tree to stack, during init
+    Save "data on left side of tree" to stack, during init
     2) During next() call, pick data from stack which is result.
     Then Check if the node has right. If the node has right, then push all the left of right to stack.
     

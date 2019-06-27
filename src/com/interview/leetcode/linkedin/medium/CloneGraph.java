@@ -1,44 +1,54 @@
 package com.interview.leetcode.linkedin.medium;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import com.interview.leetcode.UndirectedGraphNode;
 
 /*
  * https://leetcode.com/problems/clone-graph/description/
- * 
+ *
  * The 2 difference between Clone Graph against Clone Tree(CloneTree.java) is
  * 1) Tree has only left and right. Recursive call will happen for left and right. whereas
  * 	  Graph has List of adjacency nodes. So for loop for all the list of nodes.
  * 2) Tree cannot have loops.
  *    But Graph can have loops.
- * Ex: A -> B and B -> C and C -> A.   
+ * Ex: A -> B and B -> C and C -> A.
  * To Handle Loop, Save Each original node in the hashmap with corresponding cloned node, which is the key.
- * So "A" node should not be cloned again, during recursive call with C as root. Cloned "A" will be returned to "C" node.  
- * 
- * 
- * The key part is what to return if 
+ * So "A" node should not be cloned again, during recursive call with C as root. Cloned "A" will be returned to "C" node.
+ *
  */
 public class CloneGraph {
-	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-		return clone(node, new HashMap<>());
-	}
+  public Node cloneGraph(Node node) {
+    return clone(node, new HashMap<>());
+  }
 
-	public UndirectedGraphNode clone(UndirectedGraphNode node, Map<UndirectedGraphNode, UndirectedGraphNode> cloneMap) {
-		if (node == null) {
-			return null;
-		}
-		if (cloneMap.containsKey(node)) {
-			return cloneMap.get(node);
-		}
-		UndirectedGraphNode cloneNode = new UndirectedGraphNode(node.label);
-		cloneMap.put(node, cloneNode);
+  public Node clone(Node sourceNode, Map<Node, Node> cloneMap) {
+    if (sourceNode == null) {
+      return null;
+    }
+    if (cloneMap.containsKey(sourceNode)) {
+      return cloneMap.get(sourceNode);
+    }
+    Node cloneNode = new Node(sourceNode.val, new ArrayList<>());
+    cloneMap.put(sourceNode, cloneNode);
 
-		for (int i = 0; i < node.neighbors.size(); i++) {
-			UndirectedGraphNode clonedNodeResult = clone(node.neighbors.get(i), cloneMap);
-			cloneNode.neighbors.add(clonedNodeResult);
-		}
-		return cloneNode;
-	}
+    for (int i = 0; i < sourceNode.neighbors.size(); i++) {
+      Node sourceNeighbors = clone(sourceNode.neighbors.get(i), cloneMap);
+      cloneNode.neighbors.add(sourceNeighbors);
+    }
+    return cloneNode;
+  }
+
+  static class Node {
+    public int val;
+    public List<Node> neighbors;
+
+    public Node() {}
+
+    public Node(int _val, List<Node> _neighbors) {
+      val = _val;
+      neighbors = _neighbors;
+    }
+  }
 }
