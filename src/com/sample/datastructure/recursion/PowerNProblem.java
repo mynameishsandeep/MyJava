@@ -4,6 +4,7 @@ package com.sample.datastructure.recursion;
 * https://leetcode.com/problems/powx-n/solution/
 *
 * Step1 Formula : powerN(base, n - 1) * base;
+* 
 * Step2 Formula : O(logn): (It performs faster and other solutions will cause timeoutexception in leetcode)
 			power(base * base, n / 2)-------> n%2
  			power(base * base, n / 2) * base;--------> other than n%2
@@ -37,7 +38,7 @@ public class PowerNProblem {
 
   /*
    * For negative number do the below logic.
-   * 1) base =  base by 1
+   * 1) base = 1 by base 
    * 2) convert the negative number to positive number
    */
   public static double powerForNegative(double base, int n) {

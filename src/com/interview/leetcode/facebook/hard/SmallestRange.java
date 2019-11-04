@@ -30,7 +30,9 @@ import java.util.Queue;
  * =====When to end logic==
  *	while (minHeap.size() == lists.size()) {}
  *	if a specific row is exhausted then we can terminate.i.e range cannot be determined further.
- *====================
+ *====================Time Complexity===
+ *  O(N∗logM) + N --> O(N∗logM) for priority queue insert/move operation. 
+ *  N (Number of Element), M(Number of Rows)  
  *
  */
 public class SmallestRange {

@@ -29,32 +29,29 @@ Binary Tree and without extra storage for path arrays.
 4) The node which has one key present in its left subtree and the other key present in right subtree is the LCA.
 If both keys lie in left subtree, then left subtree has LCA also, otherwise LCA lies in right subtree.
 
-				1
-				  2
-				    3
-				      4
+		Ex1:	1		    Ex2:	1
+				  2               2
+				    3           3
+				      4       4
 		For above example. to find LCA of 2 and 4.
 		recursion stops at 2. Because left is null and since is 2 is found, 4 must be below (assuming 4 present all time)
 
  */
 
 public class LowestCommonAncestorOfABinaryTree {
-  public TreeNode lowestCommonAncestor_Approach2(TreeNode root, TreeNode p, TreeNode q) {
+  public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
     // Base case
-    if (root == null) return null;
-
     // If either n1 or n2 matches with root's key, report the presence by returning root (Note that
-    // if a key is
-    // ancestor of other, then the ancestor key becomes LCA
-    if (root == p || root == q) return root;
+    // if a key is ancestor of other, then the ancestor key becomes LCA
+    if (root == null || root == p || root == q) return root;
 
     // Look for keys in left and right subtrees
-    TreeNode leftLCA = lowestCommonAncestor_Approach2(root.left, p, q);
-    TreeNode rightLCA = lowestCommonAncestor_Approach2(root.right, p, q);
+    TreeNode leftLCA = lowestCommonAncestor(root.left, p, q);
+    TreeNode rightLCA = lowestCommonAncestor(root.right, p, q);
 
     // If both of the above calls return Non-NULL, then one key
     // is present in one subtree and other is present in other,
-    // So this node is the LCA
+    // So root node is the LCA
     if (leftLCA != null && rightLCA != null) {
       return root;
     }

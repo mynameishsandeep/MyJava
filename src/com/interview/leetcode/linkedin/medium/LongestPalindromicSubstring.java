@@ -10,29 +10,27 @@ package com.interview.leetcode.linkedin.medium;
  * 3) Code can be optimized using memoization.
  */
 public class LongestPalindromicSubstring {
-  private int start, end;
 
   public String longestPalindrome(String s) {
-    if (s.length() < 2) {
-      return s;
+    if (s.length() < 2) return s;
+    String longest = s.substring(0, 1);
+    for (int i = 0; i < s.length(); i++) {
+      // get longest palindrome with center of i
+      String tmp = getPalindromeString(s, i, i);
+      if (tmp.length() > longest.length()) longest = tmp;
+
+      // get longest palindrome with center of i, i+1
+      tmp = getPalindromeString(s, i, i + 1);
+      if (tmp.length() > longest.length()) longest = tmp;
     }
-    for (int i = 0; i < s.length() - 1; i++) {
-      palindrome(s, i, i);
-      palindrome(s, i, i + 1);
-    }
-    return s.substring(start, end + 1);
+    return longest;
   }
 
-  public void palindrome(String s, int left, int right) {
-    if (left < 0 || right == s.length()) {
-      return;
+  public String getPalindromeString(String s, int begin, int end) {
+    while (begin >= 0 && end < s.length() && s.charAt(begin) == s.charAt(end)) {
+      begin--;
+      end++;
     }
-    if (s.charAt(left) == s.charAt(right)) {
-      if ((end - start) < (right - left)) {
-        end = right;
-        start = left;
-      }
-      palindrome(s, left - 1, right + 1);
-    }
+    return s.substring(begin + 1, end);
   }
 }

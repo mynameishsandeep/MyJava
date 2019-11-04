@@ -1,30 +1,32 @@
 class Sample {
 
-  private int count(int[][] matrix, int midNumber) {
-    int i = matrix.length - 1, j = 0;
-    int c = 0;
-    while (i >= 0 && j < matrix.length) {
-      if (matrix[i][j] <= midNumber) {
-        c += i + 1;
-        j++;
-      } else i--;
-    }
-    return c;
+  private volatile boolean oneDone = false;
+  private volatile boolean twoDone = false;
+
+  public void first(Runnable printFirst) throws InterruptedException {
+
+    // printFirst.run() outputs "first". Do not change or remove this line.
+    printFirst.run();
+    oneDone = true;
   }
 
-  public int kthSmallest(int[][] matrix, int k) {
-    int low = matrix[0][0], high = matrix[matrix.length - 1][matrix.length - 1];
-    while (low < high) {
-      int mid = low + ((high - low) / 2);
-      int numberOfElementsLessThanMid = count(matrix, mid);
-      if (numberOfElementsLessThanMid == k) {
-        return high;
-      } else if (numberOfElementsLessThanMid < k) {
-        low = mid + 1;
-      } else {
-        high = mid;
-      }
+  public void second(Runnable printSecond) throws InterruptedException {
+	  synchronized(Sample.class) {
+		  
+	  }
+    while (!oneDone) {
+      Thread.currentThread().sleep(1);
     }
-    return 0;
+    // printSecond.run() outputs "second". Do not change or remove this line.
+    printSecond.run();
+  }
+
+  public void third(Runnable printThird) throws InterruptedException {
+	    while (!twoDone) {
+	        Thread.currentThread().wait();
+	      }
+
+    // printThird.run() outputs "third". Do not change or remove this line.
+    printThird.run();
   }
 }

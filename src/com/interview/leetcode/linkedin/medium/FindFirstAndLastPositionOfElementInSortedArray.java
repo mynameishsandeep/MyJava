@@ -9,6 +9,8 @@ package com.interview.leetcode.linkedin.medium;
  * So check for element at index == target.
  * 2) Low can cross the array size.
  * Ex: [2,2] target=3 --> index returned. [2,1]
+ * 
+ * ==Note: Low can go high, but high cannot go -1==== 
  */
 public class FindFirstAndLastPositionOfElementInSortedArray {
   public int[] searchRange(int[] nums, int target) {

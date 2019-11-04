@@ -10,7 +10,7 @@ import java.util.HashMap;
  * Logic:
  * 1) Keep new data(when adding/updating data or when an element is accessed) at head.
  * 2) When put is happening and not enough space, remove tail. Add new element to head
- * 3) When get is happening move data from anywhere to head.
+ * 3) When get is happening move data from anywhere to head. Connect previous and next of data.
  *
  * Tactics:
  * 1) Reason why doubly linked list selected is, during removal operation, get that node. join previous with next.
@@ -117,12 +117,11 @@ public class LRUCache {
     while (true) {
       if (temp != null) {
         System.out.println(temp.value);
+        if (temp.nextNode == null) {
+          break;
+        }
       }
-      if (temp.nextNode == null) {
-        break;
-      } else {
-        temp = temp.nextNode;
-      }
+      temp = temp.nextNode;
     }
   }
 

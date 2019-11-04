@@ -1,9 +1,12 @@
 package com.interview.leetcode.google.medium;
+/*
+	https://leetcode.com/problems/number-of-islands/
 
-// Start from 0,0 mark as visited. Recurse in 4 direction.
-// Point is how many time outer loop runs that is result and recursion just marks visited.
-// BackTracking not needed.
-// https://leetcode.com/problems/number-of-islands/
+1) Start from 0,0 mark as visited. Recurse in 4 direction.
+2) Point is how many time outer loop runs that is result and recursion just marks visited.
+3) BackTracking not needed.
+
+ */
 public class NumberOfIslands {
   public int numIslands(char[][] grid) {
     int island = 0;

@@ -14,6 +14,7 @@ public class KthLargestElementInAStream {
   public KthLargestElementInAStream(int k, int[] nums) {
     max = k;
     for (int num : nums) {
+      if (pQ.size() == k && num < pQ.peek()) continue; // Avoiding unnecessary adding of new data.
       pQ.offer(num);
       if (pQ.size() > k) {
         pQ.poll();

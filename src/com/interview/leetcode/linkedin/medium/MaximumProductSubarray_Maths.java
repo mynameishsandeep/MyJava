@@ -25,28 +25,24 @@ I spent more than 2 hours and was failing at various test cases and nothing succ
 cMaxP = currentMaxProduct
 cMinP = currentMinProduct
 pMaxP = previousMaxProduct
+pMinP = previousMinProduct
+cN = currentNumber
 
  */
 public class MaximumProductSubarray_Maths {
 
   public int maxProduct(int nums[]) {
-    int cMaxP = nums[0];
-    int cMinP = nums[0];
     int pMaxP = nums[0];
+    int pMinP = nums[0];
     int maxProduct = nums[0];
 
     for (int i = 1; i < nums.length; i++) {
-      int currentNumber = nums[i];
-      cMaxP =
-          Stream.of(pMaxP * currentNumber, cMinP * currentNumber, currentNumber)
-              .max(Integer::compareTo)
-              .get();
-      cMinP =
-          Stream.of(pMaxP * currentNumber, cMinP * currentNumber, currentNumber)
-              .min(Integer::compareTo)
-              .get();
+      int cN = nums[i];
+      int cMaxP = Stream.of(pMaxP * cN, pMinP * cN, cN).max(Integer::compareTo).get();
+      int cMinP = Stream.of(pMaxP * cN, pMinP * cN, cN).min(Integer::compareTo).get();
       maxProduct = Math.max(maxProduct, cMaxP);
       pMaxP = cMaxP;
+      pMinP = cMinP;
     }
     return maxProduct;
   }

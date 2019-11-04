@@ -23,6 +23,9 @@ public class PriorityQueueTest {
 		while (it.hasNext()) {
 			System.out.println(it.next());
 		}
+		while (pQ.size() > 0) {
+			System.out.print(pQ.poll() + " ");
+		}
 
 		Queue<Integer> pQ1 = new PriorityQueue<>(2);
 		pQ1.offer(20);

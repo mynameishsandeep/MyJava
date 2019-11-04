@@ -1,77 +1,63 @@
 package com.interview.leetcode.amazon.easy;
 
-import java.util.Arrays;
-
+/*
+ * https://leetcode.com/problems/rotate-array/
+ *===========================================
+ * Rotate in-memory
+ * 1) nums = [1,2,3,4,5,6,7] and k = 3,
+ * 2) first we reverse 0 to n-k data i.e.....[1,2,3,4], it becomes[4,3,2,1];
+ * 3) then we reverse n-k to n i.e.....[5,6,7], it becomes[7,6,5],
+ * 4) finally we reverse the array as a whole, it becomes [5,6,7,1,2,3,4].
+ */
 public class RotateArray {
 
-	// This method uses the temp array 
-	public void rotate(int[] nums, int k) {
-		// For 0 or 1 data no rotation is needed.
-		if (nums == null || nums.length < 2) {
-			return;
-		}
-		// If the number of rotation is more than the size of data. Then rotation = rotation%size of data.
-		k = k % nums.length;
-		int temp[] = new int[nums.length];
-		int tempIndex = k - 1;
-		for (int i = nums.length - 1; tempIndex >= 0; i--, tempIndex--) {
-			temp[tempIndex] = nums[i];
-		}
-		tempIndex += k + 1;
-		for (int i = 0; i < nums.length - k; i++) {
-			temp[tempIndex++] = nums[i];
-		}
-		for (int i = 0; i < nums.length; i++) {
-			nums[i] = temp[i];
-		}
+  public void rotate(int[] nums, int k) {
+    if (nums == null || nums.length < 2) {
+      return;
+    }
+    // If the number of rotation is more than n. Then rotation = rotation%size of data.
+    k = k % nums.length;
 
-	}
+    reverse(nums, 0, nums.length - k - 1);
+    reverse(nums, nums.length - k, nums.length - 1);
+    reverse(nums, 0, nums.length - 1);
+  }
 
-	/*
-	 * The basic idea is that, for example, nums = [1,2,3,4,5,6,7] and k = 3, first we reverse [1,2,3,4], 
-	 * it becomes[4,3,2,1]; then we reverse[5,6,7], it becomes[7,6,5], 
-	 * finally we reverse the array as a whole, it becomes [5,6,7,1,2,3,4].
-	 */
-	public void rotateWithOutTemp(int[] nums, int k) {
-		// For 0 or 1 data no rotation is needed.
-		if (nums == null || nums.length < 2) {
-			return;
-		}
-		// If the number of rotation is more than the size of data. Then rotation = rotation%size of data.
-		k = k % nums.length;
+  private void reverse(int[] nums, int start, int end) {
+    for (; start < end; start++, end--) {
+      int temp = nums[start];
+      nums[start] = nums[end];
+      nums[end] = temp;
+    }
+  }
 
-		// reverse n-k data from beginning.
-		// reverse k data from end. (n-k to n from beginning)
-		// reverse step1 and step2 i.e: "k data from end" with "n-k data from beginning"
+  /*
+   * Below is a simple recursion logic similar to "ReverseAString"
+   * 1) During forward recursion save element of array in variable.
+   * 2) When it comes back replace it in kth index.
+   * ===Note: I cannot keep the same array. because if it is not a swap.
+   * ie. if i place 0th to 4th. 4th is gone. 1st to 5th. 5th is gone. 2nd to 6th. 6th is gone.
+   * Ex: nums = [1,2,3,4,5,6,7] and k = 3,
+   * result : [5,6,7,1,2,3,4].
+   * Recursion stack how it works
+   * 		e=7		||  		↑↑			nums[2]=7
+   * 		e=6		||  		||			nums[1]=6
+   * 		e=5		Top  		Bottom		nums[0]=5
+   * 		e=4		To 			To          nums[6]=4
+   * 		e=3		Bottom  	Top	    	nums[5]=3
+   * 		e=2		||  		||			nums[4]=2
+   * 		e=1		↓↓  		||			nums[3]=1 --> Base Condition met
+   */
+  public void rotateRecur(int[] nums, int k) {
+    recur(nums, k, nums.length - 1, nums[nums.length - 1]);
+  }
 
-		reverse(nums, 0, nums.length - k);
-		reverse(nums, nums.length - k, nums.length);
-		reverse(nums, 0, nums.length);
-
-	}
-
-	private void reverse(int[] nums, int start, int end) {
-		while (end > start) {
-			// Swapping without Temp... needs below condition
-			// https://www.geeksforgeeks.org/swap-two-numbers-without-using-temporary-variable/
-			// Without Below if, program fails for the input 1,2 with k=1... Because of self swap problem
-			if (nums[start] != nums[end - 1]) {
-				nums[start] = nums[start] ^ nums[end - 1];
-				nums[end - 1] = nums[start] ^ nums[end - 1];
-				nums[start] = nums[start] ^ nums[end - 1];
-			}
-			end--;
-			start++;
-		}
-	}
-
-	public static void main(String[] args) {
-		RotateArray r = new RotateArray();
-		int i[] = new int[] { 1, 2, 3, 4, 5, 6 };
-		r.rotate(i, 2);
-		System.out.println(Arrays.toString(i));
-		int i1[] = new int[] { 1, 2, 3, 4, 5, 6 };
-		r.rotateWithOutTemp(i1, 2);
-		System.out.println(Arrays.toString(i1));
-	}
+  public void recur(int[] nums, int k, int n, int e) {
+    if (n == 0) {
+      nums[(n + k) % nums.length] = e;
+      return;
+    }
+    recur(nums, k, n - 1, nums[n - 1]);
+    nums[(n + k) % nums.length] = e;
+  }
 }

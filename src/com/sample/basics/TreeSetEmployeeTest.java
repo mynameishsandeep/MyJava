@@ -39,6 +39,9 @@ public class TreeSetEmployeeTest {
 		tSet.add(e5);
 		tSet.add(e6);
 
+		for(Employee emp : tSet) {
+			System.out.println(emp.firstName + " " + emp.lastName);
+		}
 		Iterator<Employee> it = tSet.iterator();
 		while (it.hasNext()) {
 			Employee e = it.next();

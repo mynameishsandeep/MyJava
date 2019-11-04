@@ -2,28 +2,28 @@ package com.interview.leetcode.linkedin.easy;
 
 import java.util.List;
 
-import com.interview.leetcode.linkedin.medium.FlattenNestedListIterator.NestedInteger;
+import com.interview.leetcode.NestedInteger;
 
 /*
  * https://leetcode.com/problems/nested-list-weight-sum/description/
+ *
+ * See picture "NestedListWeightSum.PNG" on how to visualize tree.
  */
 public class NestedListWeightSum {
-	public int depthSum(List<NestedInteger> nestedList) {
-		return depthSum(nestedList, 1);
-	}
+  private int sum = 0;
 
-	public int depthSum(List<NestedInteger> nestedList, int depth) {
-		int sum = 0;
-		System.out.println(nestedList.size());
-		for (NestedInteger nested : nestedList) {
-			System.out.println("nested.isInteger() " + nested.isInteger() + " nested.getInteger() "
-					+ nested.getInteger() + " depth " + depth);
-			if (nested.isInteger()) {
-				sum += nested.getInteger() * depth;
-			} else {
-				sum += depthSum(nested.getList(), depth + 1);
-			}
-		}
-		return sum;
-	}
+  public int depthSum(List<NestedInteger> nestedList) {
+    depthSum(nestedList, 1);
+    return sum;
+  }
+
+  public void depthSum(List<NestedInteger> nestedList, int depth) {
+    for (NestedInteger nested : nestedList) {
+      if (nested.isInteger()) {
+        sum += nested.getInteger() * depth;
+      } else {
+        depthSum(nested.getList(), depth + 1);
+      }
+    }
+  }
 }

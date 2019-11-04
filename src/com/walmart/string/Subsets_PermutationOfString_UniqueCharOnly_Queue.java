@@ -1,7 +1,6 @@
 package com.walmart.string;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /*
@@ -13,11 +12,11 @@ import java.util.List;
  * 1) Add Empty to result.
  * 2) Read a data. For the size of result. Append the data.
  * 3) Do Step2. Till all datas are read.
-==============================================================
+=================Points To Note=============================================
 For subsets queue logic will not work. Because it has to create new one and keep existing one.
 Queue poll take off the existing one, which is wrong
 ===========================================
- 
+
 input nums = [1, 2, 3]
 Initial powerSet:
 [
@@ -66,24 +65,5 @@ public class Subsets_PermutationOfString_UniqueCharOnly_Queue {
       }
     }
     return subsets;
-  }
-
-  private List<String> permutation(String input) {
-    List<String> subsets = new LinkedList<>();
-    subsets.add("");
-    for (int i = 0; i < input.length(); i++) {
-      int index = subsets.size();
-      for (int j = 0; j < index; j++) {
-        subsets.add(index + j, subsets.get(j) + input.charAt(i));
-      }
-    }
-    return subsets;
-  }
-
-  public static void main(String[] args) {
-    Subsets_PermutationOfString_UniqueCharOnly_Queue p =
-        new Subsets_PermutationOfString_UniqueCharOnly_Queue();
-    String permute = "abc";
-    System.out.println(p.permutation(permute));
   }
 }

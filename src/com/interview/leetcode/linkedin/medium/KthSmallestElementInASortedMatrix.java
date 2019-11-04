@@ -6,6 +6,10 @@ import java.util.Queue;
 /*
  * https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/description/#
  * =======Below is not the best solution===========
+ * Because both row and column are sorted, binary search is the best solution. 
+   [ 1,  5,  9],
+   [10, 11, 13],
+   [12, 13, 15]
  * =======Below is not the best solution===========
  * Step 1) Take 0th element from each row and offer it on priority queue.
  * Step 2) When poll a element for the first minimum, offer next element from the same row.

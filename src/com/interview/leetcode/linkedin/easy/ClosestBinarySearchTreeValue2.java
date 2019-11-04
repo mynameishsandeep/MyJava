@@ -3,52 +3,30 @@ package com.interview.leetcode.linkedin.easy;
 import com.interview.leetcode.TreeNode;
 
 /*
- * https://leetcode.com/problems/closest-binary-search-tree-value/description/
- * 
- * Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
+* https://leetcode.com/problems/closest-binary-search-tree-value/description/
+*
+* 1) Initially Pick the root value as currentCloseValue.
+* 2) calculate currentCloseValue for every node........
+* 3) Then decide go left or right if (target < root.val)
 
-	Logic : Capture 1 value greater than target and 1 value less than target in Pair. 
-	Compare and send whichever is closest.
-	
-	==Note: This is not a good approach. Because it traverse all node in the tree===
-	
- */
+Note: Root is guaranteed to be not null or there will be only one unique value in the BST that is closest to the target.
+*
+*/
 
 public class ClosestBinarySearchTreeValue2 {
 
-	public class Pair {
-		public long min;
-		public long max;
-
-		public Pair(Long min, Long max) {
-			this.min = min;
-			this.max = max;
-		}
-	}
-
-	public int closestValue(TreeNode root, double target) {
-		long min = Long.MIN_VALUE;
-		long max = Long.MAX_VALUE;
-		Pair p = new Pair(min, max);
-		recur(root, target, p);
-		System.out.println(p.max);
-		System.out.println(p.min);
-		return p.max - target <= target - p.min ? (int) p.max : (int) p.min;
-	}
-
-	/*
-	 * In-Order, Pre-Order or Post-Order all approach will work.
-	 */
-	public void recur(TreeNode root, Double target, Pair p) {
-		if (root != null) {
-			recur(root.left, target, p);
-			if (root.val > target) {// update max
-				p.max = Math.min(root.val, p.max);
-			} else {
-				p.min = Math.max(root.val, p.min);
-			}
-			recur(root.right, target, p);
-		}
-
-	}
+  // Ex: 100, 50, 150... target = 70... answer 50
+  public int closestValue(TreeNode root, double target) {
+    int currentCloseValue = root.val; // 100
+    while (true) {
+      root = root.val > target ? root.left : root.right; // GoLeft.
+      if (root != null)
+        currentCloseValue =
+            Math.abs(root.val - target) < Math.abs(currentCloseValue - target)
+                ? root.val
+                : currentCloseValue; // 1) (70-50)<100-50
+      else break;
+    }
+    return currentCloseValue;
+  }
 }

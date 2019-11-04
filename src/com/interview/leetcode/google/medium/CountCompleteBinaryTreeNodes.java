@@ -20,8 +20,10 @@ import com.interview.leetcode.TreeNode;
  * 1) When the tree is properly balanced and tree is big. The logic will be very efficient.
  * 2) Worst case it has to visit most node. Sometimes even more than n nodes for smaller tree.
  * Check diagram "CountCompleteTreeNodes_WorstCase.jpg" and "CountCompleteTreeNodes_BestCase.jpg" in US Problems
- *
- */
+
+ *  
+ *  
+ *  */
 public class CountCompleteBinaryTreeNodes {
 
   /*

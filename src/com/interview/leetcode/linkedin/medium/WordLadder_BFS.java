@@ -11,6 +11,9 @@ import java.util.Set;
  * https://leetcode.com/problems/word-ladder/description/
  * See the picture in Eclipse "word_ladder".jpg
  * 
+Solution is about permuting beginWord with 1 letter change and go all the way. 
+At one point endWord might or might not match. 
+
  * Take the beginWord, 
  * change the first character from a-z loop it and see if matches with wordList or Dictionary. 
  * If match found push it to queue. Do it for all the characters for beginword. 
