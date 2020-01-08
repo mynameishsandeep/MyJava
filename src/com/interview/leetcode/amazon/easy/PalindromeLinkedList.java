@@ -3,14 +3,14 @@ package com.interview.leetcode.amazon.easy;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import com.interview.leetcode.amazon.easy.MergeTwoSortedLists.ListNode;
+import com.interview.leetcode.ListNode;
 
 /*
  * https://leetcode.com/problems/palindrome-linked-list/discuss/64501/Java-easy-to-understand
  */
 
 /*
- * 
+ *
 METHOD 1 (Use a Stack)
 A simple solution is to use a stack of list nodes. This mainly involves three steps.
 1) Traverse the given list from head to tail and push every visited node to stack.
@@ -30,19 +30,19 @@ This method takes O(n) time and O(1) extra space.
  */
 public class PalindromeLinkedList {
 
-	public boolean isPalindrome(ListNode head) {
-		ListNode temp = head;
-		Deque<ListNode> stack = new ArrayDeque<>();
-		while (temp != null) {
-			stack.push(temp);
-			temp = temp.next;
-		}
-		while (!stack.isEmpty()) {
-			if (head.val != stack.pop().val) {
-				return false;
-			}
-			head = head.next;
-		}
-		return true;
-	}
+  public boolean isPalindrome(ListNode head) {
+    ListNode temp = head;
+    Deque<ListNode> stack = new ArrayDeque<>();
+    while (temp != null) {
+      stack.push(temp);
+      temp = temp.next;
+    }
+    while (!stack.isEmpty()) {
+      if (head.val != stack.pop().val) {
+        return false;
+      }
+      head = head.next;
+    }
+    return true;
+  }
 }
