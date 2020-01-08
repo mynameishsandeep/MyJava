@@ -46,7 +46,7 @@ public class RobotRoomCleaner {
         {0, -1} // left (3)
       };
   Robot r;
-  Set<String> s = new HashSet<String>();
+  Set<String> s = new HashSet<>();
 
   public void cleanRoom(Robot robot) {
     r = robot;

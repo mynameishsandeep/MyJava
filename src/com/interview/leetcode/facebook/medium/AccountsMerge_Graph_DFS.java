@@ -13,13 +13,15 @@ import java.util.Set;
 
 /*
  * https://leetcode.com/problems/accounts-merge/
- * 
+ *
  * 1) Each List contains first entry as name and then email name.
  * 2) Same mail id registered in 2 entry needs to be merged.
- * 3) If mail id matches then name will match. No need to compare on this. 
+ * 3) If mail id matches then name will match. No need to compare on this.
  * ==========Implementation Notes ====
- * 1) Save each email id and 
- * 
+ * 1) Save each email id and
+
+Input : [["John","johnsmith@mail.com"],["John","johnsmith@mail.com","john00@mail.com"]]
+Output : [["John","john00@mail.com","johnsmith@mail.com"]]
  *
  */
 public class AccountsMerge_Graph_DFS {
@@ -49,22 +51,27 @@ public class AccountsMerge_Graph_DFS {
       Map<String, Set<String>> adjMatrixMap, String email, Set<String> visited, List<String> list) {
     list.add(email);
     for (String next : adjMatrixMap.get(email)) {
-      if (visited.add(next)) {
+      if (!visited.contains(next)) {
+        visited.add(next);
         dfs(adjMatrixMap, next, visited, list);
       }
     }
   }
 
+  /*
+   * Ex: [a,a@m.com] 			==> adjMatrix = [[a@m.com,[]]]
+   * 							==> name = [[a@m.com,a]]
+   * Ex: [a,a@m.com, b@m.com]   ==> adjMatrix = [[a@m.com,[b@m.com]],[b@m.com, [a@m.com]]]
+   * 							==> name = [[a@m.com,a]]
+   */
   private void buildAdjMatrix(
       List<List<String>> accounts, Map<String, Set<String>> adjMatrix, Map<String, String> name) {
     for (List<String> account : accounts) {
       String userName = account.get(0);
-      for (int i = 1; i < account.size(); i++) {
-        if (!adjMatrix.containsKey(account.get(i))) {
-          adjMatrix.put(account.get(i), new HashSet<>());
-        }
-        name.put(account.get(i), userName);
-        if (i == 1) continue;
+      name.put(account.get(1), userName);
+      if (!adjMatrix.containsKey(account.get(1))) adjMatrix.put(account.get(1), new HashSet<>());
+      for (int i = 2; i < account.size(); i++) {
+        if (!adjMatrix.containsKey(account.get(i))) adjMatrix.put(account.get(i), new HashSet<>());
         adjMatrix.get(account.get(i)).add(account.get(i - 1));
         adjMatrix.get(account.get(i - 1)).add(account.get(i));
       }

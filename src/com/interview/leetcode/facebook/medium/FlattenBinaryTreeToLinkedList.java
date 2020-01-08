@@ -18,44 +18,26 @@ import com.interview.leetcode.TreeNode;
 
 */
 public class FlattenBinaryTreeToLinkedList {
+  Deque<TreeNode> stack = new ArrayDeque<>();
 
   public void flatten(TreeNode root) {
-    if (root == null) {
-      return;
+    if (root == null) return;
+    if (root.right != null) stack.push(root.right);
+    if (root.left == null) {
+      if (stack.isEmpty()) return;
+      root.left = stack.pop();
     }
-
-    Deque<TreeNode> stack = new ArrayDeque<>();
-    TreeNode curr = root;
-
-    while (true) {
-      if (curr.left != null) {
-        if (curr.right != null) {
-          stack.push(curr.right);
-        }
-        curr.right = curr.left;
-        curr.left = null;
-      }
-
-      if (curr.right != null) {
-        curr = curr.right;
-      } else {
-        if (!stack.isEmpty()) {
-          curr.right = stack.pop();
-        } else {
-          break;
-        }
-      }
-    }
+    root.right = root.left;
+    root.left = null;
+    flatten(root.right);
   }
 
   TreeNode pre = null;
 
   public void flattenRecurse(TreeNode root) {
-    if (root == null) {
-      return;
-    }
-    flatten(root.right);
-    flatten(root.left);
+    if (root == null) return;
+    flattenRecurse(root.right);
+    flattenRecurse(root.left);
     root.right = pre;
     root.left = null;
     pre = root;

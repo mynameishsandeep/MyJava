@@ -1,6 +1,6 @@
 package com.sample.basics;
 
-public class BitWiseXor {
+public class BitWiseXorBoolean {
 	
 	public static void main(String[] args) {
     

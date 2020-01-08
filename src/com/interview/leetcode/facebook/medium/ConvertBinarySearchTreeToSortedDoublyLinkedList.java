@@ -3,14 +3,14 @@ package com.interview.leetcode.facebook.medium;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import com.interview.leetcode.newer.newer.Node;
+import com.interview.leetcode.list.Node;
 
 /*
  * https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/description/
  *
  * 1) Form DoubleLinkedList with Tree itself
- * 2) Tree Left points to next node
- * 3) Tree Right points to previous node.
+ * 2) Tree Right points to next node
+ * 3) Tree Left points to previous node.
  *
  * Main Logic :
  * 1) From Root Node push all left node to stack

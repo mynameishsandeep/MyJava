@@ -25,7 +25,7 @@ Output: [1,2,3,1] and many more valid combinations are possible.
 			int[] result = new int[N];
             for(int i=0; i<N; i++) result[i] = (i%4)+1;
             return result;
-======================================
+=====================See Diagram FlowerPlantingWithNoAdjacent.png=================
 
 5
 [[4,1],[4,2],[4,3],[2,5],[1,2],[1,5]]

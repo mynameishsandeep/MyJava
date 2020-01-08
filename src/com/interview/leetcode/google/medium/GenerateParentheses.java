@@ -23,15 +23,9 @@ public class GenerateParentheses {
 
   private void permute(
       int openCount, int closeCount, List<String> result, String currentCombo, int n) {
-    if (openCount < n) {
-      permute(openCount + 1, closeCount, result, currentCombo + "(", n);
-    }
-    if (closeCount < openCount) {
-      permute(openCount, closeCount + 1, result, currentCombo + ")", n);
-    }
-    if (openCount + closeCount == n * 2) {
-      result.add(currentCombo);
-    }
+    if (openCount < n) permute(openCount + 1, closeCount, result, currentCombo + "(", n);
+    if (closeCount < openCount) permute(openCount, closeCount + 1, result, currentCombo + ")", n);
+    if (openCount + closeCount == n * 2) result.add(currentCombo);
   }
 
   public static void main(String[] args) {

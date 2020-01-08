@@ -4,6 +4,19 @@ import java.util.Arrays;
 
 /*
 * https://leetcode.com/problems/paint-house/description/
+* =========Note====================================================================================
+* This problem takes time about understanding the requirement and input structure. Solution is simple.
+* Take house structure as ladder.Ex: Below has 3 house and u can color red, blue or green on each row.
+* current and previous row cannot have same color painted.
+* 				===
+* 				| |
+*  				===
+*  				| |
+*  				===
+*  				| |
+*  				===
+*
+* =================================================================================================
 1) Row represents number of houses and column represents colors.
 2) Color(column) is fixed (Red, Green, Blue) and houses count (row) can change.
 3) There can be output like Red, Blue, Red. So point is adjacent house can't be same color.

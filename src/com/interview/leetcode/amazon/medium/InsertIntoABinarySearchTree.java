@@ -14,7 +14,7 @@ import com.interview.leetcode.TreeNode;
  * When we find null at leaf "left or right", insert data and return.
  * ===========Solution Approach2 Forward Recursion=========
  * When we find null at leaf "left or right", insert data and return.
- * ===========Solution Approach3 Recursion BackTrack=========
+ * ===========Solution Approach3 Recursion bottom-up=========
  * 1) BackTrack is tricky and simple programming
  * 2) When we find null return new node with the value. Assign values back to it till root.
  *						10

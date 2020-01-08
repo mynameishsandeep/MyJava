@@ -14,11 +14,12 @@ import com.interview.leetcode.TreeNode;
 3) check method recurSimple
 ===========Solution - using BST property - Optimized=======================
 0) Along with above solution.
-1) I can skip left half if root.val>L
-2) I can skip right half if root.val<R
+1) Go For Left only if root.val>L
+2) Go For Right only if root.val<R
 3) check method recurOptimized
 =============Thinking========================
-Sorting of data is not needed. So I can do any of InOrder/PreOrder/PostOrder Traversal.
+1) Sorting of data is not needed. So I can do any of InOrder/PreOrder/PostOrder Traversal.
+2) Think about only one data at a time i.e root.
 =======================
 Input: root = [10,5,15,3,7,null,18], L = 7, R = 15
    				  10
@@ -38,17 +39,20 @@ public class RangeSumOfBST {
   }
 
   // Visits all nodes.
+  // Below 3 lines can swapped in any order
   public void recurSimple(TreeNode root, int L, int R) {
-    if (root.left != null) recurSimple(root.left, L, R);
+    if (root == null) return;
     if (root.val >= L && root.val <= R) sum += root.val;
-    if (root.right != null) recurSimple(root.right, L, R);
+    recurSimple(root.left, L, R);
+    recurSimple(root.right, L, R);
   }
 
   // Below 3 lines can swapped in any order
   public void recurOptimized(TreeNode root, int L, int R) {
+    if (root == null) return;
     if (root.val >= L && root.val <= R) sum += root.val;
-    if (root.left != null && root.val > L) recurOptimized(root.left, L, R);
-    if (root.right != null && root.val < R) recurOptimized(root.right, L, R);
+    if (root.val > L) recurOptimized(root.left, L, R);
+    if (root.val < R) recurOptimized(root.right, L, R);
   }
 
   public int rangeSumBSTBFS(TreeNode root, int L, int R) {
@@ -56,9 +60,10 @@ public class RangeSumOfBST {
     q.offer(root);
     while (!q.isEmpty()) {
       root = q.poll();
+      if (root == null) continue;
       if (root.val >= L && root.val <= R) sum += root.val;
-      if (root.left != null && root.val > L) q.offer(root.left);
-      if (root.right != null && root.val < R) q.offer(root.right);
+      if (root.val > L) q.offer(root.left);
+      if (root.val < R) q.offer(root.right);
     }
     return sum;
   }

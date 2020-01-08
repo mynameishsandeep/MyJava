@@ -7,8 +7,12 @@ package com.altimetrik.datastructure.list;
 2) Count the number of nodes from loop node to loop node, which will give count of nodes from cycle point node to end node.
 Let the count be k.
 3) Fix one pointer to the head and another to kth node from head.
-4) Move both pointers at the same pace, they will meet at cycle point.
+4) Move both pointers at the same pace, they will meet at last node.
+5)  
 
+Ex: [3,2,0,-4]
+Cycle is at 2.. That means -4 is connected to 2. Make -4 to point to null.
+Note: Self connect in middle node is not possible. Only last nodes connects to any of other node or self itself.
 
  */
 public class ListIdentifyCyclePoint {
@@ -21,14 +25,14 @@ public class ListIdentifyCyclePoint {
       doublePointer = doublePointer.next.next;
       // loop found. But loop point is not cycle point
       if (singlePointer == doublePointer) {
-        int totalNodes = getNodeCountFromCyclePointToEnd(singlePointer);
-        return findCyclePoint(head, totalNodes);
+        int totalNodes = getNodeCountFromLoopPointToEnd(singlePointer);
+        return removeCyclePoint(head, totalNodes);
       }
     }
     return null;
   }
 
-  private ListNode findCyclePoint(ListNode head, int k) {
+  private ListNode removeCyclePoint(ListNode head, int k) {
     ListNode node1 = head;
     // move node2 to k node from head
     ListNode node2 = head;
@@ -41,10 +45,10 @@ public class ListIdentifyCyclePoint {
       node1 = node1.next;
       node2 = node2.next;
     }
-    return node1;
+    return node1.next = null;
   }
 
-  private int getNodeCountFromCyclePointToEnd(ListNode meetNode) {
+  private int getNodeCountFromLoopPointToEnd(ListNode meetNode) {
     // Get the cycle count
     ListNode node1 = meetNode;
     ListNode node2 = meetNode;

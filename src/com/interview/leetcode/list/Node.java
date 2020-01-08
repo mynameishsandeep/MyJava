@@ -1,4 +1,4 @@
-package com.interview.leetcode.newer.newer;
+package com.interview.leetcode.list;
 
 public class Node {
   public int val;

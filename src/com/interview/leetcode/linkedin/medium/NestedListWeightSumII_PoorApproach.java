@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Queue;
 
 import com.interview.leetcode.NestedInteger;
-import com.interview.leetcode.linkedin.easy.NestedListWeightSum;
 
 /*
  * Get the depth by level order traversal and call NestedListWeightSum.java depthSum
@@ -13,7 +12,8 @@ import com.interview.leetcode.linkedin.easy.NestedListWeightSum;
 public class NestedListWeightSumII_PoorApproach {
   public int depthSumInverse(List<NestedInteger> nestedList) {
     int depth = getDepth(nestedList);
-    return new NestedListWeightSum().depthSum(nestedList, depth);
+    return 0;
+    // return new NestedListWeightSum().depthSum(nestedList, depth);
   }
 
   private int getDepth(List<NestedInteger> nestedList) {

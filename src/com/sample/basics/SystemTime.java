@@ -1,8 +1,8 @@
 package com.sample.basics;
 
-public class Snippet {
+public class SystemTime {
   public static void main(String[] args) {
-    Collections
+
+    System.out.println(System.nanoTime());
   }
 }
-

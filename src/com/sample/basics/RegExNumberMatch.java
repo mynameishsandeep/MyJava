@@ -5,8 +5,8 @@ public class RegExNumberMatch {
 		System.out.println(numberMatches("123A"));
 		System.out.println(numberMatches("123"));
 		
-		System.out.println(numberMatchesWith3Number("1234"));
-		System.out.println(numberMatchesWith3Number("123"));
+		System.out.println(numberMatchesWith3Size("1234"));
+		System.out.println(numberMatchesWith3Size("123"));
 		
 		System.out.println(hexaDecimalNumberMatches("123A"));
 		System.out.println(hexaDecimalNumberMatches("123AF"));
@@ -26,7 +26,7 @@ public class RegExNumberMatch {
 		return input.matches(regex);
 	}
 
-	public static boolean numberMatchesWith3Number(String input) {
+	public static boolean numberMatchesWith3Size(String input) {
 		String regex = "[0-9]{1,3}";
 		return input.matches(regex);
 	}

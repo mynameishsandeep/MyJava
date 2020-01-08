@@ -13,7 +13,8 @@ You can only move up, down, left and right. You are given a 2D grid of values 0,
 Each 0 marks an empty land which you can pass by freely.
 Each 1 marks a building which you cannot pass through.
 Each 2 marks an obstacle which you cannot pass through.
-
+=============================SolutionNote: HighLeve==========================
+1) Iterate if a point is 1. Fill all points with 0 to
 =============================SolutionNote:==========================
 1) Iterate through each cell
 2) Stop at each building(1) to measure its distance to each empty land reachable from that building
@@ -47,7 +48,7 @@ public class ShortestDistanceFromAllBuildings {
     final int maxRows = grid.length;
     final int maxCols = grid[0].length;
     int buildingCount = 0; //
-    int[][] distanceFromOto1 = new int[maxRows][maxCols];
+    int[][] distanceFrom1to0 = new int[maxRows][maxCols];
     // Each item in access matrix gives how many buildings are accessible from this point
     // Again, we care only about the cells that have empty land.
     int[][] accessToBuildingCount = new int[maxRows][maxCols];
@@ -66,27 +67,26 @@ public class ShortestDistanceFromAllBuildings {
             final Point p = q.poll();
             if (isVisited[p.r][p.c]) continue;
             if (grid[p.r][p.c] == 0) {
-              distanceFromOto1[p.r][p.c] += distanceCount;
+              distanceFrom1to0[p.r][p.c] += distanceCount;
               accessToBuildingCount[p.r][p.c]++;
               isVisited[p.r][p.c] = true;
             }
             // Check neighborhood of this node for any empty lands
             // Same row, right side col
-            if (p.c + 1 < maxCols && grid[p.r][p.c + 1] == 0 && !isVisited[p.r][p.c + 1]) {
+            if (p.c + 1 < maxCols && grid[p.r][p.c + 1] == 0 && !isVisited[p.r][p.c + 1])
               q.offer(new Point(p.r, p.c + 1));
-            }
+
             // Same row, left side col
-            if (p.c - 1 >= 0 && grid[p.r][p.c - 1] == 0 && !isVisited[p.r][p.c - 1]) {
+            if (p.c - 1 >= 0 && grid[p.r][p.c - 1] == 0 && !isVisited[p.r][p.c - 1])
               q.offer(new Point(p.r, p.c - 1));
-            }
+
             // One row below, same col
-            if (p.r + 1 < maxRows && grid[p.r + 1][p.c] == 0 && !isVisited[p.r + 1][p.c]) {
+            if (p.r + 1 < maxRows && grid[p.r + 1][p.c] == 0 && !isVisited[p.r + 1][p.c])
               q.offer(new Point(p.r + 1, p.c));
-            }
+
             // One row up, same col
-            if (p.r - 1 >= 0 && grid[p.r - 1][p.c] == 0 && !isVisited[p.r - 1][p.c]) {
+            if (p.r - 1 >= 0 && grid[p.r - 1][p.c] == 0 && !isVisited[p.r - 1][p.c])
               q.offer(new Point(p.r - 1, p.c));
-            }
           }
           distanceCount++;
         }
@@ -99,7 +99,7 @@ public class ShortestDistanceFromAllBuildings {
     for (int r = 0; r < maxRows; r++) {
       for (int c = 0; c < maxCols; c++) {
         if (grid[r][c] != 0 || accessToBuildingCount[r][c] != buildingCount) continue;
-        min = Math.min(min, distanceFromOto1[r][c]);
+        min = Math.min(min, distanceFrom1to0[r][c]);
       }
     }
 

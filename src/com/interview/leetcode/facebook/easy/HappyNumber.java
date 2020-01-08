@@ -6,17 +6,17 @@ https://leetcode.com/problems/happy-number/
 
 1) Split the number.
 2) Do Square and sum of number.
-3) Do until, if it repeats or 1. 
+3) Do until, if it repeats or 1.
 4) If it repeats output false, If it reached 1 then true.
 
 ======Solution Approach========
-1) Use and fast and slow pointer approach.
+1) Use slow and fast pointer approach.
 2) It will reach either loop or 1.
 =================
- 
+
 Input: 19
 Output: true
-Explanation: 
+Explanation:
 1square + 9square = 82
 8square + 2square = 68
 6square + 8square = 100

@@ -31,9 +31,8 @@ public class DiameterOfBinaryTreeOrLongestPath {
   }
 
   public int recur(TreeNode root) {
-    if (null == root) {
-      return 0;
-    }
+    if (null == root) return 0;
+
     int left = recur(root.left);
     int right = recur(root.right);
     maxDiameter = Math.max(maxDiameter, left + right);

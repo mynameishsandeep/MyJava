@@ -35,9 +35,8 @@ public class AlienDictionary_TopologicalSort {
   public String alienOrder(String[] words) {
     if (words == null || words.length == 0) return "";
 
-    // a. Initialize the graph
-    HashMap<Character, Integer> inDegree =
-        new HashMap<>(); // count of incoming edges for every vertex
+    // a. Initialize the graph. // count of incoming edges for every vertex
+    HashMap<Character, Integer> inDegree = new HashMap<>();
     HashMap<Character, List<Character>> adjMatrix = new HashMap<>(); // adjacency list graph
     for (String word : words) {
       for (char character : word.toCharArray()) {

@@ -10,7 +10,6 @@ package com.interview.leetcode.google.medium;
 public class NumberOfIslands {
   public int numIslands(char[][] grid) {
     int island = 0;
-    if (grid.length == 0) return 0;
     boolean[][] isVisited = new boolean[grid.length][grid[0].length];
     for (int i = 0; i < grid.length; i++) {
       for (int j = 0; j < grid[0].length; j++) {
@@ -24,22 +23,6 @@ public class NumberOfIslands {
   }
 
   private void recur(char[][] grid, boolean[][] isVisited, int r, int c, int rMax, int cMax) {
-    isVisited[r][c] = true;
-    if (c + 1 < cMax && !isVisited[r][c + 1] && grid[r][c + 1] == '1') { // Move right
-      recur(grid, isVisited, r, c + 1, rMax, cMax);
-    }
-    if (c - 1 >= 0 && !isVisited[r][c - 1] && grid[r][c - 1] == '1') { // Move left
-      recur(grid, isVisited, r, c - 1, rMax, cMax);
-    }
-    if (r + 1 < rMax && !isVisited[r + 1][c] && grid[r + 1][c] == '1') { // Move top to bottom
-      recur(grid, isVisited, r + 1, c, rMax, cMax);
-    }
-    if (r - 1 >= 0 && !isVisited[r - 1][c] && grid[r - 1][c] == '1') { // Move bottom to top
-      recur(grid, isVisited, r - 1, c, rMax, cMax);
-    }
-  }
-
-  private void recurSimple(char[][] grid, boolean[][] isVisited, int r, int c, int rMax, int cMax) {
     if (r < rMax && c < cMax && r >= 0 && c >= 0 && !isVisited[r][c] && grid[r][c] == '1') {
       isVisited[r][c] = true;
       recur(grid, isVisited, r, c + 1, rMax, cMax);

@@ -1,81 +1,44 @@
 package com.interview.leetcode.amazon.easy;
 
+import com.interview.leetcode.ListNode;
+
 /*
  * https://leetcode.com/problems/merge-two-sorted-lists/description/
+=================Solution Note=======================================
+1) Solution is based on bottom-up and not forward recursion.
+
  */
 public class MergeTwoSortedLists {
 
-	public class ListNode {
-		int val;
-		ListNode next;
+  // This code will not change the source l1 and l2
+  public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    if (l1 == null) return l2;
+    if (l2 == null) return l1;
+    ListNode result = null;
+    if (l1.val < l2.val) {
+      result = l1;
+      result.next = mergeTwoLists(l1.next, l2);
+    } else {
+      result = l2;
+      result.next = mergeTwoLists(l1, l2.next);
+    }
+    return result;
+  }
+  /*
+     * This will change both the node l1 and l2
+  Input: 1->2->4, 1->3->4
+  Output: 1->1->2->3->4->4
 
-		ListNode(int x) {
-			val = x;
-		}
-	}
 
-    public ListNode mergeTwoListsRecursion(ListNode l1, ListNode l2) {
-        if(l1 == null) {
-            return l2;
-        }
-        if(l2 == null) {
-            return l1;
-        }
-        ListNode result = null;
-        if(l1.val<l2.val) {
-            result = l1;
-            result.next = mergeTwoLists(l1.next, l2);
-        } else {
-            result = l2;
-            result.next = mergeTwoLists(l1, l2.next);
-        }
-        return result;
-   }
-
-	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-		ListNode result = null;
-		ListNode finalResult = null;
-		while (true) {
-			if (l1 != null && l2 != null) {
-				if (l1.val < l2.val) {
-					ListNode current = new ListNode(l1.val);
-					if (result == null) {
-						result = current;
-						finalResult = result;
-					} else {
-						result.next = current;
-						result = current;
-					}
-					l1 = l1.next;
-				} else {
-					ListNode current = new ListNode(l2.val);
-					if (result == null) {
-						result = current;
-						finalResult = result;
-					} else {
-						result.next = current;
-						result = current;
-					}
-					l2 = l2.next;
-				}
-			} else if (l1 == null && l2 == null) {
-				break;
-			} else if (l1 == null) {
-				if (result == null) {
-					finalResult = l2;
-				} else {
-					result.next = l2;
-				}
-				break;
-			} else if (l2 == null) {
-				if (result == null) {
-					finalResult = l1;
-				} else {
-					result.next = l1;
-				}
-				break;
-			}
-		}
-		return finalResult;
-	}
+     */
+  public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
+    if (l1 == null) return l2;
+    if (l2 == null) return l1;
+    if (l1.val < l2.val) {
+      l1.next = mergeTwoLists1(l1.next, l2);
+      return l1;
+    }
+    l2.next = mergeTwoLists1(l1, l2.next);
+    return l2;
+  }
 }

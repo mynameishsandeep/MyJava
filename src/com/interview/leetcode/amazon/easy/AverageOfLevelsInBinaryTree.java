@@ -8,8 +8,13 @@ import java.util.Queue;
 import com.interview.leetcode.TreeNode;
 
 /*
- * https://leetcode.com/problems/average-of-levels-in-binary-tree/
- */
+* https://leetcode.com/problems/average-of-levels-in-binary-tree/
+						1           => 1/1  = 1
+					2		3       => 5/2  = 2.5
+				  4   5   6   7     => 22/4 = 5.5
+
+*
+*/
 public class AverageOfLevelsInBinaryTree {
   public List<Double> averageOfLevels(TreeNode root) {
     List<Double> result = new ArrayList<>();
@@ -17,18 +22,14 @@ public class AverageOfLevelsInBinaryTree {
     q.offer(root);
     while (!q.isEmpty()) {
       int size = q.size();
-      Double average = 0.0d;
+      Double sumOfLevel = 0.0d;
       for (int i = 0; i < size; i++) {
         TreeNode temp = q.poll();
-        average += temp.val;
-        if (null != temp.left) {
-          q.offer(temp.left);
-        }
-        if (null != temp.right) {
-          q.offer(temp.right);
-        }
+        sumOfLevel += temp.val;
+        if (temp.left != null) q.offer(temp.left);
+        if (temp.right != null) q.offer(temp.right);
       }
-      result.add(average / size);
+      result.add(sumOfLevel / size);
     }
     return result;
   }

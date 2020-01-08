@@ -33,7 +33,7 @@ public class AddTwoNumbers {
     return head.next;
   }
 
-  public ListNode addTwoNumbers_oldWayOfDoing(ListNode l1, ListNode l2) {
+  public ListNode addTwoNumbersOldWayOfDoing(ListNode l1, ListNode l2) {
     ListNode result = null;
     ListNode prev = null;
     int carry = 0;
