@@ -3,26 +3,14 @@ package com.sample.tricky;
 import java.util.HashMap;
 
 /*
- * Ex: If input is "IX"
- * 0) Cache the last number in result i.e(X).
- * 1) Parse from last-1 i.e (I)
- * 2) Get currentNumber and nextNumber
- * 2) if currentNumber is greater than or equal to next number. add it to result. else substrct from result.
- * ========Note============
- * Caching the result at beginning is the trick. Thereafter current number
- * added/substracted based on compare.
- *====================
+ * 1) Parse from last
+ * 2) if lastButPreviousNumber is greater than or equal to lastNumber. add it to result. else subtract from result.
  */
 public class RomanToInteger {
-  public static void main(String[] args) {
-    System.out.println(romanToInt("III"));
-    System.out.println(romanToInt("XIV"));
-    System.out.println(romanToInt("IX"));
-  }
 
-  public static int romanToInt(String s) {
-    if (s == null || s.length() == 0) return -1;
-    HashMap<Character, Integer> map = new HashMap<>();
+  HashMap<Character, Integer> map = new HashMap<>();
+
+  private void initMap() {
     map.put('I', 1);
     map.put('V', 5);
     map.put('X', 10);
@@ -30,12 +18,16 @@ public class RomanToInteger {
     map.put('C', 100);
     map.put('D', 500);
     map.put('M', 1000);
+  }
+
+  public int romanToInt(String s) {
+    initMap();
     Integer result = map.get(s.charAt(s.length() - 1));
-    for (int i = s.length() - 2; i >= 0; i--) {
-      Integer currentNumber = map.get(s.charAt(i));
-      Integer nextNumber = map.get(s.charAt(i + 1));
-      if (currentNumber >= nextNumber) result += currentNumber;
-      else result -= currentNumber;
+    for (int i = s.length() - 1; i > 0; i--) {
+      Integer lastNumber = map.get(s.charAt(i));
+      Integer lastButPreviousNumber = map.get(s.charAt(i - 1));
+      if (lastButPreviousNumber >= lastNumber) result += lastButPreviousNumber;
+      else result -= lastButPreviousNumber;
     }
     return result;
   }

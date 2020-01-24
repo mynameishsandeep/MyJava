@@ -17,29 +17,32 @@ target = 3
 Output: true
 
 =======Note on Solution=====
-Elements are sorted all the way. So treat it as one long array.
+1) Elements are sorted all the way. So treat it as one long array.
+2) For 28 elements mid will be 14. Lets say 4 column in a row.
+So we need to point 3rd row 2nd column which is done by [mid / colMax][mid % colMax]
+14/4 = 3, 14%4=2
+
 
  */
 public class SearchA2DMatrix {
 
+  private int colMax;
+  private int[][] matrix;
+
   public boolean searchMatrix(int[][] matrix, int target) {
-    int rowMax = matrix.length;
-    int colMax = matrix[0].length;
-    if (rowMax == 0 || colMax == 0) return false;
-    return binSearch(0, rowMax * colMax - 1, colMax, matrix, target);
+    if (matrix.length == 0 || matrix[0].length == 0) return false;
+    colMax = matrix[0].length;
+    this.matrix = matrix;
+    return binSearch(0, matrix.length * matrix[0].length - 1, target);
   }
 
-  public boolean binSearch(int low, int high, int colMax, int[][] matrix, int target) {
+  public boolean binSearch(int low, int high, int target) {
     if (low <= high) {
       int mid = low + (high - low) / 2;
       int midValue = matrix[mid / colMax][mid % colMax];
-      if (midValue == target) {
-        return true;
-      } else if (midValue < target) {
-        return binSearch(mid + 1, high, colMax, matrix, target);
-      } else {
-        return binSearch(low, mid - 1, colMax, matrix, target);
-      }
+      if (midValue == target) return true;
+      else if (midValue < target) return binSearch(mid + 1, high, target);
+      else return binSearch(low, mid - 1, target);
     }
     return false;
   }

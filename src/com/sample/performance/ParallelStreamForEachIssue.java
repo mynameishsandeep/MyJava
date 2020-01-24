@@ -1,7 +1,9 @@
 package com.sample.performance;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,6 +21,10 @@ public class ParallelStreamForEachIssue {
     p.testParallelStreamCollect();
     // Some data will be overridden
     p.testParallelStreamForEach();
+    // Right Approach
+    p.testParallelStreamCollectWithMap();
+    // Some data will be overridden
+    p.testParallelStreamForEachWithMap();
   }
 
   // Right Approach
@@ -36,6 +42,25 @@ public class ParallelStreamForEachIssue {
     List<Integer> source = IntStream.range(0, 100).boxed().collect(Collectors.toList());
     source.parallelStream().forEach(e -> destination.add(e));
     // Every-time we run the program we will find different size for the destination
+    System.out.println("Size " + destination.size());
+  }
+
+  // Wrong Approach. Some data will be overridden
+  public void testParallelStreamForEachWithMap() {
+    System.out.println("Parallel Stream forEach Wrong Approach...");
+    Map<Integer, Integer> destination = new HashMap<>();
+    List<Integer> source = IntStream.range(0, 100).boxed().collect(Collectors.toList());
+    source.parallelStream().forEach(e -> destination.put(e, e));
+    // Every-time we run the program we will find different size for the destination
+    System.out.println("Size " + destination.size());
+  }
+
+  // Right Approach.
+  public void testParallelStreamCollectWithMap() {
+    System.out.println("Parallel Stream Collect Right Approach...");
+    List<Integer> source = IntStream.range(0, 100).boxed().collect(Collectors.toList());
+    Map<Integer, Integer> destination =
+        source.parallelStream().collect(Collectors.toMap(e -> e, e -> e));
     System.out.println("Size " + destination.size());
   }
 }

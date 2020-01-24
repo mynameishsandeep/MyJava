@@ -5,7 +5,16 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+/*
+ * https://leetcode.com/problems/last-stone-weight/
+ */
 public class LastStoneWeight {
+  // Input: [2,7,4,1,8,1]
+  // [8,7,4,2,1,1]
+  // [4,2,1,1,1]
+  // [2,1,1,1]
+  // [1,1,1]
+  // [1]
   public int lastStoneWeight(int[] stones) {
     Queue<Integer> q = new PriorityQueue<>(Collections.reverseOrder());
     for (int stone : stones) q.offer(stone);
@@ -17,16 +26,17 @@ public class LastStoneWeight {
     return !q.isEmpty() ? q.poll() : 0;
   }
 
+  /*
+   * Below logic keeps the whole data. But moves the compare index from n to 1.
+   */
   public int lastStoneWeight1(int[] stones) {
-    return lastStoneWeight(stones, stones.length);
-  }
-
-  public int lastStoneWeight(int[] stones, int end) {
-    if (end == 0) return 0;
-    if (end == 1) return stones[0];
-    Arrays.sort(stones, 0, end);
-    int a = stones[end - 1] - stones[end - 2];
-    stones[end - 2] = a;
-    return lastStoneWeight(stones, end - 1);
+    int end = stones.length;
+    while (end > 1) {
+      Arrays.sort(stones);
+      int a = stones[end - 1] - stones[end - 2];
+      stones[end - 2] = a;
+      end--;
+    }
+    return stones[0];
   }
 }

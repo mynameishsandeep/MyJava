@@ -52,6 +52,14 @@ public class InvertBinaryTreeOrMirrorOfTree {
     return parent;
   }
 
+  public TreeNode invertTree1(TreeNode parent) {
+    if (parent == null || parent.left == null && parent.right == null) return parent;
+    invertTree1(parent.left);
+    invertTree1(parent.right);
+    swap(parent);
+    return parent;
+  }
+
   private void swap(TreeNode root) {
     TreeNode temp = root.left;
     root.left = root.right;

@@ -4,8 +4,7 @@ package com.interview.leetcode.amazon.easy;
  * https://leetcode.com/problems/design-hashmap
 
 https://leetcode.com/problems/design-hashmap/discuss/238843/Separate-Chaining-Java-Solution
-https://leetcode.com/problems/design-hashmap/discuss/295547/Easy-Java-Code
-====Mixed best approach from above 2 link========
+====General Theory========
 1) The general implementation of HashMap uses bucket which is basically a chain of linked
 lists and each node containing <key, value> pair.
 2) When we insert the pair (10, 20) and then (10, 30), there is technically no collision involved.
@@ -22,19 +21,18 @@ Time complexity: O(1) average and O(n) worst case - for all get(),put() and remo
 Space complexity: O(n) - where n is the number of entries in HashMap
 
 ========PUT Operation========
-1) During the first time. head is null. So create a node and assign it to entry[hashKey].
+1) During the first time. head is null. So create a node and assign it to table[hashKey].
 2) During the second time.
-		a) If node has collision, then the new node will be chained at first. Entry Used will be 1.
-		b) If there is duplicate, then existing node data will be replaced. Entry Used will be 1.
-		c) Else node will be entered in new Entry. Entry Used will be 2.
+		a) If node has collision, then the new node will be chained at first. Total Entry Used in table will be 1.
+		b) If there is duplicate, then existing node data will be replaced. Total Entry Used in table will be 1.
+		c) Else node will be entered in new Entry. Total Entry Used in table will be 2.
 	=========Tricky How Collision works in PUT==========================
 		table[hash] = new Entry(key, value, table[hash]);
 		1) Above code "third argument --> table[hash]" is tricky.
 		2) Lets say my hashCode always returns 100. All data lands in same bucket due to collision.
-		3) During first time table[hash] will be null
-		4) During second time table[hash] will have previous value in step3
-		5) During third time table[hash] will have previous value in step4
-		6) So data will chained like "third-->second-->first" on bucket 100.
+		3) During first time table[hash] will be null. So table[100]= "first"
+		4) During second time table[hash] will have previous value in step3. So table[100] = "second"->"first"
+		5) During third time table[100] = "third"->"second"->"first"
 =========REMOVE Operation===========
 1) If the hashKey is not found. Then data not found. No Operation.
 1) If the node to be deleted is at first. Then I need to connect the bucket head with 2nd node.
@@ -73,13 +71,9 @@ public class DesignHashMap {
 
   public void put(final int key, final int value) {
     int hash = getHashKey(key);
-    Entry head = table[hash];
-    if (head == null) table[hash] = new Entry(key, value, null);
-    else {
-      Entry existingEntry = find(head, key);
-      if (existingEntry != null) existingEntry.val = value;
-      else table[hash] = new Entry(key, value, head);
-    }
+    Entry head = find(table[hash], key);
+    if (head == null) table[hash] = new Entry(key, value, table[hash]);
+    else head.val = value;
   }
 
   /**
